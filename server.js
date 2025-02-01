@@ -98,8 +98,9 @@ function sanitizeLoginMw(req, res, next) {
         email: req.body.email,
         password: req.body.password
     };
-
     const result = safeParse(loginSchema, loginData);
+    
+    // comment here....
     console.log(result);
 
     if (!result.success) {
@@ -109,7 +110,6 @@ function sanitizeLoginMw(req, res, next) {
         })
         return;
     }
-
     next();
 }
 
@@ -117,19 +117,14 @@ app.post("/login", validateLoginFieldsMw, sanitizeLoginMw, async (req, res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({ email }).select("+password");
-
         if (!user) {
             return res.status(404).json({ message: "There's no such an email" });
         }
-
         const isMatch = await compare(password, user.password);
-
         if (!isMatch) {
             return res.status(400).json({ message: "Wrong password" });
         }
-
         const accessToken = jwt.sign({...user}, JWT_SECRET_KEY, { expiresIn: "1h" })
-
         res.status(200).json({
             message: "You are logged!",
             accessToken
