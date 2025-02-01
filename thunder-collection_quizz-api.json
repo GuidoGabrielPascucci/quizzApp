@@ -1,0 +1,57 @@
+{
+    "clientName": "Thunder Client",
+    "collectionName": "quizz-api",
+    "collectionId": "dc3d216b-0ed6-42b7-b3aa-0f952982d12d",
+    "dateExported": "2025-02-01T00:35:54.673Z",
+    "version": "1.2",
+    "folders": [],
+    "requests": [
+        {
+            "_id": "df0b36bb-2ea7-4113-a9b8-e18c21d767cc",
+            "colId": "dc3d216b-0ed6-42b7-b3aa-0f952982d12d",
+            "containerId": "",
+            "name": "Root",
+            "url": "http://localhost:1234",
+            "method": "GET",
+            "sortNum": 10000,
+            "created": "2025-01-28T03:43:08.119Z",
+            "modified": "2025-01-28T09:24:01.357Z",
+            "headers": []
+        },
+        {
+            "_id": "c8455ba3-59d9-40e0-9f60-f47d2eceb136",
+            "colId": "dc3d216b-0ed6-42b7-b3aa-0f952982d12d",
+            "containerId": "",
+            "name": "SIGNUP",
+            "url": "http://localhost:1234/signup",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2025-01-28T09:23:30.638Z",
+            "modified": "2025-01-30T05:14:12.092Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"firstName\":\"Rory\",\n  \"lastName\":\"Walker\",\n  \"email\":\"Elyssa50@hotmail.com\",\n  \"password\":\"rory_09\"\n}",
+                "form": []
+            }
+        },
+        {
+            "_id": "3b9f1d1d-d613-4f48-a100-457cc9a149e3",
+            "colId": "dc3d216b-0ed6-42b7-b3aa-0f952982d12d",
+            "containerId": "",
+            "name": "LOGIN",
+            "url": "http://localhost:1234/login",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2025-01-30T04:44:50.054Z",
+            "modified": "2025-02-01T00:04:29.063Z",
+            "headers": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"email\":\"elyssa50@hotmail.com\",\n  \"password\":\"rory_09\",\n  \"otraCosa\": \"MasData\"\n}",
+                "form": []
+            }
+        }
+    ],
+    "ref": "H1WV_ih4zoJSyWX6iUSGBUoWdr5uyHQ4708Qe6I645Evm3xL_jgbH7nPjO3qp3Q-aQ7iZazr_lMKae6qnBXbcw"
+}

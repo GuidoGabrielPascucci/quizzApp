@@ -1,0 +1,38 @@
+INSTALAR
+- express
+- mongoose
+- dotenv
+- bcrypt
+- faker-js
+- jsonwebtoken
+
+npm install express mongoose dotenv bcrypt faker-js jsonwebtoken
+
+USUARIOS
+- SIGNUP
+- LOGIN
+
+
+BASE DE DATOS MONGODB
+- registrar un usuario -> CREAR UNA COLECCIÓN `Users`.
+
+
+`Users`
+- name
+- lastname
+- age
+- email
+- password
+- score
+
+----------------------------------------------------------------------------------------------------
+
+VALIDAR REGISTRO DE USUARIOS
+
+    // REQUIRED FIELDS:
+    // nombre
+    // apellido
+    // email
+    // password
+
+----------------------------------------------------------------------------------------------------
