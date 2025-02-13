@@ -1,29 +1,37 @@
 import { loginSchema } from "../schemas/loginSchema.js";
 import { safeParse } from "valibot";
 
+export const invalidRequestFormatMessage = 'Invalid request format. Expected application/json.';
+export const mustEnterBothFieldsMessage = 'You must enter both fields to login.';
+
 export function validateLoginFieldsMw(req, res, next) {
-    if (req.body.email && req.body.password) {
-        next();
-        return;
+    if (!req.is("application/json")) {
+        return res.status(400).json({
+            success: false,
+            message: invalidRequestFormatMessage
+        });
     }
-    res.status(400).json({
-        success: false,
-        message: "You must enter both fields to login."
-    })
+
+    if (!req.body.email || !req.body.password) {
+        return res.status(400).json({
+            success: false,
+            message: mustEnterBothFieldsMessage
+        });
+    }
+
+    next();
 }
 
 export function sanitizeLoginMw(req, res, next) {
-    const loginData = {
-        email: req.body.email,
-        password: req.body.password
-    };
+    const loginData = req.body;
     const result = safeParse(loginSchema, loginData);
+
     if (!result.success) {
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: result.issues[0].message
         })
-        return;
     }
+    
     next();
 }

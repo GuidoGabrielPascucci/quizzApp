@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 import { userRouter } from "./src/routes/user.routes.js";
 
-const app = express();
+export const app = express();
 app.use(express.json());
 app.use("/users", userRouter);
 
@@ -13,7 +13,7 @@ const PORT = process.env.PORT ?? 3000;
 
 mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
-app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
     console.log(`\n--------------------------------------------------------\n`);
     console.log(`Server running on port ${PORT}\n`);
     console.log(`--------------------------------------------------------\n`);

@@ -1,7 +1,11 @@
-import { object } from "valibot";
+import { strictObject } from "valibot";
 import { emailSchema, passwordSchema } from "./emailPasswordSchema.js";
 
-export const loginSchema = object({
+const loginSchemaObject = {
     email: emailSchema,
-    password: passwordSchema,
-});
+    password: passwordSchema
+};
+
+const errorMessage = "Invalid request: unexpected fields provided.";
+
+export const loginSchema = strictObject(loginSchemaObject, errorMessage);

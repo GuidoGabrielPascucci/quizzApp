@@ -7,7 +7,9 @@
   "scripts": {
     "dev": "nodemon server.js",
     "mock": "node seed.js",
-    "ran": "node getRandomUser.js"
+    "ran": "node getRandomUser.js",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test-cjs": "jest --verbose"
   },
   "keywords": [],
   "author": "GG.PASCUCCI",
@@ -22,6 +24,12 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^9.4.0",
-    "nodemon": "^3.1.9"
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.0.0"
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "silent": true
   }
 }

@@ -10,25 +10,38 @@ const User = mongoose.model("User", userSchema);
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export async function login(req, res) {
+    
     try {
+
         const { email, password } = req.body;
         const user = await User.findOne({ email }).select("+password");
-        if (!user) {
-            return res.status(404).json({ message: "There's no such an email" });
+        
+        if (!user || !await compare(password, user.password)) {
+            return res.status(401).json({ success: false, message: "Invalid credentials" });
         }
-        const isMatch = await compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({ message: "Wrong password" });
-        }
-        const accessToken = jwt.sign({...user}, JWT_SECRET_KEY, { expiresIn: "1h" })
+
+        const accessToken = jwt.sign(
+            {
+                userId: user._id,
+                userEmail: user.email
+            },
+            JWT_SECRET_KEY,
+            {
+                expiresIn: "1h"
+            }
+        );
+        
         res.status(200).json({
+            success: true,
             message: "You are logged!",
             accessToken
         });
+
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "An error may have occurred" });
     }
+
 }
 
 export async function signup(req, res) {
