@@ -5,6 +5,7 @@ export const invalidRequestFormatMessage = 'Invalid request format. Expected app
 export const mustEnterBothFieldsMessage = 'You must enter both fields to login.';
 
 export function validateLoginFieldsMw(req, res, next) {
+    
     if (!req.is("application/json")) {
         return res.status(400).json({
             success: false,

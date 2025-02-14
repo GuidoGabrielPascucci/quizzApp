@@ -6,6 +6,5 @@ const loginSchemaObject = {
     password: passwordSchema
 };
 
-const errorMessage = "Invalid request: unexpected fields provided.";
-
-export const loginSchema = strictObject(loginSchemaObject, errorMessage);
+export const unexpectedFieldsMessage = "Invalid request: unexpected fields provided.";
+export const loginSchema = strictObject(loginSchemaObject, unexpectedFieldsMessage);
