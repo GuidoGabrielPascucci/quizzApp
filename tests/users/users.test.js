@@ -232,6 +232,10 @@ describe("POST users/login", () => {
     })
 });
 
+describe('Prueba', () => {
+    return;
+})
+
 afterAll(() => {
     mongoose.connection.close();
     server.close();
