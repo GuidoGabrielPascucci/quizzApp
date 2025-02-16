@@ -5,6 +5,7 @@ export function createRandomUser(testing) {
   const randomUser = {
     firstName: faker.person.firstName(),
     lastName: faker.person.lastName(),
+    username: faker.internet.username(),
     email: faker.internet.email(),
     password: hashSync(faker.internet.password(), 10),
     score: faker.number.int({ min: 0}),

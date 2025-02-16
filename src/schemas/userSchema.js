@@ -8,8 +8,14 @@ export const userSchema = Schema({
     },
     lastName: {
       type: String,
-      required: [true, "El apellido es obligatorio"],
+      required: [true, "Last name is required"],
       trim: true
+    },
+    username: {
+        type: String,
+        required: [true, "Username is required"],
+        unique: true,
+        trim: true,
     },
     email: {
       type: String,

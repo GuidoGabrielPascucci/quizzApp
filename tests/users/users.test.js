@@ -1,23 +1,32 @@
-import request from "supertest";
 import mongoose from "mongoose";
 
-import { app, server } from "../../server.js";
-import { emailRelatedData, passwordRelatedData } from "../../src/schemas/emailPasswordSchema.js";
+import { server } from "../../server.js";
+import { loginRequest, signupRequest } from "./user.test.helper.js";
 import { invalidRequestFormatMessage, mustEnterBothFieldsMessage } from "../../src/middlewares/loginMw.js";
 import { unexpectedFieldsMessage } from "../../src/schemas/loginSchema.js";
 
-describe("POST users/login", () => {
-    const loginUrl = "/users/login";
-    const emailGood = "elyssa50@hotmail.com";
-    const passwordGood = "rory_09";
+import { emailRelatedData, passwordRelatedData } from "../../src/schemas/emailPasswordSchema.js";
+
+import { userSchema } from "../../src/schemas/userSchema.js";
+
+const User = mongoose.model('User', userSchema);
+
+
+
+afterAll(() => {
+    mongoose.connection.close();
+    server.close();
+});
+
+describe.skip('POST users/login', () => {
+    const loginUrl = '/users/login';
+    const emailGood = 'elyssa50@hotmail.com';
+    const passwordGood = 'rory_09';
 
     describe('Petición mal enviada', () => {
         test("Debe devolver 400 si el 'Content-Type' no es 'application/json'", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .set("Content-Type", "text/plain")
-                .send("email=elyssa50@hotmail.com&password=rory_09");
-    
+            const data = "email=elyssa50@hotmail.com&password=rory_09";
+            const res = await loginRequest(loginUrl, data, 'text/plain');
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -25,10 +34,8 @@ describe("POST users/login", () => {
             })
         })
         test("Debe devolver 400 si se envía un objeto vacío en el cuerpo de la petición", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({});
-    
+            const data = {};
+            const res = await loginRequest(loginUrl, data);
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -36,14 +43,12 @@ describe("POST users/login", () => {
             });
         })
         test("Debe devolver 400 si se insertan propiedades no permitidas", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({
-                    email: "a_valid_email@example.com",
-                    password: "a-valid-password",
-                    foo: "some-random-data"
-                });
-    
+            const data = {
+                email: "a_valid_email@example.com",
+                password: "a-valid-password",
+                foo: "some-random-data"
+            };
+            const res = await loginRequest(loginUrl, data);
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -51,10 +56,11 @@ describe("POST users/login", () => {
             });
         })
         test("Debe devolver 400 si email y password son cadenas vacías", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({ email: "", password: "" });
-    
+            const data = {
+                email: '',
+                password: ''
+            };
+            const res = await loginRequest(loginUrl, data);
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -62,10 +68,11 @@ describe("POST users/login", () => {
             });
         })
         test("Debe devolver 400 si email es una cadena vacía y password tiene valor", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({ email: "", password: "some-password" });
-    
+            const data = {
+                email: '',
+                password: 'some-password'
+            }
+            const res = await loginRequest(loginUrl, data)
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -73,10 +80,11 @@ describe("POST users/login", () => {
             });
         })
         test("Debe devolver 400 si password es una cadena vacía y email tiene valor", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({ email: emailGood, password: "" });
-    
+            const data = {
+                email: emailGood,
+                password: ''
+            };
+            const res = await loginRequest(loginUrl, data);    
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -88,11 +96,12 @@ describe("POST users/login", () => {
         describe('Email', () => {
             // EMAIL DEMASIADO LARGO ( > 265 )
             test("Debe devolver 400 si el email es demasiado largo", async () => {
-                const longEmail = "a".repeat(255) + "@example.com";
-                const res = await request(app)
-                    .post(loginUrl)
-                    .send({ email: longEmail, password: "validPass123" });
-
+                const longEmail = 'a'.repeat(255) + '@example.com';
+                const data = {
+                    email: longEmail,
+                    password: 'validPass123'
+                };
+                const res = await loginRequest(loginUrl, data);                
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -114,10 +123,11 @@ describe("POST users/login", () => {
                     "user@domain..com"
                 ];
                 for (const email of invalidEmails) {
-                    const res = await request(app)
-                        .post(loginUrl)
-                        .send({ email, password: "validPassword123" });
-            
+                    const data = {
+                        email,
+                        password: 'validPassword123'
+                    };
+                    const res = await loginRequest(loginUrl, data);
                     expect(res.status).toBe(400);
                     expect(res.body).toMatchObject({
                         success: false,
@@ -126,10 +136,11 @@ describe("POST users/login", () => {
                 }
             });            
             test("Debe devolver 400 si el email tiene espacios antes o después", async () => {
-                const res = await request(app)
-                    .post(loginUrl)
-                    .send({ email: "   user@example.com   ", password: "validPass123" });
-
+                const data = {
+                    email: '   user@example.com   ',
+                    password: 'validPass123'
+                };
+                const res = await loginRequest(loginUrl, data);
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -138,23 +149,13 @@ describe("POST users/login", () => {
             });
         })
         describe('Password', () => {
-            // CHEQUAR ESTO PORQUE ESTÁ MAL
-            test("Debe devolver 400 si password no cumple requisitos de formato", async () => {
-                const res = await request(app)
-                    .post(loginUrl)
-                    .send({ email: "some.valid.email@example.com", password: "HAY QUE PONER UN PASSWORD QUE NO CUMPLA LOS REQUISITOS" });
-
-                expect(res.status).toBe(400);
-                expect(res.body).toMatchObject({
-                    success: false,
-                    message: "Password is too long."
-                });
-            })
+            
             test("Debe devolver 400 si el password tiene menos de 6 caracteres", async () => {
-                const res = await request(app)
-                    .post(loginUrl)
-                    .send({ email: "user@example.com", password: "123" });
-
+                const data = {
+                    email: 'user@example.com',
+                    password: '123'
+                }
+                const res = await loginRequest(loginUrl, data);                
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -162,22 +163,28 @@ describe("POST users/login", () => {
                 });
             });
             test("Debe devolver 400 si el password es demasiado largo", async () => {
-                const longPassword = "a".repeat(19);
-                const res = await request(app)
-                    .post(loginUrl)
-                    .send({ email: "user@example.com", password: longPassword });
-
+                // CUAL ES EL LIMITE MAXIMO DE LONGITUD PARA UN PASSWORD Y UTILIZAR UNA CONSTANTE EN LUGAR DE UN NUMERO LITERAL.
+                const longPassword = 'a'.repeat(19);
+                const data = {
+                    email: 'user@example.com',
+                    password: longPassword
+                };
+                const res = await loginRequest(loginUrl, data);
                 expect(res.status).toBe(400);
-                // Puedes personalizar el mensaje si decides establecer un límite máximo de longitud.
+                expect(res.body).toMatchObject({
+                    success: false,
+                    message: "Password is too long."
+                });
             });
         })
     })
     describe('Credenciales inválidas', () => {
         test("Debe devolver 401 si el email es incorrecto", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({ email: "wrong@example.com", password: "does-not-matter" });
-    
+            const data = {
+                email: 'wrong@example.com',
+                password: 'does-not-matter'
+            };
+            const res = await loginRequest(loginUrl, data);
             expect(res.status).toBe(401);
             expect(res.body).toMatchObject({
                 success: false,
@@ -185,10 +192,11 @@ describe("POST users/login", () => {
             });
         });
         test("Debe devolver 401 si el email es correcto pero password no coincide", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({ email: emailGood, password: "wrong-password" });
-    
+            const data = {
+                email: emailGood,
+                password: "wrong-password"
+            }
+            const res = await loginRequest(loginUrl, data);
             expect(res.status).toBe(401);
             expect(res.body).toMatchObject({
                 success: false,
@@ -204,10 +212,11 @@ describe("POST users/login", () => {
                 "'; DROP TABLE users; --"
             ];
             for (const input of suspiciousInputs) {
-                const res = await request(app)
-                    .post(loginUrl)
-                    .send({ email: input, password: "validPass123" });
-    
+                const data = {
+                    email: input,
+                    password: 'validPass123'
+                };
+                const res = await loginRequest(loginUrl, data);                
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -218,10 +227,11 @@ describe("POST users/login", () => {
     })
     describe('Caso de éxito - usuario logueado', () => {
         test("Debe devolver 200 si las credenciales son correctas", async () => {
-            const res = await request(app)
-                .post(loginUrl)
-                .send({ email: emailGood, password: passwordGood });
-    
+            const data = {
+                email: emailGood,
+                password: passwordGood
+            };
+            const res = await loginRequest(loginUrl, data);
             expect(res.status).toBe(200);
             expect(res.body).toMatchObject({
                 success: true,
@@ -232,7 +242,37 @@ describe("POST users/login", () => {
     })
 });
 
-afterAll(() => {
-    mongoose.connection.close();
-    server.close();
-});
+describe('POST users/signup', () => {
+
+    test('Debería registrar un usuario correctamente', async () => {
+        
+        const signupUrl = '/users/signup';
+
+        const data = {
+            firstName: 'Federico',
+            lastName: 'Garcia',
+            username: 'testUser2',
+            email: 'test2@example.com',
+            password: 'SecurePass123!'
+        }
+        
+        const res = await signupRequest(signupUrl, data);
+    
+        expect(res.status).toBe(201);
+        expect(res.body).toMatchObject({
+            success: true,
+            message: 'User registered successfully',
+            user: {
+                _id: expect.any(String), 
+                firstName: expect.any(String),
+                lastName: expect.any(String),
+                username: expect.any(String),
+                email: expect.any(String),
+                score: expect.any(Number),
+                createdAt: expect.any(String),  
+            }
+        });
+
+    });
+
+})

@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon server.js",
-    "mock": "node seed.js",
-    "ran": "node getRandomUser.js",
+    "mock": "node ./src/dev/seed.js",
+    "ran": "node ./src/dev/getRandomUser.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test-cjs": "jest --verbose"
   },
@@ -31,7 +31,7 @@
   "jest": {
     "testEnvironment": "node",
     "detectOpenHandles": true,
-    "verbose": true,
+    "verbose": false,
     "silent": true
   }
 }

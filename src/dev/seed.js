@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { config } from "dotenv";
-import { userSchema } from "../userSchema.js";
+import { userSchema } from "../schemas/userSchema.js";
 import { createUsersDataset } from "./mock.js";
 
 config();

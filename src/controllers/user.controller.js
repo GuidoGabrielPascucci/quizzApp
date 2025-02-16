@@ -2,7 +2,6 @@ import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcrypt";
 import { config } from "dotenv";
-
 import { userSchema } from "../schemas/userSchema.js";
 
 config();
@@ -10,12 +9,12 @@ const User = mongoose.model("User", userSchema);
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export async function login(req, res) {
-    
+
     try {
 
         const { email, password } = req.body;
         const user = await User.findOne({ email }).select("+password");
-        
+
         if (!user || !await compare(password, user.password)) {
             return res.status(401).json({ success: false, message: "Invalid credentials" });
         }
@@ -30,7 +29,7 @@ export async function login(req, res) {
                 expiresIn: "1h"
             }
         );
-        
+
         res.status(200).json({
             success: true,
             message: "You are logged!",
@@ -50,18 +49,18 @@ export async function signup(req, res) {
         const hashedPassword = await hash(user.password, 10);
         user.password = hashedPassword;
         const createdUser = await User.create(user);
-        res
+        return res
             .status(201)
             .json({
+                success: true,
                 message: "User registered successfully",
                 user: createdUser
             });
     } catch (err) {
-        res
+        return res
             .status(500)
             .json({
                 message: "An error may have occured"
             });
-        console.error(err);
     }
 }
