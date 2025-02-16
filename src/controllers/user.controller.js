@@ -5,7 +5,11 @@ import { config } from "dotenv";
 import { userSchema } from "../schemas/userSchema.js";
 
 config();
-const User = mongoose.model("User", userSchema);
+
+
+//const User = mongoose.model("User", userSchema);
+
+
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export async function login(req, res) {
