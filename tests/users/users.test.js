@@ -239,35 +239,129 @@ describe.skip('POST users/login', () => {
 
 describe('POST users/signup', () => {
 
-    test('Debería registrar un usuario correctamente', async () => {
-        
-        const signupUrl = '/users/signup';
+    const signupUrl = '/users/signup';
 
-        const data = {
-            firstName: 'Federico',
-            lastName: 'Garcia',
-            username: 'testUser2',
-            email: 'test2@example.com',
-            password: 'SecurePass123!'
-        }
+    describe('Caso de éxito, usuario registrado', () => {
         
-        const res = await signupRequest(signupUrl, data);
-    
-        expect(res.status).toBe(201);
-        expect(res.body).toMatchObject({
-            success: true,
-            message: 'User registered successfully',
-            user: {
-                _id: expect.any(String), 
-                firstName: expect.any(String),
-                lastName: expect.any(String),
-                username: expect.any(String),
-                email: expect.any(String),
-                score: expect.any(Number),
-                createdAt: expect.any(String),  
+        test('Debería registrar un usuario correctamente', async () => {
+            
+            const data = {
+                firstName: 'Federico',
+                lastName: 'Garcia',
+                username: 'testUser2',
+                email: 'test2@example.com',
+                password: 'SecurePass123!'
             }
+            
+            const res = await signupRequest(signupUrl, data);
+        
+            expect(res.status).toBe(201);
+            expect(res.body).toMatchObject({
+                success: true,
+                message: 'User registered successfully',
+                user: {
+                    _id: expect.any(String), 
+                    firstName: expect.any(String),
+                    lastName: expect.any(String),
+                    username: expect.any(String),
+                    email: expect.any(String),
+                    score: expect.any(Number),
+                    createdAt: expect.any(String),  
+                }
+            });
+    
         });
 
-    });
+    })
+
+    describe('Petición mal enviada', () => {
+        test("Debería fallar si no se envía el body", async () => {
+            const res = await signupRequest("/signup", {});
+        
+            expect(res.status).toBe(400);
+        });
+    })
+
+    describe('Validación de campos obligatorios', () => {
+        test("Debería fallar si falta el username", async () => {
+            const res = await signupRequest("/signup", {
+                email: "test@example.com",
+                password: "SecurePass123!"
+            });
+        
+            expect(res.status).toBe(400);
+            expect(res.body.error).toMatch(/username es requerido/i);
+        });
+    })
+    
+    describe('Formato de datos inválidos', () => {
+        test("Debería fallar si el email es inválido", async () => {
+            const res = await signupRequest("/signup", {
+                username: "testUser",
+                email: "invalid-email",
+                password: "SecurePass123!"
+            });
+        
+            expect(res.status).toBe(400);
+            expect(res.body.error).toMatch(/email inválido/i);
+        });
+    })
+
+    describe('Usuario ya registrado', () => {
+        test("Debería fallar si el usuario ya está registrado", async () => {
+            // Primero registrar el usuario
+            await signupRequest("/signup", {
+                username: "testUser",
+                email: "test@example.com",
+                password: "SecurePass123!"
+            });
+        
+            // Intentar registrarlo de nuevo
+            const res = await signupRequest("/signup", {
+                username: "testUser",
+                email: "test@example.com",
+                password: "SecurePass123!"
+            });
+        
+            expect(res.status).toBe(409);
+            expect(res.body.error).toMatch(/usuario ya registrado/i);
+        });
+    })
+
+    describe('Inyección SQL y ataques XSS', () => {
+        test("Debería rechazar intentos de inyección SQL", async () => {
+            const res = await signupRequest("/signup", {
+                username: "' OR 1=1; --",
+                email: "sql@example.com",
+                password: "SecurePass123!"
+            });
+        
+            expect(res.status).toBe(400);
+        });
+    
+        test("Debería rechazar intentos de XSS", async () => {
+            const res = await signupRequest("/signup", {
+                username: "<script>alert('xss')</script>",
+                email: "xss@example.com",
+                password: "SecurePass123!"
+            });
+        
+            expect(res.status).toBe(400);
+        });
+    })
+
+    describe('Datos persistidos correctamente', () => {
+        test("Debería guardar el usuario en la base de datos", async () => {
+            await signupRequest("/signup", {
+                username: "databaseUser",
+                email: "dbuser@example.com",
+                password: "SecurePass123!"
+            });
+        
+            const user = await User.findOne({ email: "dbuser@example.com" });
+            expect(user).not.toBeNull();
+            expect(user.username).toBe("databaseUser");
+        });
+    })
 
 })
