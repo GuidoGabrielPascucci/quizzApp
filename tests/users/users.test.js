@@ -4,14 +4,9 @@ import { server } from "../../server.js";
 import { loginRequest, signupRequest } from "./user.test.helper.js";
 import { invalidRequestFormatMessage, mustEnterBothFieldsMessage } from "../../src/middlewares/loginMw.js";
 import { unexpectedFieldsMessage } from "../../src/schemas/loginSchema.js";
+//import { emailRelatedData, passwordRelatedData } from "../../src/schemas/emailPasswordSchema.js";
 
-import { emailRelatedData, passwordRelatedData } from "../../src/schemas/emailPasswordSchema.js";
-
-import { userSchema } from "../../src/schemas/userSchema.js";
-
-const User = mongoose.model('User', userSchema);
-
-
+import { User } from "../../src/models/user.model.js";
 
 afterAll(() => {
     mongoose.connection.close();
