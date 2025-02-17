@@ -1,15 +1,9 @@
-import mongoose from "mongoose";
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcrypt";
 import { config } from "dotenv";
-import { userSchema } from "../schemas/userSchema.js";
+import { User } from "../models/user.model.js";
 
 config();
-
-
-//const User = mongoose.model("User", userSchema);
-
-
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export async function login(req, res) {
@@ -61,6 +55,7 @@ export async function signup(req, res) {
                 user: createdUser
             });
     } catch (err) {
+        console.error("server error: ", err);
         return res
             .status(500)
             .json({
