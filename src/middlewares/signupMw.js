@@ -1,5 +1,3 @@
-// import { loginSchema } from "../schemas/loginSchema.js";
-
 import { safeParse } from "valibot";
 
 export function validateSignupFieldsMw(req, res, next) {
