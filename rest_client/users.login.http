@@ -1,0 +1,12 @@
+POST http://localhost:1234/users/login
+Content-Type: application/json
+
+{
+    "firstName": "Luca",
+    "lastName": "Modric",
+    "username": "luquitak3_",
+    "email": "lucamodric12_@ggayl.es",
+    "password": "modric10abc"
+}
+
+###

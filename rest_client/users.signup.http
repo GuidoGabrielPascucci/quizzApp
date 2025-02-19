@@ -1,0 +1,18 @@
+POST http://localhost:1234/users/signup
+Content-Type: application/json
+
+{
+    "email": "algoejemplo@twnty.com",
+    "password": "Algo mas"
+}
+
+###
+
+POST http://localhost:1234/users/signup
+Content-Type: application/json
+
+{
+
+}
+
+###
