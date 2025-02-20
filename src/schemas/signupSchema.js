@@ -27,8 +27,8 @@ for (const obj of misObjetosArray) {
 }
 
 export const signupSchema = object({
-    firstName: schemas[0],
-    lastName: schemas[1],
+    firstname: schemas[0],
+    lastname: schemas[1],
     username: schemas[2],
     email: emailSchema,
     password: passwordSchema,
