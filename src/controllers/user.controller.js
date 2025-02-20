@@ -2,6 +2,7 @@ import jwt from "jsonwebtoken";
 import { hash, compare } from "bcrypt";
 import { config } from "dotenv";
 import { User } from "../models/user.model.js";
+import { sanitizeUserForResponse } from "../utils/user.utils.js";
 
 config();
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
@@ -47,12 +48,13 @@ export async function signup(req, res) {
         const hashedPassword = await hash(user.password, 10);
         user.password = hashedPassword;
         const createdUser = await User.create(user);
+        const newUserDTO = sanitizeUserForResponse(createdUser);
         return res
             .status(201)
             .json({
                 success: true,
                 message: "User registered successfully",
-                user: createdUser
+                user: newUserDTO
             });
     } catch (err) {
         console.error("server error: ", err);

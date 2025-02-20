@@ -1,30 +1,30 @@
 import { safeParse } from "valibot";
+import { signupSchema } from "../schemas/signupSchema.js";
+import { getSignupData } from "../utils/user.utils.js";
 
 export function validateSignupFieldsMw(req, res, next) {
-    if (req.body.firstName && req.body.lastName && req.body.email && req.body.password) {
-        next();
-        return;
+    const signupData = getSignupData(req);
+    
+    if (Object.values(signupData).some(value => value === undefined)) {
+        return res.status(400).json({
+            success: false,
+            message: "You must enter all fields to signup."
+        });
     }
-    res.status(400).json({
-        success: false,
-        message: "You must enter all fields to signup."
-    })
+
+    next();
 }
 
 export function sanitizeSignupMw(req, res, next) {
-    const signupData = {
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        password: req.body.password
-    };
+    const signupData = getSignupData(req);
     const result = safeParse(signupSchema, signupData);
+    
     if (!result.success) {
-        res.status(400).json({
+        return res.status(400).json({
             success: false,
             message: result.issues[0].message
-        })
-        return;
+        });
     }
+
     next();
 }
