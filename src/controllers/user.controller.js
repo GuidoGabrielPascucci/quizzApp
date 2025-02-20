@@ -1,11 +1,7 @@
 import jwt from "jsonwebtoken";
 import { hash, compare } from "bcrypt";
-import { config } from "dotenv";
 import { User } from "../models/user.model.js";
 import { sanitizeUserForResponse } from "../utils/user.utils.js";
-
-config();
-const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
 export async function login(req, res) {
 
@@ -23,7 +19,7 @@ export async function login(req, res) {
                 userId: user._id,
                 userEmail: user.email
             },
-            JWT_SECRET_KEY,
+            process.env.JWT_SECRET_KEY,
             {
                 expiresIn: "1h"
             }
