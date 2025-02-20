@@ -16,3 +16,19 @@ Content-Type: application/json
 }
 
 ###
+
+###
+
+POST http://localhost:1234/users/signup
+Content-Type: application/json
+
+{
+    "firstname": "Guido",
+    "lastname": "Pascucci",
+    "username": "gp4s444",
+    "email": "g.g.pascucci@gmail.com",
+    "password": "p4sk1234"
+}
+
+###
+
