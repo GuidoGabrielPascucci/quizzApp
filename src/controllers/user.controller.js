@@ -1,7 +1,3 @@
-//import { UserService } from "../services/user.service.js"
-
-//const userService = new UserService();
-
 export class UserController {
    
     constructor(userService) {
