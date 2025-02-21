@@ -1,28 +1,28 @@
 import mongoose from "mongoose";
 import { server } from "../../server.js";
-import { loginRequest, signupRequest } from "./user.test.helper.js";
-import { invalidRequestFormatMessage, mustEnterBothFieldsMessage } from "../../src/middlewares/loginMw.js";
+import { doRequest } from "./user.test.helper.js";
+import { invalidRequestFormatMessage, mustEnterBothFieldsToLoginMessage, mustEnterBothFieldsToSignupMessage } from "../../src/middlewares/utils.middlware.js";
 import { unexpectedFieldsMessage } from "../../src/schemas/loginSchema.js";
 import { User } from "../../src/models/user.model.js";
+
+beforeEach(async () => {
+    await User.deleteMany({});
+})
 
 afterAll(() => {
     mongoose.connection.close();
     server.close();
 });
 
-beforeEach(async () => {
-    await User.deleteMany({});
-})
-
-describe.skip('POST users/login', () => {
+describe('POST users/login', () => {
     const loginUrl = '/users/login';
     const emailGood = 'elyssa50@hotmail.com';
-    const passwordGood = 'rory_09';
+    //const passwordGood = 'rory_09';
 
     describe('Petición mal enviada', () => {
         test("Debe devolver 400 si el 'Content-Type' no es 'application/json'", async () => {
             const data = "email=elyssa50@hotmail.com&password=rory_09";
-            const res = await loginRequest(loginUrl, data, 'text/plain');
+            const res = await doRequest(loginUrl, data, 'text/plain');
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -31,11 +31,11 @@ describe.skip('POST users/login', () => {
         })
         test("Debe devolver 400 si se envía un objeto vacío en el cuerpo de la petición", async () => {
             const data = {};
-            const res = await loginRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
-                message: mustEnterBothFieldsMessage
+                message: mustEnterBothFieldsToLoginMessage
             });
         })
         test("Debe devolver 400 si se insertan propiedades no permitidas", async () => {
@@ -44,7 +44,7 @@ describe.skip('POST users/login', () => {
                 password: "a-valid-password",
                 foo: "some-random-data"
             };
-            const res = await loginRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -56,11 +56,11 @@ describe.skip('POST users/login', () => {
                 email: '',
                 password: ''
             };
-            const res = await loginRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
-                message: mustEnterBothFieldsMessage
+                message: mustEnterBothFieldsToLoginMessage
             });
         })
         test("Debe devolver 400 si email es una cadena vacía y password tiene valor", async () => {
@@ -68,11 +68,11 @@ describe.skip('POST users/login', () => {
                 email: '',
                 password: 'some-password'
             }
-            const res = await loginRequest(loginUrl, data)
+            const res = await doRequest(loginUrl, data)
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
-                message: mustEnterBothFieldsMessage
+                message: mustEnterBothFieldsToLoginMessage
             });
         })
         test("Debe devolver 400 si password es una cadena vacía y email tiene valor", async () => {
@@ -80,11 +80,11 @@ describe.skip('POST users/login', () => {
                 email: emailGood,
                 password: ''
             };
-            const res = await loginRequest(loginUrl, data);    
+            const res = await doRequest(loginUrl, data);    
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
-                message: mustEnterBothFieldsMessage
+                message: mustEnterBothFieldsToLoginMessage
             });
         })
     })
@@ -97,7 +97,7 @@ describe.skip('POST users/login', () => {
                     email: longEmail,
                     password: 'validPass123'
                 };
-                const res = await loginRequest(loginUrl, data);                
+                const res = await doRequest(loginUrl, data);                
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -123,7 +123,7 @@ describe.skip('POST users/login', () => {
                         email,
                         password: 'validPassword123'
                     };
-                    const res = await loginRequest(loginUrl, data);
+                    const res = await doRequest(loginUrl, data);
                     expect(res.status).toBe(400);
                     expect(res.body).toMatchObject({
                         success: false,
@@ -136,7 +136,7 @@ describe.skip('POST users/login', () => {
                     email: '   user@example.com   ',
                     password: 'validPass123'
                 };
-                const res = await loginRequest(loginUrl, data);
+                const res = await doRequest(loginUrl, data);
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -151,7 +151,7 @@ describe.skip('POST users/login', () => {
                     email: 'user@example.com',
                     password: '123'
                 }
-                const res = await loginRequest(loginUrl, data);                
+                const res = await doRequest(loginUrl, data);                
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -165,7 +165,7 @@ describe.skip('POST users/login', () => {
                     email: 'user@example.com',
                     password: longPassword
                 };
-                const res = await loginRequest(loginUrl, data);
+                const res = await doRequest(loginUrl, data);
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -180,7 +180,7 @@ describe.skip('POST users/login', () => {
                 email: 'wrong@example.com',
                 password: 'does-not-matter'
             };
-            const res = await loginRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(401);
             expect(res.body).toMatchObject({
                 success: false,
@@ -192,7 +192,7 @@ describe.skip('POST users/login', () => {
                 email: emailGood,
                 password: "wrong-password"
             }
-            const res = await loginRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(401);
             expect(res.body).toMatchObject({
                 success: false,
@@ -212,7 +212,7 @@ describe.skip('POST users/login', () => {
                     email: input,
                     password: 'validPass123'
                 };
-                const res = await loginRequest(loginUrl, data);                
+                const res = await doRequest(loginUrl, data);                
                 expect(res.status).toBe(400);
                 expect(res.body).toMatchObject({
                     success: false,
@@ -221,13 +221,21 @@ describe.skip('POST users/login', () => {
             }
         });
     })
-    describe('Caso de éxito - usuario logueado', () => {
+    describe.only('Caso de éxito - usuario logueado', () => {
         test("Debe devolver 200 si las credenciales son correctas", async () => {
-            const data = {
-                email: emailGood,
-                password: passwordGood
+            const user = {
+                firstname: 'Elyssa',
+                lastname: 'Jones',
+                username: 'rory09',
+                email: 'elyssa50@hotmail.com',
+                password: 'rory_09123'
             };
-            const res = await loginRequest(loginUrl, data);
+            await User.create(user);
+            const data = {
+                email: user.email,
+                password: user.password
+            };
+            const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(200);
             expect(res.body).toMatchObject({
                 success: true,
@@ -238,58 +246,67 @@ describe.skip('POST users/login', () => {
     })
 });
 
-describe('POST users/signup', () => {
+describe.skip('POST users/signup', () => {
 
     const signupUrl = '/users/signup';
 
-    describe.only('Caso de éxito, usuario registrado', () => {
-        
+    describe('Caso de éxito, usuario registrado', () => {
         test('Debería registrar un usuario correctamente', async () => {
-            
             const data = {
-                firstName: 'Federico',
-                lastName: 'Garcia',
-                username: 'testUser2',
-                email: 'test2@example.com',
-                password: 'SecurePass123!'
+                firstname: "Guido",
+                lastname: "Pascucci",
+                username: "gp4s444",
+                email: "g.g.pascucci@gmail.com",
+                password: "p4sk1234"
             }
-            
-            const res = await signupRequest(signupUrl, data);
-        
+            const res = await doRequest(signupUrl, data);
             expect(res.status).toBe(201);
             expect(res.body).toMatchObject({
                 success: true,
                 message: 'User registered successfully',
                 user: {
                     _id: expect.any(String), 
-                    firstName: expect.any(String),
-                    lastName: expect.any(String),
+                    firstname: expect.any(String),
+                    lastname: expect.any(String),
                     username: expect.any(String),
                     email: expect.any(String),
                     score: expect.any(Number),
                     createdAt: expect.any(String),  
                 }
             });
-    
         });
-
     })
 
     describe('Petición mal enviada', () => {
         test("Debería fallar si no se envía el body", async () => {
-            const res = await signupRequest("/signup", {});
-        
+            const data = {};
+            const res = await doRequest(signupUrl, data);
             expect(res.status).toBe(400);
+            expect(res.body).toMatchObject({
+                success: false,
+                message: mustEnterBothFieldsToSignupMessage
+            });
         });
+
+        test('Deberia fallar si se envía como algo distinto de application/json', async () => {
+            const data = 'email=g.g.pascucci@gmail.com&password=p4sk1234';
+            const contentType = 'text/plain';
+            const res = await doRequest(signupUrl, data, contentType);
+            expect(res.status).toBe(400);
+            expect(res.body).toMatchObject({
+                success: false,
+                message: invalidRequestFormatMessage
+            });
+        })
     })
 
     describe('Validación de campos obligatorios', () => {
         test("Debería fallar si falta el username", async () => {
-            const res = await signupRequest("/signup", {
+            const data = {
                 email: "test@example.com",
                 password: "SecurePass123!"
-            });
-        
+            };
+            const res = await doRequest(signupUrl, data);
             expect(res.status).toBe(400);
             expect(res.body.error).toMatch(/username es requerido/i);
         });
@@ -297,7 +314,7 @@ describe('POST users/signup', () => {
     
     describe('Formato de datos inválidos', () => {
         test("Debería fallar si el email es inválido", async () => {
-            const res = await signupRequest("/signup", {
+            const res = await doRequest("/signup", {
                 username: "testUser",
                 email: "invalid-email",
                 password: "SecurePass123!"
@@ -311,14 +328,14 @@ describe('POST users/signup', () => {
     describe('Usuario ya registrado', () => {
         test("Debería fallar si el usuario ya está registrado", async () => {
             // Primero registrar el usuario
-            await signupRequest("/signup", {
+            await doRequest("/signup", {
                 username: "testUser",
                 email: "test@example.com",
                 password: "SecurePass123!"
             });
         
             // Intentar registrarlo de nuevo
-            const res = await signupRequest("/signup", {
+            const res = await doRequest("/signup", {
                 username: "testUser",
                 email: "test@example.com",
                 password: "SecurePass123!"
@@ -331,7 +348,7 @@ describe('POST users/signup', () => {
 
     describe('Inyección SQL y ataques XSS', () => {
         test("Debería rechazar intentos de inyección SQL", async () => {
-            const res = await signupRequest("/signup", {
+            const res = await doRequest("/signup", {
                 username: "' OR 1=1; --",
                 email: "sql@example.com",
                 password: "SecurePass123!"
@@ -341,7 +358,7 @@ describe('POST users/signup', () => {
         });
     
         test("Debería rechazar intentos de XSS", async () => {
-            const res = await signupRequest("/signup", {
+            const res = await doRequest("/signup", {
                 username: "<script>alert('xss')</script>",
                 email: "xss@example.com",
                 password: "SecurePass123!"
@@ -353,7 +370,7 @@ describe('POST users/signup', () => {
 
     describe('Datos persistidos correctamente', () => {
         test("Debería guardar el usuario en la base de datos", async () => {
-            await signupRequest("/signup", {
+            await doRequest("/signup", {
                 username: "databaseUser",
                 email: "dbuser@example.com",
                 password: "SecurePass123!"

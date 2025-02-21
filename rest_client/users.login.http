@@ -2,8 +2,8 @@ POST http://localhost:1234/users/login
 Content-Type: application/json
 
 {
-    "email": "g.g.pascucci@gmail.com",
-    "password": "p4sk1234"
+    "email": "elyssa50@hotmail.com",
+    "password": "rory_09123"
 }
 
 ###
