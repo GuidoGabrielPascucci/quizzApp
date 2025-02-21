@@ -32,3 +32,15 @@ Content-Type: application/json
 
 ###
 
+POST http://localhost:1234/users/signup
+Content-Type: application/json
+
+{
+    "firstname": "Marcos",
+    "lastname": "Paz",
+    "username": "marqus11",
+    "email": "mar.cks1@gmail.com",
+    "password": "m1a2k43"
+}
+
+###

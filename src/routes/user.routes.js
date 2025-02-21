@@ -9,6 +9,12 @@ export class UserRoutes {
     
     constructor(userController) {
         this.userController = userController;
+        this.registerRoutes();
+    }
+
+    registerRoutes() {
+        this.login();
+        this.signup();
     }
 
     login() {

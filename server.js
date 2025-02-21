@@ -17,10 +17,19 @@ export const app = express();
 app.use(express.json());
 app.use("/users", userRoutes.userRouter);
 
-mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+
+
+//mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+try {
+    await mongoose.connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+    console.log("\n✅ Connected to MongoDB");
+} catch (error) {
+    console.error("\n❌ Error connecting to MongoDB:", error);
+    process.exit(1); // Detiene la aplicación si no puede conectarse
+}
+
+
 
 export const server = app.listen(PORT, () => {
-    console.log(`\n--------------------------------------------------------\n`);
-    console.log(`Server running on port ${PORT}\n`);
-    console.log(`--------------------------------------------------------\n`);
+    console.log(`\n✅ Server running on port ${PORT}\n`);
 })
