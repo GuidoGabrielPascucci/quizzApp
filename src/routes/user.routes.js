@@ -1,9 +1,34 @@
 import { Router } from "express";
-import { login, signup } from "../controllers/user.controller.js";
 import { validateLoginFieldsMw, sanitizeLoginMw } from "../middlewares/loginMw.js";
 import { validateSignupFieldsMw, sanitizeSignupMw } from "../middlewares/signupMw.js";
 import { validateRequestFormatMw } from "../middlewares/utils.middlware.js";
 
-export const userRouter = Router();
-userRouter.post('/signup',  validateRequestFormatMw, validateSignupFieldsMw, sanitizeSignupMw, signup);
-userRouter.post('/login', validateRequestFormatMw, validateLoginFieldsMw, sanitizeLoginMw, login);
+export class UserRoutes {
+    
+    userRouter = Router();
+    
+    constructor(userController) {
+        this.userController = userController;
+    }
+
+    login() {
+        const endpoint = '/login';
+        const loginMiddlewares = [
+            validateRequestFormatMw,
+            validateLoginFieldsMw,
+            sanitizeLoginMw
+        ];
+        this.userRouter.post(endpoint, ...loginMiddlewares, this.userController.login);
+    }
+
+    signup() {
+        const endpoint = '/signup';
+        const signupMiddlewares = [
+            validateRequestFormatMw,
+            validateSignupFieldsMw,
+            sanitizeSignupMw
+        ];
+        this.userRouter.post(endpoint, ...signupMiddlewares, this.userController.signup);
+    }
+
+}
