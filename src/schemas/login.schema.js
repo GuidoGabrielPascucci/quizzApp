@@ -1,5 +1,6 @@
 import { strictObject } from "valibot";
-import { emailSchema, passwordSchema } from "./emailPasswordSchema.js";
+import { passwordSchema } from "./users/password.schema.js";
+import { emailSchema } from "./users/email.schema.js";
 
 const loginSchemaObject = {
     email: emailSchema,

@@ -1,5 +1,5 @@
-import { getLengthSchemaObj, NAME_MIN_LENGTH, NAME_MAX_LENGTH } from "../../user.schema.helper.js";
-import { getSchemaObject } from "./signup.schema.helper.js";
+import { getLengthSchemaObj, NAME_MIN_LENGTH, NAME_MAX_LENGTH } from "../user.schema.helper.js";
+import { getSchemaObject } from "./signup/signup.schema.helper.js";
 
 const fieldStringName = 'Last name';
 const lastNameMinLengthSchemaObj = getLengthSchemaObj(fieldStringName, NAME_MIN_LENGTH, true);

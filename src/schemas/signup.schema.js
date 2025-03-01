@@ -1,8 +1,9 @@
 import { object, pipe, string, nonEmpty, minLength, maxLength } from "valibot";
-import { emailSchema, passwordSchema } from "./emailPasswordSchema.js";
-import { unObjetoFirstName } from "./users/signup/firstname.schema.js";
-import { unObjetoLastName } from "./users/signup/lastname.schema.js";
-import { unObjetoUsername } from "./users/signup/username.schema.js";
+import { emailSchema } from "./users/email.schema.js";
+import { passwordSchema } from "./users/password.schema.js";
+import { unObjetoFirstName } from "./users/firstname.schema.js";
+import { unObjetoLastName } from "./users/lastname.schema.js";
+import { unObjetoUsername } from "./users/username.schema.js";
 
 const getStringFieldSchema = (field, minLengthObj, maxLengthObj) => {
     return pipe(
