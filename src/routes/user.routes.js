@@ -1,40 +1,43 @@
 import { Router } from "express";
-import { validateLoginFieldsMw, sanitizeLoginMw } from "../middlewares/loginMw.js";
-import { validateSignupFieldsMw, sanitizeSignupMw } from "../middlewares/signupMw.js";
+import { validateLoginFieldsMw, sanitizeLoginMw } from "../middlewares/login.middleware.js";
+import { validateSignupFieldsMw, sanitizeSignupMw } from "../middlewares/signup.middleware.js";
 import { validateRequestFormatMw } from "../middlewares/utils.middlware.js";
 
 export class UserRoutes {
     
-    userRouter = Router();
-    
     constructor(userController) {
         this.userController = userController;
+        this.router = Router();
         this.registerRoutes();
     }
 
-    registerRoutes() {
-        this.login();
-        this.signup();
+    registerRoutes = () => {
+        this.setLoginRoute();
+        this.setSignupRoute();
     }
 
-    login() {
+    setLoginRoute = () => {
         const endpoint = '/login';
         const loginMiddlewares = [
             validateRequestFormatMw,
             validateLoginFieldsMw,
             sanitizeLoginMw
         ];
-        this.userRouter.post(endpoint, ...loginMiddlewares, this.userController.login);
+        this.router.post(endpoint, ...loginMiddlewares, this.userController.login);
     }
 
-    signup() {
+    setSignupRoute = () => {
         const endpoint = '/signup';
         const signupMiddlewares = [
             validateRequestFormatMw,
             validateSignupFieldsMw,
             sanitizeSignupMw
         ];
-        this.userRouter.post(endpoint, ...signupMiddlewares, this.userController.signup);
+        this.router.post(endpoint, ...signupMiddlewares, this.userController.signup);
     }
 
+    initAppRouter = (app) => {
+        app.use('/users', this.router);
+    }
+    
 }
