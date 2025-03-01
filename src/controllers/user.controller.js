@@ -1,5 +1,5 @@
 export class UserController {
-   
+
     constructor(userService) {
         this.userService = userService;
     }
@@ -24,26 +24,30 @@ export class UserController {
             res.status(500).json({ message: "An error may have occurred" });
         }
     }
-    
-    signup = async(req, res) => {
+
+    signup = async (req, res) => {
         try {
             const user = req.body;
+            const userExist = await this.userService.findByEmail(user.email)
+            if (userExist) {
+                return res.status(409).json({
+                    success: false,
+                    message: 'You are already signed up! Go to login.'
+                })
+            }
             const newUserDTO = await this.userService.signup(user)
             return res
-                .status(201)
-                .json({
+                .status(201).json({
                     success: true,
                     message: "User registered successfully",
                     user: newUserDTO
                 });
         } catch (err) {
             console.error("server error: ", err);
-            return res
-                .status(500)
-                .json({
-                    message: "An error may have occured"
-                });
+            return res.status(500).json({
+                message: "An error may have occured"
+            });
         }
     }
-    
+
 }
