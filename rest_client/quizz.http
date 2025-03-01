@@ -1,5 +1,35 @@
-GET http://localhost:1234/quizzes/quizz
+GET http://localhost:1234/quizzes/
 
 ###
 
-GET http://localhost:1234/quizzes/quizz2
+GET http://localhost:1234/quizzes?category=economy
+
+###
+
+GET http://localhost:1234/quizzes?category=economy&difficulty=easy
+
+###
+
+GET http://localhost:1234/quizzes?category=economy&difficulty=intermediate
+
+###
+
+GET http://localhost:1234/quizzes?category=economy&difficulty=hard
+
+###
+
+GET http://localhost:1234/quizzes/:id
+
+###
+
+POST http://localhost:1234/quizzes/
+
+###
+
+PUT http://localhost:1234/quizzes/:id
+
+###
+
+DELETE http://localhost:1234/quizzes/:id
+
+###
