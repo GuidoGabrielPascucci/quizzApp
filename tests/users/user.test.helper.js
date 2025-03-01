@@ -1,8 +1,7 @@
-import request from "supertest";
-import { app } from "../../server.js";
+import { request } from "./user.test.setup.js";
 
 export const doRequest = async (url, data, contentType) => {
-    let requestSetup = request(app).post(url);
+    let requestSetup = request.post(url);
     if (contentType) {
         requestSetup.set('Content-Type', contentType);
     }
