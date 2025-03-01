@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "nodemon server.js",
     "mock": "node ./src/dev/seed.js",
+    "quizz-mock": "node ./src/dev/quizzes.seed.js",
     "ran": "node ./src/dev/getRandomUser.js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test-cjs": "jest --verbose"
@@ -16,6 +17,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "jsonwebtoken": "^9.0.2",
@@ -33,8 +35,6 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "detectOpenHandles": true,
-    "verbose": false,
-    "silent": true
+    "detectOpenHandles": true
   }
 }

@@ -10,6 +10,10 @@ export default [
                 ...globals.node,
                 ...globals.jest
             }
+        },
+        parserOptions: {
+            ecmaVersion: "latest",
+            sourceType: "module"
         }
     },
     pluginJs.configs.recommended,
