@@ -1,0 +1,426 @@
+[
+    {
+        "title": "Economia Básica",
+        "description": "Un test super fácil para aprender los conceptos fundamentales sobre economía",
+        "category": "economy",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿Qué es la oferta y la demanda?",
+                "choices": [
+                    "Un método de contabilidad",
+                    "La relación entre la cantidad disponible de un producto y el deseo de comprarlo",
+                    "Una estrategia de marketing",
+                    "Un tipo de impuesto"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la inflación?",
+                "choices": [
+                    "La disminución general de precios",
+                    "El aumento en el valor de la moneda",
+                    "El aumento general en los precios de bienes y servicios",
+                    "La tasa de interés bancaria"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es el PIB?",
+                "choices": [
+                    "Producto Interno Bruto - el valor total de bienes y servicios producidos en un país",
+                    "Precio Internacional Base",
+                    "Plan de Inversión Bancaria",
+                    "Producto de Importación Básica"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué es un monopolio?",
+                "choices": [
+                    "Un juego de mesa",
+                    "Una situación donde múltiples empresas compiten",
+                    "Una empresa que domina completamente un mercado sin competencia",
+                    "Un tipo de inversión"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es el mercado de valores?",
+                "choices": [
+                    "Un supermercado grande",
+                    "Un lugar donde se intercambian acciones de empresas",
+                    "Una tienda de descuentos",
+                    "Un banco central"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el tipo de cambio?",
+                "choices": [
+                    "La tasa a la que se intercambia una moneda por otra",
+                    "El cambio de precio de un producto",
+                    "El cambio de banco",
+                    "La tasa de interés de un préstamo"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué es la recesión económica?",
+                "choices": [
+                    "Cuando aumenta la producción",
+                    "Un período de crecimiento económico",
+                    "Una disminución significativa de la actividad económica",
+                    "El aumento de las exportaciones"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es el desempleo?",
+                "choices": [
+                    "Tener múltiples trabajos",
+                    "La población que no está en edad de trabajar",
+                    "La situación de las personas que no tienen empleo pero lo buscan activamente",
+                    "Trabajar medio tiempo"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué son los impuestos?",
+                "choices": [
+                    "Dinero que los bancos prestan al gobierno",
+                    "Contribuciones obligatorias que las personas y empresas hacen al Estado",
+                    "Dinero que el gobierno regala a los ciudadanos",
+                    "Inversiones en la bolsa de valores"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la deuda pública?",
+                "choices": [
+                    "El dinero que los ciudadanos deben al banco",
+                    "Los impuestos no pagados",
+                    "El dinero que el gobierno debe a sus ciudadanos y a otros países",
+                    "Las deudas entre empresas privadas"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es la competencia perfecta?",
+                "choices": [
+                    "Cuando solo hay una empresa en el mercado",
+                    "Cuando hay muchos compradores y vendedores sin poder para influir en el precio",
+                    "Cuando el gobierno controla los precios",
+                    "Cuando las empresas se ponen de acuerdo en los precios"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la elasticidad de la demanda?",
+                "choices": [
+                    "La capacidad de un producto para estirarse",
+                    "La sensibilidad de la cantidad demandada ante cambios en el precio",
+                    "La flexibilidad en los horarios de compra",
+                    "La capacidad de producción de una empresa"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué son los bienes sustitutos?",
+                "choices": [
+                    "Productos que se complementan entre sí",
+                    "Productos que no tienen relación",
+                    "Productos que pueden reemplazar a otros en el consumo",
+                    "Productos de primera necesidad"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es la balanza comercial?",
+                "choices": [
+                    "Un instrumento para pesar productos",
+                    "La diferencia entre exportaciones e importaciones de un país",
+                    "El balance general de un negocio",
+                    "La cantidad de dinero en circulación"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la depreciación?",
+                "choices": [
+                    "El aumento del valor de un activo",
+                    "La pérdida de valor de un activo con el tiempo",
+                    "El precio de un producto",
+                    "La ganancia en una inversión"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el costo de oportunidad?",
+                "choices": [
+                    "El costo de un producto en oferta",
+                    "El costo de producción",
+                    "El valor de la mejor alternativa no elegida",
+                    "El costo de la materia prima"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es la política fiscal?",
+                "choices": [
+                    "Las decisiones del banco central sobre las tasas de interés",
+                    "El uso del gasto público y los impuestos para influir en la economía",
+                    "Las políticas de comercio internacional",
+                    "Las reglas de contabilidad"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el margen de ganancia?",
+                "choices": [
+                    "La diferencia entre el precio de venta y el costo",
+                    "El total de ventas",
+                    "El costo de producción",
+                    "El salario de los empleados"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué es la deflación?",
+                "choices": [
+                    "El aumento general de precios",
+                    "La devaluación de la moneda",
+                    "La disminución general de precios",
+                    "El aumento de la producción"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es el poder adquisitivo?",
+                "choices": [
+                    "La cantidad de dinero que tiene una persona",
+                    "La capacidad de comprar bienes y servicios con una cantidad de dinero",
+                    "El poder político de un país",
+                    "La capacidad de producción de una empresa"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    },
+    {
+        "title": "Economia Intermedia",
+        "description": "Un test para afianzar los conocimientos y meterse de lleno en el área",
+        "category": "economy",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Qué es la política monetaria?",
+                "choices": [
+                    "El conjunto de impuestos de un país",
+                    "Las decisiones del banco central sobre la oferta de dinero y tasas de interés",
+                    "Las políticas de comercio internacional",
+                    "El presupuesto del gobierno"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el mercado de divisas (FOREX)?",
+                "choices": [
+                    "Un mercado donde se venden productos diversos",
+                    "El mercado donde se intercambian diferentes monedas",
+                    "Un mercado de materias primas",
+                    "Un mercado de bonos gubernamentales"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué son los bonos gubernamentales?",
+                "choices": [
+                    "Subsidios del gobierno",
+                    "Préstamos que los ciudadanos dan al gobierno",
+                    "Impuestos especiales",
+                    "Ayudas sociales"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la curva de Phillips?",
+                "choices": [
+                    "Una gráfica de crecimiento económico",
+                    "La relación inversa entre desempleo e inflación",
+                    "Una curva de oferta y demanda",
+                    "Un indicador bursátil"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el efecto multiplicador?",
+                "choices": [
+                    "El aumento de la producción",
+                    "El impacto amplificado que tiene un cambio en el gasto en la economía total",
+                    "La multiplicación de empresas",
+                    "El crecimiento poblacional"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la teoría cuantitativa del dinero?",
+                "choices": [
+                    "Una teoría sobre el ahorro",
+                    "La relación entre la cantidad de dinero y el nivel de precios",
+                    "Una teoría sobre inversiones",
+                    "Un método de contabilidad"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el coeficiente de Gini?",
+                "choices": [
+                    "Un indicador de pobreza",
+                    "Una medida de la desigualdad en la distribución del ingreso",
+                    "Un índice de precios",
+                    "Un indicador de crecimiento"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué son las externalidades?",
+                "choices": [
+                    "Productos importados",
+                    "Efectos indirectos de una actividad económica sobre terceros",
+                    "Exportaciones",
+                    "Gastos externos"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la ventaja comparativa?",
+                "choices": [
+                    "Ser mejor que la competencia",
+                    "La capacidad de producir un bien a un costo de oportunidad menor",
+                    "Tener mejores productos",
+                    "Vender más barato"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el ciclo económico?",
+                "choices": [
+                    "El horario de los bancos",
+                    "Las fluctuaciones periódicas en la actividad económica",
+                    "El período fiscal",
+                    "El ciclo contable"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    },
+    {
+        "title": "Economía Avanzada",
+        "description": "Un test desafiante para evaluar conocimientos avanzados en economía",
+        "category": "economy",
+        "difficulty": "hard",
+        "questions": [
+            {
+                "question": "¿Qué es la teoría de juegos en economía?",
+                "choices": [
+                    "Un método de entretenimiento",
+                    "El estudio de la toma de decisiones estratégicas entre agentes racionales",
+                    "Una teoría sobre juegos de azar",
+                    "Un método de predicción económica"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la econometría?",
+                "choices": [
+                    "Un tipo de medición económica",
+                    "La aplicación de métodos estadísticos para analizar datos económicos",
+                    "Un sistema contable",
+                    "Una teoría económica"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el equilibrio de Nash?",
+                "choices": [
+                    "Un balance contable",
+                    "Una situación donde ningún jugador puede beneficiarse cambiando su estrategia unilateralmente",
+                    "Un punto de equilibrio en el mercado",
+                    "Un método de negociación"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la hipótesis de los mercados eficientes?",
+                "choices": [
+                    "Una teoría sobre producción",
+                    "La teoría de que los precios de los activos reflejan toda la información disponible",
+                    "Un método de inversión",
+                    "Una estrategia de mercado"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el modelo de Black-Scholes?",
+                "choices": [
+                    "Un modelo económico básico",
+                    "Un modelo para valorar opciones financieras",
+                    "Un sistema de trading",
+                    "Una teoría de inversión"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la teoría del ciclo real de negocios?",
+                "choices": [
+                    "Una teoría sobre ventas",
+                    "Una teoría que explica los ciclos económicos mediante choques tecnológicos",
+                    "Un método de planificación",
+                    "Una estrategia empresarial"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la frontera de posibilidades de producción?",
+                "choices": [
+                    "Un límite geográfico",
+                    "El límite máximo de producción posible dada la tecnología y recursos",
+                    "Una meta de producción",
+                    "Un objetivo empresarial"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el teorema de Coase?",
+                "choices": [
+                    "Una ley física",
+                    "Un teorema sobre la eficiencia de la negociación privada de externalidades",
+                    "Una regla contable",
+                    "Un principio administrativo"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la crítica de Lucas?",
+                "choices": [
+                    "Una crítica literaria",
+                    "Una crítica a los modelos económicos que no consideran expectativas racionales",
+                    "Una teoría monetaria",
+                    "Un análisis de mercado"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la teoría del portafolio moderno?",
+                "choices": [
+                    "Una técnica de inversión",
+                    "Una teoría sobre la optimización de carteras de inversión",
+                    "Un método contable",
+                    "Una estrategia de ahorro"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    }
+]

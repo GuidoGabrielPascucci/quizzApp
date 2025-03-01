@@ -1,0 +1,108 @@
+{
+    "title": "Economia intermedio",
+    "description": "Un test para afianzar los conocimientos y meterse de lleno en el área",
+    "category": "economy",
+    "difficulty": "intermediate",
+    "questions": [
+        {
+            "question": "¿Qué es la política monetaria?",
+            "choices": [
+                "El conjunto de impuestos de un país",
+                "Las decisiones del banco central sobre la oferta de dinero y tasas de interés",
+                "Las políticas de comercio internacional",
+                "El presupuesto del gobierno"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué es el mercado de divisas (FOREX)?",
+            "choices": [
+                "Un mercado donde se venden productos diversos",
+                "El mercado donde se intercambian diferentes monedas",
+                "Un mercado de materias primas",
+                "Un mercado de bonos gubernamentales"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué son los bonos gubernamentales?",
+            "choices": [
+                "Subsidios del gobierno",
+                "Préstamos que los ciudadanos dan al gobierno",
+                "Impuestos especiales",
+                "Ayudas sociales"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué es la curva de Phillips?",
+            "choices": [
+                "Una gráfica de crecimiento económico",
+                "La relación inversa entre desempleo e inflación",
+                "Una curva de oferta y demanda",
+                "Un indicador bursátil"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué es el efecto multiplicador?",
+            "choices": [
+                "El aumento de la producción",
+                "El impacto amplificado que tiene un cambio en el gasto en la economía total",
+                "La multiplicación de empresas",
+                "El crecimiento poblacional"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué es la teoría cuantitativa del dinero?",
+            "choices": [
+                "Una teoría sobre el ahorro",
+                "La relación entre la cantidad de dinero y el nivel de precios",
+                "Una teoría sobre inversiones",
+                "Un método de contabilidad"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué es el coeficiente de Gini?",
+            "choices": [
+                "Un indicador de pobreza",
+                "Una medida de la desigualdad en la distribución del ingreso",
+                "Un índice de precios",
+                "Un indicador de crecimiento"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué son las externalidades?",
+            "choices": [
+                "Productos importados",
+                "Efectos indirectos de una actividad económica sobre terceros",
+                "Exportaciones",
+                "Gastos externos"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué es la ventaja comparativa?",
+            "choices": [
+                "Ser mejor que la competencia",
+                "La capacidad de producir un bien a un costo de oportunidad menor",
+                "Tener mejores productos",
+                "Vender más barato"
+            ],
+            "correctAnswer": 1
+        },
+        {
+            "question": "¿Qué es el ciclo económico?",
+            "choices": [
+                "El horario de los bancos",
+                "Las fluctuaciones periódicas en la actividad económica",
+                "El período fiscal",
+                "El ciclo contable"
+            ],
+            "correctAnswer": 1
+        }
+    ]
+}
