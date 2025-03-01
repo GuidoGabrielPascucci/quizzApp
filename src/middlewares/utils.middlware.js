@@ -1,6 +1,6 @@
-const mustEnterBothFieldsToMessage = 'You must enter both fields to';
-export const mustEnterBothFieldsToLoginMessage = `${mustEnterBothFieldsToMessage} login.`
-export const mustEnterBothFieldsToSignupMessage = `${mustEnterBothFieldsToMessage} signup.`
+const msg_mustEnterAllFieldsTo = 'You must enter all fields to';
+export const msg_mustEnterAllFieldsToLogin = `${msg_mustEnterAllFieldsTo} login.`
+export const msg_mustEnterAllFieldsToSignup = `${msg_mustEnterAllFieldsTo} signup.`
 export const invalidRequestFormatMessage = 'Invalid request format. Expected application/json.';
 
 export function validateRequestFormatMw(req, res, next) {

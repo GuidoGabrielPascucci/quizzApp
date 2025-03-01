@@ -1,12 +1,12 @@
-import { loginSchema } from "../schemas/loginSchema.js";
+import { loginSchema } from "../schemas/login.schema.js";
 import { safeParse } from "valibot";
-import { mustEnterBothFieldsToLoginMessage } from "./utils.middlware.js";
+import { msg_mustEnterAllFieldsToLogin } from "./utils.middlware.js";
 
 export function validateLoginFieldsMw(req, res, next) {
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({
             success: false,
-            message: mustEnterBothFieldsToLoginMessage
+            message: msg_mustEnterAllFieldsToLogin
         });
     }
     next();

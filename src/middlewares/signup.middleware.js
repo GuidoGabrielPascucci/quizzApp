@@ -1,13 +1,14 @@
 import { safeParse } from "valibot";
-import { signupSchema } from "../schemas/signupSchema.js";
+import { signupSchema } from "../schemas/signup.schema.js";
 import { getSignupData } from "../utils/user.utils.js";
+import { msg_mustEnterAllFieldsToSignup } from "./utils.middlware.js";
 
 export function validateSignupFieldsMw(req, res, next) {
     const signupData = getSignupData(req);
     if (Object.values(signupData).some(value => value === undefined)) {
         return res.status(400).json({
             success: false,
-            message: "You must enter all fields to signup."
+            message: msg_mustEnterAllFieldsToSignup
         });
     }
     next();
