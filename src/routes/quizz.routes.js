@@ -1,11 +1,25 @@
 import { Router } from "express";
 
-export const quizzRouter = Router();
+class QuizzRoutes {
 
-quizzRouter.get('/quizz', (req, res) => {
-    res.send("Funciona bien el /quizz");
-});
+    constructor(quizzController) {
+        this.quizzController = quizzController;
+        this.router = Router();
+        this.initRoutes();
+    }
 
-quizzRouter.get('/quizz2', (req, res) => {
-    res.send("Funciona bien el /quizz2");
-})
+    initRoutes() {
+        this.router.get('/', this.quizzController.obtenerTodos);
+        this.router.get('/:id', this.quizzController.obtenerPorId);
+        this.router.post('/', this.quizzController.crear);
+        this.router.put('/:id', this.quizzController.actualizar);
+        this.router.delete('/:id', this.quizzController.eliminar);
+    }
+
+    initAppRouter(app) {
+        app.use('/quizzes', this.router)
+    }
+
+}
+
+export default QuizzRoutes;
