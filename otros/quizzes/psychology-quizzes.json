@@ -1,0 +1,218 @@
+[
+    {
+        "title": "Introducción a la Psicología",
+        "description": "Conceptos básicos sobre la psicología y sus principios fundamentales.",
+        "category": "psychology",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿Quién es considerado el padre de la psicología moderna?",
+                "choices": [
+                    "Sigmund Freud",
+                    "Wilhelm Wundt",
+                    "Carl Jung",
+                    "William James"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué estudia la psicología?",
+                "choices": [
+                    "El comportamiento y los procesos mentales",
+                    "Los astros y su influencia en la vida humana",
+                    "Los procesos químicos en el cuerpo",
+                    "El desarrollo de la tecnología"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cuál es la unidad básica del sistema nervioso?",
+                "choices": [
+                    "Neurona",
+                    "Célula muscular",
+                    "Glóbulo rojo",
+                    "Axón"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué rama de la psicología estudia el desarrollo humano a lo largo de la vida?",
+                "choices": [
+                    "Psicología cognitiva",
+                    "Psicología del desarrollo",
+                    "Psicología social",
+                    "Psicología clínica"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué psicólogo propuso la teoría del condicionamiento clásico?",
+                "choices": [
+                    "B.F. Skinner",
+                    "Sigmund Freud",
+                    "Ivan Pavlov",
+                    "Jean Piaget"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué es la memoria a corto plazo?",
+                "choices": [
+                    "Memoria que dura unos segundos a minutos",
+                    "Recuerdos de la infancia",
+                    "Memoria almacenada permanentemente",
+                    "Memoria utilizada solo en momentos de peligro"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué teoría sugiere que nuestras emociones son el resultado de interpretaciones cognitivas de nuestras experiencias fisiológicas?",
+                "choices": [
+                    "Teoría de James-Lange",
+                    "Teoría de Cannon-Bard",
+                    "Teoría de Schachter-Singer",
+                    "Teoría del apego"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué término se refiere a la capacidad del cerebro para adaptarse y cambiar a lo largo del tiempo?",
+                "choices": [
+                    "Plasticidad cerebral",
+                    "Memoria implícita",
+                    "Sinapsis",
+                    "Neurotransmisión"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cuál de los siguientes neurotransmisores está asociado con el placer y la recompensa?",
+                "choices": [
+                    "Dopamina",
+                    "Serotonina",
+                    "Noradrenalina",
+                    "Cortisol"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué enfoque psicológico se centra en la observación del comportamiento sin necesidad de analizar procesos internos?",
+                "choices": [
+                    "Psicoanálisis",
+                    "Conductismo",
+                    "Cognitivismo",
+                    "Humanismo"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    },
+    {
+        "title": "Psicología Cognitiva",
+        "description": "Explora los procesos mentales como la memoria, el aprendizaje y la percepción.",
+        "category": "psychology",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Qué psicólogo propuso la teoría del desarrollo cognitivo?",
+                "choices": [
+                    "Sigmund Freud",
+                    "Jean Piaget",
+                    "Erik Erikson",
+                    "Lev Vygotsky"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es la principal función del hipocampo en el cerebro?",
+                "choices": [
+                    "Control del equilibrio",
+                    "Regulación emocional",
+                    "Formación de recuerdos",
+                    "Procesamiento del lenguaje"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué tipo de memoria nos permite recordar eventos específicos de nuestra vida?",
+                "choices": [
+                    "Memoria semántica",
+                    "Memoria episódica",
+                    "Memoria procedimental",
+                    "Memoria implícita"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué concepto se refiere a la resistencia a cambiar creencias a pesar de la evidencia en contra?",
+                "choices": [
+                    "Sesgo de confirmación",
+                    "Efecto halo",
+                    "Heurística de disponibilidad",
+                    "Efecto placebo"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué modelo de la memoria sugiere que hay un almacenamiento sensorial, a corto plazo y a largo plazo?",
+                "choices": [
+                    "Modelo de memoria de Atkinson y Shiffrin",
+                    "Teoría del procesamiento de la información",
+                    "Modelo de Craik y Lockhart",
+                    "Modelo de Baddeley"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cómo se llama el fenómeno en el que los recuerdos falsos se perciben como reales?",
+                "choices": [
+                    "Efecto Mandela",
+                    "Falsificación de memoria",
+                    "Confabulación",
+                    "Recuerdo latente"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué función cumple la corteza prefrontal en el pensamiento y la toma de decisiones?",
+                "choices": [
+                    "Regulación emocional",
+                    "Procesamiento de recompensas",
+                    "Control de impulsos y planificación",
+                    "Percepción sensorial"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué teoría explica cómo organizamos y estructuramos la información en la memoria?",
+                "choices": [
+                    "Teoría de los esquemas",
+                    "Teoría de la motivación",
+                    "Modelo de procesamiento paralelo",
+                    "Modelo de resonancia"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué experimento famoso estudió la memoria reconstructiva y los recuerdos falsos?",
+                "choices": [
+                    "Experimento de la prisión de Stanford",
+                    "Experimento de Milgram",
+                    "Experimento de Loftus y Palmer",
+                    "Experimento del pequeño Albert"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál de estos es un principio clave del aprendizaje observacional?",
+                "choices": [
+                    "Refuerzo inmediato",
+                    "Imitación",
+                    "Extinción",
+                    "Condicionamiento clásico"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    }
+]

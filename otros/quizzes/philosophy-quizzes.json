@@ -1,0 +1,218 @@
+[
+    {
+        "title": "Introducción a la Filosofía",
+        "description": "Conceptos básicos sobre la filosofía y sus principales corrientes de pensamiento.",
+        "category": "philosophy",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿Quién es considerado el padre de la filosofía occidental?",
+                "choices": [
+                    "Sócrates",
+                    "Platón",
+                    "Aristóteles",
+                    "Tales de Mileto"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué filósofo escribió 'La República'?",
+                "choices": [
+                    "Aristóteles",
+                    "Descartes",
+                    "Platón",
+                    "Kant"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál es el objetivo principal de la filosofía?",
+                "choices": [
+                    "Explicar el universo mediante la razón",
+                    "Demostrar la existencia de Dios",
+                    "Resolver problemas matemáticos",
+                    "Desarrollar nuevas tecnologías"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué corriente filosófica se centra en la búsqueda de la felicidad y la virtud?",
+                "choices": [
+                    "Epicureísmo",
+                    "Estoicismo",
+                    "Escepticismo",
+                    "Materialismo"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué método utilizaba Sócrates para enseñar?",
+                "choices": [
+                    "Método deductivo",
+                    "Método socrático",
+                    "Método experimental",
+                    "Método empírico"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es la metafísica?",
+                "choices": [
+                    "El estudio de los seres vivos",
+                    "El estudio del conocimiento humano",
+                    "El estudio de la realidad y la existencia",
+                    "El estudio de la moral y la ética"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué pensador alemán escribió 'Crítica de la razón pura'?",
+                "choices": [
+                    "Karl Marx",
+                    "Friedrich Nietzsche",
+                    "Immanuel Kant",
+                    "Martin Heidegger"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál de estas disciplinas filosóficas estudia los valores morales?",
+                "choices": [
+                    "Epistemología",
+                    "Metafísica",
+                    "Ética",
+                    "Estética"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué filósofo griego fue maestro de Alejandro Magno?",
+                "choices": [
+                    "Platón",
+                    "Sócrates",
+                    "Aristóteles",
+                    "Heráclito"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué filósofo dijo 'Pienso, luego existo'?",
+                "choices": [
+                    "David Hume",
+                    "René Descartes",
+                    "John Locke",
+                    "Baruch Spinoza"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    },
+    {
+        "title": "Corrientes Filosóficas",
+        "description": "Explora las principales corrientes filosóficas y sus exponentes.",
+        "category": "philosophy",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Qué corriente filosófica sostiene que la experiencia sensorial es la única fuente válida de conocimiento?",
+                "choices": [
+                    "Racionalismo",
+                    "Empirismo",
+                    "Idealismo",
+                    "Escepticismo"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué filósofo es conocido por desarrollar el concepto del 'superhombre'?",
+                "choices": [
+                    "Immanuel Kant",
+                    "Georg Hegel",
+                    "Friedrich Nietzsche",
+                    "Arthur Schopenhauer"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué corriente filosófica sostiene que la realidad es mental y no material?",
+                "choices": [
+                    "Materialismo",
+                    "Empirismo",
+                    "Idealismo",
+                    "Utilitarismo"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál es el enfoque central del existencialismo?",
+                "choices": [
+                    "El determinismo histórico",
+                    "La naturaleza del conocimiento",
+                    "La libertad y responsabilidad del individuo",
+                    "La búsqueda de la verdad absoluta"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué filósofo afirmó que la historia avanza mediante una dialéctica de tesis, antítesis y síntesis?",
+                "choices": [
+                    "Karl Marx",
+                    "Friedrich Nietzsche",
+                    "Georg Hegel",
+                    "David Hume"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál de estos filósofos defendía la teoría del contrato social?",
+                "choices": [
+                    "John Locke",
+                    "Thomas Hobbes",
+                    "Jean-Jacques Rousseau",
+                    "Todos los anteriores"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "¿Qué pensador utilitarista propuso que la mejor acción es la que maximiza la felicidad para el mayor número de personas?",
+                "choices": [
+                    "John Stuart Mill",
+                    "Jeremy Bentham",
+                    "David Ricardo",
+                    "Adam Smith"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué filósofo propuso la idea de la 'voluntad de poder'?",
+                "choices": [
+                    "Arthur Schopenhauer",
+                    "Friedrich Nietzsche",
+                    "Jean-Paul Sartre",
+                    "Karl Popper"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué corriente filosófica argumenta que la realidad es un conjunto de estructuras lingüísticas y culturales?",
+                "choices": [
+                    "Positivismo",
+                    "Estructuralismo",
+                    "Materialismo",
+                    "Escepticismo"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Quién es considerado el padre de la fenomenología?",
+                "choices": [
+                    "Martin Heidegger",
+                    "Edmund Husserl",
+                    "Jean-Paul Sartre",
+                    "Maurice Merleau-Ponty"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    }
+]

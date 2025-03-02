@@ -1,0 +1,218 @@
+[
+    {
+        "title": "Fundamentos de la Química",
+        "description": "Conceptos básicos sobre la química y sus principios fundamentales.",
+        "category": "chemistry",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿Cuál es el elemento químico más abundante en el universo?",
+                "choices": [
+                    "Oxígeno",
+                    "Hidrógeno",
+                    "Carbono",
+                    "Helio"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué estudia la química?",
+                "choices": [
+                    "El comportamiento de los seres vivos",
+                    "Las interacciones entre sustancias",
+                    "Las leyes del movimiento",
+                    "Las estructuras matemáticas"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es el símbolo químico del sodio?",
+                "choices": [
+                    "Na",
+                    "So",
+                    "S",
+                    "Sn"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué partícula subatómica tiene carga positiva?",
+                "choices": [
+                    "Electrón",
+                    "Neutrón",
+                    "Protón",
+                    "Fotón"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál de los siguientes no es un estado de la materia?",
+                "choices": [
+                    "Plasma",
+                    "Líquido",
+                    "Metal",
+                    "Gas"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cómo se llama la tabla donde se organizan los elementos químicos?",
+                "choices": [
+                    "Tabla de reactivos",
+                    "Tabla de clasificación",
+                    "Tabla periódica",
+                    "Tabla de Mendeleiev"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué tipo de enlace químico implica la transferencia de electrones?",
+                "choices": [
+                    "Covalente",
+                    "Iónico",
+                    "Metálico",
+                    "Van der Waals"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es la fórmula química del agua?",
+                "choices": [
+                    "H2O",
+                    "CO2",
+                    "O2",
+                    "NaCl"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué escala mide la acidez o alcalinidad de una sustancia?",
+                "choices": [
+                    "Escala de Richter",
+                    "Escala de Mohs",
+                    "Escala de Kelvin",
+                    "Escala de pH"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "¿Cuál es el símbolo químico del oxígeno?",
+                "choices": [
+                    "O",
+                    "Ox",
+                    "O2",
+                    "Om"
+                ],
+                "correctAnswer": 0
+            }
+        ]
+    },
+    {
+        "title": "Química Orgánica",
+        "description": "Exploración de los compuestos del carbono y sus propiedades.",
+        "category": "chemistry",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Qué elemento es esencial en los compuestos orgánicos?",
+                "choices": [
+                    "Hidrógeno",
+                    "Oxígeno",
+                    "Carbono",
+                    "Nitrógeno"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cómo se llaman los hidrocarburos que solo tienen enlaces simples?",
+                "choices": [
+                    "Alquenos",
+                    "Alquinos",
+                    "Aromáticos",
+                    "Alcanos"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "¿Qué grupo funcional caracteriza a los alcoholes?",
+                "choices": [
+                    "-OH",
+                    "-COOH",
+                    "-NH2",
+                    "-SH"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cuál es el nombre de la reacción en la que un alcano se combina con oxígeno para producir dióxido de carbono y agua?",
+                "choices": [
+                    "Sustitución",
+                    "Adición",
+                    "Oxidación",
+                    "Combustión"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "¿Cuál de las siguientes moléculas es un hidrocarburo aromático?",
+                "choices": [
+                    "Etano",
+                    "Benceno",
+                    "Propeno",
+                    "Metanol"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué tipo de enlace se encuentra en los alquenos?",
+                "choices": [
+                    "Simple",
+                    "Doble",
+                    "Triple",
+                    "Cuádruple"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál de estos compuestos es un ácido carboxílico?",
+                "choices": [
+                    "Etanol",
+                    "Formaldehído",
+                    "Ácido acético",
+                    "Glicerol"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué proceso se usa para separar componentes de una mezcla según su punto de ebullición?",
+                "choices": [
+                    "Filtración",
+                    "Destilación",
+                    "Sublimación",
+                    "Cristalización"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué compuesto es la base de los plásticos sintéticos?",
+                "choices": [
+                    "Celulosa",
+                    "Polietileno",
+                    "ADN",
+                    "Sílice"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es la fórmula química del benceno?",
+                "choices": [
+                    "C6H6",
+                    "C2H6",
+                    "CH4",
+                    "C4H10"
+                ],
+                "correctAnswer": 0
+            }
+        ]
+    }
+]

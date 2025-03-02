@@ -1,0 +1,256 @@
+[
+    {
+        "title": "Fundamentos de Programación",
+        "description": "Conceptos básicos de programación y lógica computacional.",
+        "category": "programming",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿Qué es una variable en programación?",
+                "choices": [
+                    "Un valor constante",
+                    "Un contenedor para almacenar datos",
+                    "Un tipo de error",
+                    "Una función matemática"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál de estos es un lenguaje de programación?",
+                "choices": [
+                    "HTML",
+                    "CSS",
+                    "Python",
+                    "SQL"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué estructura se usa para repetir un bloque de código varias veces?",
+                "choices": [
+                    "Condicional",
+                    "Bucle",
+                    "Variable",
+                    "Array"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué significa 'IDE' en programación?",
+                "choices": [
+                    "Entorno de Desarrollo Integrado",
+                    "Editor de Datos Informáticos",
+                    "Interfaz de Desarrollo Estructurado",
+                    "Ejecutor de Diseño Empresarial"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué operador se usa para la igualdad en la mayoría de los lenguajes de programación?",
+                "choices": [
+                    "=",
+                    "==",
+                    "!=",
+                    "==="
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es el resultado de 5 + '5' en JavaScript?",
+                "choices": [
+                    "10",
+                    "55",
+                    "Error",
+                    "undefined"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué tipo de dato representa 'true' y 'false'?",
+                "choices": [
+                    "String",
+                    "Integer",
+                    "Boolean",
+                    "Float"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué palabra clave se usa para definir una función en Python?",
+                "choices": [
+                    "function",
+                    "def",
+                    "define",
+                    "fn"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cómo se declara una lista en Python?",
+                "choices": [
+                    "[]",
+                    "{}",
+                    "()",
+                    "<>"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué significa 'compilar' un programa?",
+                "choices": [
+                    "Convertir el código fuente en un ejecutable",
+                    "Ejecutar el código directamente",
+                    "Escribir documentación",
+                    "Depurar errores"
+                ],
+                "correctAnswer": 0
+            }
+        ]
+    },
+    {
+        "title": "Estructuras de Datos y Algoritmos",
+        "description": "Conceptos sobre estructuras de datos y algoritmos fundamentales.",
+        "category": "programming",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Cuál de estas estructuras de datos sigue el principio LIFO?",
+                "choices": [
+                    "Cola",
+                    "Pila",
+                    "Lista enlazada",
+                    "Árbol"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál de estos algoritmos de ordenamiento tiene una complejidad O(n^2) en el peor caso?",
+                "choices": [
+                    "Merge Sort",
+                    "Quick Sort",
+                    "Bubble Sort",
+                    "Heap Sort"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál es la principal ventaja de una tabla hash?",
+                "choices": [
+                    "Búsqueda rápida",
+                    "Menor uso de memoria",
+                    "Mayor seguridad",
+                    "Fácil implementación"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué estructura de datos es más eficiente para implementar una cola con prioridad?",
+                "choices": [
+                    "Array",
+                    "Lista enlazada",
+                    "Montículo (heap)",
+                    "Árbol binario de búsqueda"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué significa la notación Big O?",
+                "choices": [
+                    "Complejidad de espacio",
+                    "Eficiencia en el peor caso",
+                    "Número de iteraciones",
+                    "Velocidad de ejecución"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    },
+    {
+        "title": "Programación Avanzada",
+        "description": "Conceptos avanzados sobre programación y diseño de software.",
+        "category": "programming",
+        "difficulty": "hard",
+        "questions": [
+            {
+                "question": "¿Qué paradigma de programación utiliza funciones como ciudadanos de primera clase?",
+                "choices": [
+                    "Orientada a objetos",
+                    "Imperativa",
+                    "Funcional",
+                    "Lógica"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál es el propósito del patrón de diseño Singleton?",
+                "choices": [
+                    "Crear múltiples instancias de una clase",
+                    "Restringir la creación de una única instancia de una clase",
+                    "Facilitar la herencia",
+                    "Optimizar la memoria"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál de estos lenguajes está más orientado a programación de sistemas?",
+                "choices": [
+                    "Python",
+                    "C",
+                    "JavaScript",
+                    "Ruby"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué significa el principio SOLID en el diseño de software?",
+                "choices": [
+                    "Un conjunto de cinco principios de diseño",
+                    "Un lenguaje de programación",
+                    "Un tipo de base de datos",
+                    "Un framework para desarrollo web"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué técnica se usa para evitar condiciones de carrera en la programación concurrente?",
+                "choices": [
+                    "Mutex",
+                    "Array",
+                    "Recursión",
+                    "Lambda"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cuál es una característica clave de un lenguaje de tipado fuerte?",
+                "choices": [
+                    "Permite conversión implícita de tipos",
+                    "Evita errores de tipo en tiempo de compilación",
+                    "No tiene restricciones de tipos",
+                    "Usa solo variables globales"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué problema resuelve el patrón de diseño Factory?",
+                "choices": [
+                    "Creación de objetos sin especificar su clase exacta",
+                    "Optimización de memoria",
+                    "Paralelización de procesos",
+                    "Manejo de eventos en tiempo real"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cuál de estos lenguajes tiene gestión automática de memoria mediante garbage collection?",
+                "choices": [
+                    "C",
+                    "C++",
+                    "Java",
+                    "Assembly"
+                ],
+                "correctAnswer": 2
+            }
+        ]
+    }
+]

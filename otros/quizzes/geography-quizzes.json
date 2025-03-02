@@ -1,0 +1,218 @@
+[
+    {
+        "title": "Geografía General",
+        "description": "Conceptos básicos sobre la geografía y sus principios fundamentales.",
+        "category": "geography",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿Cuál es el río más largo del mundo?",
+                "choices": [
+                    "Amazonas",
+                    "Nilo",
+                    "Yangtsé",
+                    "Misisipi"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es el país más grande en superficie?",
+                "choices": [
+                    "Estados Unidos",
+                    "Canadá",
+                    "China",
+                    "Rusia"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "¿En qué continente se encuentra Egipto?",
+                "choices": [
+                    "Europa",
+                    "Asia",
+                    "África",
+                    "Oceanía"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál es el océano más grande del mundo?",
+                "choices": [
+                    "Atlántico",
+                    "Pacífico",
+                    "Índico",
+                    "Ártico"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es la capital de Francia?",
+                "choices": [
+                    "Roma",
+                    "Madrid",
+                    "Berlín",
+                    "París"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "¿Cuántos continentes hay en el mundo?",
+                "choices": [
+                    "5",
+                    "6",
+                    "7",
+                    "8"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué desierto es el más grande del mundo?",
+                "choices": [
+                    "Sáhara",
+                    "Gobi",
+                    "Kalahari",
+                    "Antártico"
+                ],
+                "correctAnswer": 3
+            },
+            {
+                "question": "¿En qué país se encuentra la Gran Muralla China?",
+                "choices": [
+                    "Japón",
+                    "China",
+                    "India",
+                    "Corea del Sur"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es el monte más alto del mundo?",
+                "choices": [
+                    "Monte Everest",
+                    "Monte Kilimanjaro",
+                    "Monte McKinley",
+                    "Monte Aconcagua"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué país tiene la mayor cantidad de islas?",
+                "choices": [
+                    "Canadá",
+                    "Indonesia",
+                    "Filipinas",
+                    "Suecia"
+                ],
+                "correctAnswer": 3
+            }
+        ]
+    },
+    {
+        "title": "Geografía Física",
+        "description": "Estudio de los fenómenos naturales de la Tierra, como montañas, ríos y climas.",
+        "category": "geography",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Qué tipo de roca es el granito?",
+                "choices": [
+                    "Sedimentaria",
+                    "Ígnea",
+                    "Metamórfica",
+                    "Calcárea"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué fenómeno natural es causado por el movimiento de las placas tectónicas?",
+                "choices": [
+                    "Huracanes",
+                    "Tornados",
+                    "Terremotos",
+                    "Inundaciones"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál es la principal causa de las estaciones del año?",
+                "choices": [
+                    "Rotación de la Tierra",
+                    "Inclinación del eje terrestre",
+                    "Distancia al Sol",
+                    "Efecto invernadero"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué corriente oceánica calienta las costas de Europa occidental?",
+                "choices": [
+                    "El Niño",
+                    "Corriente del Golfo",
+                    "La Niña",
+                    "Corriente de Humboldt"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué país tiene el mayor número de volcanes activos?",
+                "choices": [
+                    "Indonesia",
+                    "Estados Unidos",
+                    "Japón",
+                    "Chile"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cómo se llama la zona donde se encuentran la mayoría de los volcanes del mundo?",
+                "choices": [
+                    "Anillo de Fuego del Pacífico",
+                    "Cinturón Volcánico Andino",
+                    "Dorsal del Atlántico",
+                    "Cinturón Alpino-Himalayo"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué nombre recibe el punto más profundo del océano?",
+                "choices": [
+                    "Fosa de Filipinas",
+                    "Fosa de las Marianas",
+                    "Fosa de Puerto Rico",
+                    "Fosa de Java"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué fenómeno meteorológico se forma en aguas cálidas y tiene vientos de alta velocidad?",
+                "choices": [
+                    "Tornado",
+                    "Huracán",
+                    "Monzón",
+                    "Ciclón"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál de los siguientes ríos es el más caudaloso del mundo?",
+                "choices": [
+                    "Nilo",
+                    "Amazonas",
+                    "Yangtsé",
+                    "Danubio"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué proceso geológico es responsable de la formación de montañas?",
+                "choices": [
+                    "Erosión",
+                    "Orogénesis",
+                    "Sedimentación",
+                    "Divergencia tectónica"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    }
+]

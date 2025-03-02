@@ -1,0 +1,218 @@
+[
+    {
+        "title": "Historia Antigua",
+        "description": "Preguntas sobre civilizaciones antiguas y sus logros.",
+        "category": "history",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿En qué año cayó el Imperio Romano de Occidente?",
+                "choices": [
+                    "395 d.C.",
+                    "476 d.C.",
+                    "1453 d.C.",
+                    "1492 d.C."
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál era la capital del Imperio Persa bajo Ciro el Grande?",
+                "choices": [
+                    "Persépolis",
+                    "Babilonia",
+                    "Susa",
+                    "Ecbatana"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué civilización construyó las pirámides de Giza?",
+                "choices": [
+                    "Romanos",
+                    "Griegos",
+                    "Egipcios",
+                    "Persas"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Quién fue el primer emperador de China?",
+                "choices": [
+                    "Qin Shi Huang",
+                    "Han Wudi",
+                    "Kublai Khan",
+                    "Tang Taizong"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué civilización antigua creó la escritura cuneiforme?",
+                "choices": [
+                    "Egipcios",
+                    "Sumerios",
+                    "Griegos",
+                    "Romanos"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál era el idioma principal del Imperio Romano?",
+                "choices": [
+                    "Griego",
+                    "Latín",
+                    "Persa",
+                    "Arameo"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Quién fue el general cartaginés que cruzó los Alpes para atacar Roma?",
+                "choices": [
+                    "Aníbal",
+                    "Escipión",
+                    "Julio César",
+                    "Augusto"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cuál era el material principal usado en las estatuas griegas antiguas?",
+                "choices": [
+                    "Madera",
+                    "Bronce",
+                    "Mármol",
+                    "Arcilla"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué ciudad era conocida como la cuna de la democracia?",
+                "choices": [
+                    "Roma",
+                    "Atenas",
+                    "Esparta",
+                    "Babilonia"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué famosa estructura construyó el emperador Adriano en Britania?",
+                "choices": [
+                    "El Partenón",
+                    "El Muro de Adriano",
+                    "La Gran Muralla",
+                    "Stonehenge"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    },
+    {
+        "title": "Historia Medieval",
+        "description": "Pon a prueba tus conocimientos sobre la Edad Media.",
+        "category": "history",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Qué evento marcó el inicio de la Edad Media?",
+                "choices": [
+                    "La caída del Imperio Romano de Occidente",
+                    "La conquista de Constantinopla",
+                    "El descubrimiento de América",
+                    "La Revolución Francesa"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Quién firmó la Carta Magna en 1215?",
+                "choices": [
+                    "Luis IX de Francia",
+                    "Juan I de Inglaterra",
+                    "Enrique V",
+                    "Carlos I"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué imperio gobernó Carlomagno?",
+                "choices": [
+                    "Imperio Bizantino",
+                    "Sacro Imperio Romano Germánico",
+                    "Imperio Otomano",
+                    "Imperio Persa"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál era la religión dominante en la Europa medieval?",
+                "choices": [
+                    "Islam",
+                    "Hinduismo",
+                    "Cristianismo",
+                    "Budismo"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Cuál era el propósito de las Cruzadas?",
+                "choices": [
+                    "Expansión del comercio",
+                    "Peregrinación religiosa",
+                    "Capturar Tierra Santa",
+                    "Propagar el Renacimiento"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué pandemia mató a millones en el siglo XIV?",
+                "choices": [
+                    "Gripe Española",
+                    "Peste Negra",
+                    "Viruela",
+                    "Cólera"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál era la capital del Imperio Bizantino?",
+                "choices": [
+                    "Roma",
+                    "Atenas",
+                    "Constantinopla",
+                    "París"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué grupo invadió Inglaterra en 1066?",
+                "choices": [
+                    "Vikingos",
+                    "Normandos",
+                    "Sajones",
+                    "Francos"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Quién era conocido como 'Corazón de León'?",
+                "choices": [
+                    "Ricardo I de Inglaterra",
+                    "Felipe II de Francia",
+                    "Federico Barbarroja",
+                    "Eduardo III"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué tipo de arquitectura está asociada con las catedrales medievales?",
+                "choices": [
+                    "Barroco",
+                    "Románico",
+                    "Gótico",
+                    "Renacentista"
+                ],
+                "correctAnswer": 2
+            }
+        ]
+    }
+]

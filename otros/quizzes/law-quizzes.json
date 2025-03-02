@@ -1,0 +1,116 @@
+[
+    {
+        "title": "Derecho Constitucional",
+        "description": "Conceptos fundamentales del derecho constitucional.",
+        "category": "law",
+        "difficulty": "easy",
+        "questions": [
+            {
+                "question": "¿Qué es una constitución?",
+                "choices": [
+                    "Un conjunto de leyes secundarias",
+                    "La norma fundamental de un Estado",
+                    "Un código de comercio",
+                    "Una ley fiscal"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es la función principal del poder legislativo?",
+                "choices": [
+                    "Aplicar las leyes",
+                    "Crear leyes",
+                    "Interpretar leyes",
+                    "Administrar justicia"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el Estado de Derecho?",
+                "choices": [
+                    "Un Estado gobernado por militares",
+                    "Un sistema donde prevalece la ley",
+                    "Un gobierno sin normas",
+                    "Un tipo de república"
+                ],
+                "correctAnswer": 1
+            }
+        ]
+    },
+    {
+        "title": "Derecho Penal",
+        "description": "Principios básicos del derecho penal y su aplicación.",
+        "category": "law",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Qué es el principio de legalidad en derecho penal?",
+                "choices": [
+                    "Solo se puede sancionar lo que esté previsto en la ley",
+                    "El juez puede crear delitos",
+                    "Las leyes penales son retroactivas",
+                    "Las penas pueden aplicarse sin juicio"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Cuál de los siguientes no es un tipo de pena en derecho penal?",
+                "choices": [
+                    "Prisión",
+                    "Multa",
+                    "Advertencia",
+                    "Trabajo comunitario"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Qué diferencia hay entre dolo y culpa en derecho penal?",
+                "choices": [
+                    "Dolo implica intención, culpa implica negligencia",
+                    "Son términos sinónimos",
+                    "Dolo es un delito grave, culpa no",
+                    "Culpa solo aplica en derecho civil"
+                ],
+                "correctAnswer": 0
+            }
+        ]
+    },
+    {
+        "title": "Derecho Internacional",
+        "description": "Conceptos avanzados sobre derecho internacional y sus tratados.",
+        "category": "law",
+        "difficulty": "hard",
+        "questions": [
+            {
+                "question": "¿Qué es el principio de soberanía en derecho internacional?",
+                "choices": [
+                    "El poder absoluto de los jueces",
+                    "La independencia de los Estados",
+                    "El control del gobierno sobre ciudadanos",
+                    "Un tratado internacional"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál es la función de la Corte Internacional de Justicia?",
+                "choices": [
+                    "Crear tratados internacionales",
+                    "Resolver disputas entre Estados",
+                    "Legislar a nivel global",
+                    "Supervisar elecciones"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué es el derecho consuetudinario internacional?",
+                "choices": [
+                    "Un conjunto de normas no escritas aceptadas globalmente",
+                    "Un código penal internacional",
+                    "Un tratado de derechos humanos",
+                    "Un sistema de sanciones comerciales"
+                ],
+                "correctAnswer": 0
+            }
+        ]
+    }
+]
