@@ -214,5 +214,121 @@
                 "correctAnswer": 2
             }
         ]
+    },
+    {
+        "title": "Historia Argentina: Conflictos y Gobiernos",
+        "description": "Preguntas sobre enfrentamientos, tratados y gobernantes en la historia argentina.",
+        "category": "history",
+        "difficulty": "intermediate",
+        "questions": [
+            {
+                "question": "¿Quiénes se enfrentaron en la Batalla de Cepeda?",
+                "choices": [
+                    "Morenistas y Saavedristas",
+                    "Unitarios y Federales",
+                    "España y Francia"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Cuál fue el Tratado por el que los signatarios se comprometían a establecer un Gobierno Federal y respetar la autonomía de las Provincias?",
+                "choices": [
+                    "Del Cuadrilátero",
+                    "De Versalles",
+                    "Del Pilar"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Por qué fue rechazada la Constitución de 1819?",
+                "choices": [
+                    "Por ser centralista y beneficiar a Bs. As.",
+                    "Por ser de carácter Federal",
+                    "Por tener muchos artículos"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué caudillo representaba los intereses de Buenos Aires?",
+                "choices": [
+                    "Estanislao López",
+                    "Juan Manuel de Rosas",
+                    "Facundo Quiroga"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué Gobernador fue fusilado por Lavalle en la Ciudad de Navarro, en 1828?",
+                "choices": [
+                    "Manuel Belgrano",
+                    "José de San Martín",
+                    "Manuel Dorrego"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Quiénes proponían que debían tener un Gobierno Central que controlara a las Provincias desde Buenos Aires?",
+                "choices": [
+                    "Morenistas",
+                    "Unitarios",
+                    "Federales"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿En qué consistía el 'Librecomercio'?",
+                "choices": [
+                    "Poder comerciar libremente con otras potencias",
+                    "Poder navegar por el Paraná libremente",
+                    "Poder viajar libremente"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué era el Proteccionismo Comercial?",
+                "choices": [
+                    "Proteger al pueblo del ataque de malones",
+                    "Proteger las fronteras de los enemigos",
+                    "Cobrar mayores impuestos a los productos extranjeros que compitieran con los locales"
+                ],
+                "correctAnswer": 2
+            },
+            {
+                "question": "¿Al período de Gobierno de qué Gobernador se lo conoce como 'La Feliz Experiencia'?",
+                "choices": [
+                    "Juan Lavalle",
+                    "Martín Rodríguez",
+                    "Manuel Belgrano"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Qué cargo ocupó Bernardino Rivadavia durante el Gobierno de Martín Rodríguez?",
+                "choices": [
+                    "Ministro de Gobierno y Relaciones Exteriores",
+                    "Ministro de Economía",
+                    "Diputado Provincial"
+                ],
+                "correctAnswer": 0
+            },
+            {
+                "question": "¿Qué establecía la Ley de Capitalización?",
+                "choices": [
+                    "Que la capital sería Tucumán",
+                    "Declaraba a Buenos Aires capital del Poder Nacional",
+                    "Que Córdoba fuera capital del Poder Nacional"
+                ],
+                "correctAnswer": 1
+            },
+            {
+                "question": "¿Caudillo de qué Provincia fue Juan Manuel de Rosas?",
+                "choices": [
+                    "Entre Ríos",
+                    "Córdoba",
+                    "Buenos Aires"
+                ],
+                "correctAnswer": 2
+            }
+        ]
     }
 ]
