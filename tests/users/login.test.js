@@ -284,8 +284,6 @@ describe("POST users/login", () => {
             // Act
             const res = await doRequest(loginUrl, data);
 
-            console.log(res.body);
-
             // Assert
             expect(res.status).toBe(expectedStatus);
             expect(res.body).toMatchObject(expectedMatchObject);
