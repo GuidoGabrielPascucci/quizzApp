@@ -1,11 +1,11 @@
 import express from "express";
 import { config } from "dotenv";
-import { UserRoutes } from "./src/routes/user.routes.js";
-import { UserController } from "./src/controllers/user.controller.js";
-import { UserService } from "./src/services/user.service.js";
-import QuizzService from "./src/services/quizz.service.js";
-import QuizzController from "./src/controllers/quizz.controller.js";
-import QuizzRoutes from "./src/routes/quizz.routes.js";
+import { UserRoutes } from "./routes/user.routes.js";
+import UserController from "./controllers/user.controller.js";
+import UserService from "./services/user.service.js";
+import QuizzService from "./services/quizz.service.js";
+import QuizzController from "./controllers/quizz.controller.js";
+import QuizzRoutes from "./routes/quizz.routes.js";
 import cors from "cors";
 
 config();

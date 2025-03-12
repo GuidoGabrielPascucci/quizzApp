@@ -1,6 +1,6 @@
-import { Schema } from "mongoose";
+import { Schema, model } from "mongoose";
 
-export const userSchema = Schema({
+const userSchema = new Schema({
     firstname: {
         type: String,
         required: [true, "El nombre es obligatorio"], // Validación con mensaje de error
@@ -42,3 +42,6 @@ export const userSchema = Schema({
         immutable: true, // Una vez establecido, no puede ser cambiado
     },
 });
+
+const User = model("User", userSchema);
+export default User;
