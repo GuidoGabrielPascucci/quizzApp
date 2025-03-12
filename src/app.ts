@@ -1,14 +1,13 @@
 import express from "express";
-import { config } from "dotenv";
-import { UserRoutes } from "./routes/user.routes.js";
-import UserController from "./controllers/user.controller.js";
+import "dotenv/config";
+import cors from "cors";
 import UserService from "./services/user.service.js";
+import UserController from "./controllers/user.controller.js";
+import UserRoutes from "./routes/user.routes.js";
 import QuizzService from "./services/quizz.service.js";
 import QuizzController from "./controllers/quizz.controller.js";
 import QuizzRoutes from "./routes/quizz.routes.js";
-import cors from "cors";
 
-config();
 const app = express();
 app.use(express.json());
 app.use(cors());

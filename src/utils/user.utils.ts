@@ -1,4 +1,4 @@
-import { sign } from "jsonwebtoken";
+import jwt from "jsonwebtoken";
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
 
 export function sanitizeUserForResponse(createdUser: any) {
@@ -26,5 +26,5 @@ export function signToken(user: any): string {
     const options = {
         expiresIn: 3600,
     };
-    return sign(payload, JWT_SECRET_KEY, options);
+    return jwt.sign(payload, JWT_SECRET_KEY, options);
 }

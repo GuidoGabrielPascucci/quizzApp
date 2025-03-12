@@ -8,7 +8,7 @@ import {
     sanitizeSignupMw,
 } from "../middlewares/user.middleware.js";
 
-export class UserRoutes {
+class UserRoutes {
     userController: UserController;
     router: Router;
 
@@ -55,3 +55,5 @@ export class UserRoutes {
         app.use("/users", this.router);
     };
 }
+
+export default UserRoutes;
