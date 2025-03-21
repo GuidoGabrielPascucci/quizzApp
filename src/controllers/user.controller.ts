@@ -1,6 +1,6 @@
 import UserService from "../services/user.service.js";
 import { Request, Response } from "express";
-import { UserSignupData } from "../types/user.types.js";
+import { UserSignupData, UserStatsNewData } from "../types/user.types.js";
 
 class UserController {
     userService: UserService;
@@ -28,8 +28,9 @@ class UserController {
                     lastname: user.lastname,
                     username: user.username,
                     email: user.email,
-                    score: user.score,
                     createdAt: user.createdAt,
+                    avatar: user.avatar,
+                    stats: user.stats,
                 };
             }
             res.status(200).json({
@@ -64,6 +65,23 @@ class UserController {
             console.error("server error: ", err);
             return res.status(500).json({
                 message: "An error may have occured",
+            });
+        }
+    };
+
+    updateStats = async (req: Request, res: Response): Promise<any> => {
+        try {
+            const stats: UserStatsNewData = req.body;
+            await this.userService.updateStats(stats);
+            return res.status(200).json({
+                success: true,
+                message: "Stats actualizados",
+            });
+        } catch (e) {
+            console.log(e);
+            return res.status(500).json({
+                success: false,
+                message: "Error interno. No se pudo completar la operación",
             });
         }
     };

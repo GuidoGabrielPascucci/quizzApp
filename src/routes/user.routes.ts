@@ -21,6 +21,7 @@ class UserRoutes {
     registerRoutes = () => {
         this.setLoginRoute();
         this.setSignupRoute();
+        this.setUpdateStatsRoute();
     };
 
     setLoginRoute = () => {
@@ -49,6 +50,11 @@ class UserRoutes {
             ...signupMiddlewares,
             this.userController.signup
         );
+    };
+
+    setUpdateStatsRoute = () => {
+        const endpoint = "/update-stats";
+        this.router.put(endpoint, this.userController.updateStats);
     };
 
     initAppRouter = (app: Express) => {

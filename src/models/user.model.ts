@@ -1,6 +1,35 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, Types, SchemaDefinitionProperty } from "mongoose";
+import { IUser, IQuizResult, IUserStats } from "../interfaces/index.js";
 
-const userSchema = new Schema({
+const quizHistorySchema = new Schema<IQuizResult>({
+    quizId: {
+        type: Types.ObjectId,
+        ref: "Quiz",
+        required: true,
+        // get: (id: Types.ObjectId) => id.toString(),
+    } as unknown as SchemaDefinitionProperty<string>,
+    //quizId: { type: Schema.Types.ObjectId, ref: "Quiz", required: true }, // Referencia al quiz jugado
+    category: { type: String, required: true }, // Categoría del quiz
+    score: { type: Number, required: true }, // Puntuación obtenida
+    correctAnswers: { type: Number, required: true }, // Respuestas correctas
+    totalQuestions: { type: Number, required: true }, // Total de preguntas en el quiz
+    dateCompleted: { type: Date, default: Date.now }, // Fecha en que se completó
+});
+
+const statsSchema = new Schema<IUserStats>({
+    totalScore: { type: Number, default: 0 },
+    totalCorrectAnswers: { type: Number, default: 0 },
+    totalAnswersGiven: { type: Number, default: 0 },
+    quizzesCompleted: { type: Number, default: 0 },
+    highestScore: { type: Number, default: 0 },
+    bestCategory: { type: String, default: "" },
+    rank: { type: String, default: "Novato" },
+    level: { type: Number, default: 1 },
+    achievements: { type: [String], default: [] },
+    categoryScores: { type: Map, of: Number, default: {} },
+});
+
+const userSchema = new Schema<IUser>({
     firstname: {
         type: String,
         required: [true, "El nombre es obligatorio"], // Validación con mensaje de error
@@ -31,16 +60,14 @@ const userSchema = new Schema({
         minlength: [6, "La contraseña debe tener al menos 6 caracteres"], // Longitud mínima
         select: false, // No incluye el password en las consultas por defecto
     },
-    score: {
-        type: Number,
-        default: 0, // Por defecto, un usuario inicia con 0 puntos
-        min: [0, "El puntaje no puede ser negativo"],
-    },
     createdAt: {
         type: Date,
         default: Date.now, // Registra la fecha de creación del usuario
         immutable: true, // Una vez establecido, no puede ser cambiado
     },
+    avatar: { type: String },
+    stats: statsSchema,
+    quizHistory: [quizHistorySchema],
 });
 
 const User = model("User", userSchema);
