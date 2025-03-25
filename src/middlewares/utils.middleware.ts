@@ -10,12 +10,13 @@ export function validateRequestFormatMw(
     req: Request,
     res: Response,
     next: NextFunction
-): any {
+): void {
     if (req.headers["content-type"] !== "application/json") {
-        return res.status(400).json({
+        res.status(400).json({
             success: false,
             message: invalidRequestFormatMessage,
         });
+        return;
     }
     next();
 }

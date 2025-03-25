@@ -1,0 +1,13 @@
+PUT http://localhost:1234/users/update-stats
+Content-Type: application/json
+
+{
+    "quizId": "123456",
+    "userId": "67e2b24bda3c947ddb95d798",
+    "category": "math",
+    "score": "80",
+    "totalQuestions": "20",
+    "correctAnswers": "14",
+    "completionTime": "600",
+    "completedAt": "2025-01-28T08:14:37.768+00:00",
+}

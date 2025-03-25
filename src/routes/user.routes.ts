@@ -6,6 +6,7 @@ import {
     validateSignupFieldsMw,
     sanitizeLoginMw,
     sanitizeSignupMw,
+    validateUpdateStatsInputs,
 } from "../middlewares/user.middleware.js";
 
 class UserRoutes {
@@ -54,7 +55,12 @@ class UserRoutes {
 
     setUpdateStatsRoute = () => {
         const endpoint = "/update-stats";
-        this.router.put(endpoint, this.userController.updateStats);
+        const middlewares = [validateUpdateStatsInputs];
+        this.router.put(
+            endpoint,
+            ...middlewares,
+            this.userController.updateStats
+        );
     };
 
     initAppRouter = (app: Express) => {

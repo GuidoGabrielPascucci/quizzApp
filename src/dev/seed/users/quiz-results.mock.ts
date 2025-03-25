@@ -10,7 +10,7 @@ export const mockQuizResults = (count: number): IQuizResult[] => {
 const generateQuizResult = (): IQuizResult => {
     const totalQuestions = faker.helpers.arrayElement<number>([10, 15, 20]); // Total de preguntas
     const correctAnswers = faker.number.int({ min: 0, max: totalQuestions }); // Respuestas correctas aleatorias
-    const score = calcularScore(totalQuestions, correctAnswers);
+    const score = calculateScore(totalQuestions, correctAnswers);
     return {
         quizId: faker.database.mongodbObjectId(),
         category: faker.helpers.arrayElement([
@@ -25,10 +25,10 @@ const generateQuizResult = (): IQuizResult => {
         totalQuestions,
         correctAnswers,
         score,
-        dateCompleted: faker.date.past(),
+        completedAt: faker.date.past(),
     };
 };
 
-function calcularScore(totalQuestions: number, correctAnswers: number) {
+function calculateScore(totalQuestions: number, correctAnswers: number) {
     return Number(((correctAnswers / totalQuestions) * 100).toFixed(0));
 }

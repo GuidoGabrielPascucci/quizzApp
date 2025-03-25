@@ -35,27 +35,12 @@ class UserService {
         return user;
     };
 
-    updateStats = async (stats: UserStatsNewData) => {
+    updateStats = async (stats: UserStatsNewData): Promise<any> => {
         const user = await this.findById(stats.userId);
 
         if (!user) {
             throw new Error("No existe dicho usuario");
         }
-
-        // En el Historial de Quizzes jugados del usuario tiene que aparecer el Quiz que acaba de jugar dicho usuario
-        // con el score que anotó, la cantidad de respuestas correctas, y la fecha en que lo jugó.
-        // Opcional: un resultado en dicho quizz, por ejemplo si anotó:
-        // 0 respuestas correctas ---> MUY MALARDO
-        // 1 a 3 respuestas correctas ---> MALARDO
-        // 3 a 6 respuestas correctas ---> VAS EN CAMINO
-        // 6 a 9 respuestas correctas ---> APROBADO
-        // 10 respuestas correctas ---> ANIMAL
-
-        // También podría hacer un medallero, o trofeos:
-        // Medalla de Madera
-        // Medalla de bronce
-        // Medalla de plata
-        // Medalla de oro
 
         user.stats.totalScore += stats.score;
         user.stats.totalCorrectAnswers += stats.correctAnswers;
@@ -66,26 +51,51 @@ class UserService {
             user.stats.highestScore = stats.score;
         }
 
-        // TODO: Implementar lógica para actualizar bestCategory y rank
+        this.updateCategoryScores(user, stats);
+        this.updateBestCategory(user);
+
+        // TODO: Implementar lógica para actualizar rank, level y achievements
+
+        // let wisdom = 0;
+        // wisdom += stats.score;
+        // if (wisdom >= 100) {
+        //     user.stats.level++;
+        //     wisdom -= 100;
+        // }
+
+        const getRequiredWisdomForNextLevel = (level: number): number => {
+            return 100 + level * 10; // Ejemplo: aumenta la dificultad con el nivel
+        };
+
+        user.stats.wisdom += stats.score;
+
+        const requiredWisdom = getRequiredWisdomForNextLevel(user.stats.level);
+        if (user.stats.wisdom >= requiredWisdom) {
+            user.stats.level += Math.floor(user.stats.wisdom / requiredWisdom);
+            user.stats.wisdom %= requiredWisdom;
+        }
 
         await user.save();
     };
 
-    logicaBestCategory(user: IUserDocument, stats: UserStatsNewData) {
+    updateCategoryScores(user: IUserDocument, stats: UserStatsNewData) {
+        // ACTUALIZA O INICIALIZA CATEGORY SCORES
         if (!user.stats.categoryScores) {
             user.stats.categoryScores = {};
         }
-
         if (!user.stats.categoryScores[stats.category]) {
             user.stats.categoryScores[stats.category] = 0;
         }
-
         user.stats.categoryScores[stats.category] += stats.score;
+    }
 
+    updateBestCategory(user: IUserDocument) {
         // Actualizar la mejor categoría
-        user.stats.bestCategory = Object.entries(
-            user.stats.categoryScores
-        ).sort((a, b) => b[1] - a[1])[0][0]; // Ordena de mayor a menor y toma la primera
+        const categoryScoresEntries = Object.entries(user.stats.categoryScores);
+        const categoryScoresEntriesSorted = categoryScoresEntries.sort(
+            (a, b) => b[1] - a[1]
+        ); // Ordena de mayor a menor
+        user.stats.bestCategory = categoryScoresEntriesSorted[0][0]; // Toma la primera categoria
     }
 
     /* 

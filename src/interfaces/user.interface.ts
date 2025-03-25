@@ -22,6 +22,7 @@ export interface IUserStats {
     level: number;
     achievements: string[];
     categoryScores: Record<string, number>;
+    wisdom: number;
 }
 
 export interface IQuizResult {

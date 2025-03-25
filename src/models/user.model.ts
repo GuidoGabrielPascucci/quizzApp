@@ -13,7 +13,7 @@ const quizHistorySchema = new Schema<IQuizResult>({
     score: { type: Number, required: true }, // Puntuación obtenida
     correctAnswers: { type: Number, required: true }, // Respuestas correctas
     totalQuestions: { type: Number, required: true }, // Total de preguntas en el quiz
-    dateCompleted: { type: Date, default: Date.now }, // Fecha en que se completó
+    completedAt: { type: Date, default: Date.now }, // Fecha en que se completó
 });
 
 const statsSchema = new Schema<IUserStats>({
@@ -27,6 +27,7 @@ const statsSchema = new Schema<IUserStats>({
     level: { type: Number, default: 1 },
     achievements: { type: [String], default: [] },
     categoryScores: { type: Map, of: Number, default: {} },
+    wisdom: { type: Number, default: 0 },
 });
 
 const userSchema = new Schema<IUser>({

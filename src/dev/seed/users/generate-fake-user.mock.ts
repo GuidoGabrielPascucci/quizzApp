@@ -23,9 +23,12 @@ export const generateFakeUser = (usersDataForJson: UserLoginData[]): IUser => {
     const quizzResults = mockQuizResults(incompleteUser.stats.quizzesCompleted);
     const someStats = completarStats(quizzResults);
 
+    const wisdom = 0;
+
     const incompleteStats: IncompleteStats = {
         ...incompleteUser.stats,
         ...someStats,
+        wisdom,
     };
 
     const { stats, ...userWithoutStats } = incompleteUser;
@@ -88,6 +91,7 @@ function getFinalRandomUser(data: UserRelatedData): IUser {
             level: data.stats.level,
             achievements: data.stats.achievements,
             categoryScores: data.stats.categoryScores,
+            wisdom: data.stats.wisdom,
         },
         quizHistory: data.quizzResults,
     };
