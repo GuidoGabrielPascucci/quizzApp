@@ -5,7 +5,7 @@
     "main": "server.js",
     "type": "module",
     "scripts": {
-        "dev": "nodemon ./dist/server.js",
+        "dev": "nodemon ./dist/src/server.js",
         "mock-users": "node ./dist/dev/seed/users/index.mock.js",
         "mock-quizzes": "node .dist/dev/seed/quizzes.seed.js",
         "ran": "node ./dist/dev/getRandomUser.js",

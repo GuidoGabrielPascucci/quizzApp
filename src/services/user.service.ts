@@ -75,6 +75,8 @@ class UserService {
             user.stats.wisdom %= requiredWisdom;
         }
 
+        console.log("sucedio");
+
         await user.save();
     };
 

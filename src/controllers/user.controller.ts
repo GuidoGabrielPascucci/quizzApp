@@ -72,13 +72,16 @@ class UserController {
     updateStats = async (req: Request, res: Response): Promise<any> => {
         try {
             const stats: UserStatsNewData = req.body;
+
             await this.userService.updateStats(stats);
+
             return res.status(200).json({
                 success: true,
                 message: "Stats actualizados",
             });
         } catch (e) {
             console.log(e);
+
             return res.status(500).json({
                 success: false,
                 message: "Error interno. No se pudo completar la operación",
