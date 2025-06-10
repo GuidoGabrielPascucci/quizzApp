@@ -2,6 +2,10 @@ import UserService from "../services/user.service.js";
 import { Request, Response } from "express";
 import { UserSignupData, UserStatsNewData } from "../types/user.types.js";
 
+import { readFileSync } from "node:fs";
+import path from "path";
+import { fileURLToPath } from "url";
+
 class UserController {
     userService: UserService;
 
@@ -87,6 +91,22 @@ class UserController {
                 message: "Error interno. No se pudo completar la operación",
             });
         }
+    };
+
+    quickStart = async (req: Request, res: Response): Promise<any> => {
+        // ESTO EN ECMASCRIPT MODULES NO FUNCIONA!!!! SOLO PARA COMMON JS
+        // console.log(__dirname);
+
+        // const __filename = fileURLToPath(import.meta.url);
+        // const __dirname = path.dirname(__filename);
+        // console.log(__dirname);
+
+        const path = "./dist/src/dev/seed/json/users-mocked.json";
+        const jsonStr = readFileSync(path, { encoding: "utf-8" });
+        const users = JSON.parse(jsonStr);
+        const n = users.length;
+        const i = Math.floor(Math.random() * n);
+        res.json(users[i]);
     };
 }
 
