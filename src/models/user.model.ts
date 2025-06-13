@@ -23,11 +23,7 @@ const statsSchema = new Schema<IUserStats>({
     quizzesCompleted: { type: Number, default: 0 },
     highestScore: { type: Number, default: 0 },
     bestCategory: { type: String, default: "" },
-    rank: { type: String, default: "Novato" },
-    level: { type: Number, default: 1 },
-    achievements: { type: [String], default: [] },
-    categoryScores: { type: Map, of: Number, default: {} },
-    wisdom: { type: Number, default: 0 },
+    categoryScores: { type: Map, of: Number, default: {} }
 });
 
 const userSchema = new Schema<IUser>({

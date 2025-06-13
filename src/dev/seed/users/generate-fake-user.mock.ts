@@ -23,12 +23,9 @@ export const generateFakeUser = (usersDataForJson: UserLoginData[]): IUser => {
     const quizzResults = mockQuizResults(incompleteUser.stats.quizzesCompleted);
     const someStats = completarStats(quizzResults);
 
-    const wisdom = 0;
-
     const incompleteStats: IncompleteStats = {
         ...incompleteUser.stats,
-        ...someStats,
-        wisdom,
+        ...someStats
     };
 
     const { stats, ...userWithoutStats } = incompleteUser;
@@ -52,17 +49,7 @@ function getFakerRandomData(): RandomIncompleteUser {
         createdAt: faker.date.past(),
         avatar: faker.image.avatarGitHub(),
         stats: {
-            quizzesCompleted: faker.number.int({ min: 1, max: 5 }),
-            rank: faker.helpers.arrayElement([
-                "Beginner",
-                "Intermediate",
-                "Advanced",
-            ]),
-            level: faker.number.int({ min: 1, max: 50 }),
-            achievements: faker.helpers.arrayElements(
-                ["First Quiz", "Perfect Score", "Quiz Master", "Fast Thinker"],
-                faker.number.int({ min: 0, max: 4 })
-            ),
+            quizzesCompleted: faker.number.int({ min: 1, max: 5 })
         },
     };
 }
@@ -77,7 +64,6 @@ function getFinalRandomUser(data: UserRelatedData): IUser {
         createdAt: data.user.createdAt,
         avatar: data.user.avatar,
         stats: {
-            quizzesTaken: data.stats.quizzesCompleted * 2,
             totalAnswersGiven: Array.from(
                 data.quizzResults,
                 (v: IQuizResult) => v.totalQuestions
@@ -87,11 +73,7 @@ function getFinalRandomUser(data: UserRelatedData): IUser {
             highestScore: data.stats.highestScore,
             totalCorrectAnswers: data.stats.totalCorrectAnswers,
             bestCategory: data.stats.bestCategory,
-            rank: data.stats.rank,
-            level: data.stats.level,
-            achievements: data.stats.achievements,
-            categoryScores: data.stats.categoryScores,
-            wisdom: data.stats.wisdom,
+            categoryScores: data.stats.categoryScores
         },
         quizHistory: data.quizzResults,
     };

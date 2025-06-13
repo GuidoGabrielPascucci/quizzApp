@@ -11,18 +11,13 @@ export interface IUser {
 }
 
 export interface IUserStats {
-    quizzesTaken: number;
-    quizzesCompleted: number;
     totalScore: number;
-    highestScore: number;
     totalCorrectAnswers: number;
     totalAnswersGiven: number;
+    quizzesCompleted: number;
+    highestScore: number;
     bestCategory: string;
-    rank: string;
-    level: number;
-    achievements: string[];
     categoryScores: Record<string, number>;
-    wisdom: number;
 }
 
 export interface IQuizResult {

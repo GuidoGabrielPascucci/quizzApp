@@ -4,7 +4,9 @@ export type UserLoginData = { email: string; password: string };
 
 export type RandomIncompleteUser = BaseUser & {
     passwordPlainText: string;
-    stats: RandomIncompleteStats;
+    stats: {
+        quizzesCompleted: number;
+    }
 };
 
 export type UserWithoutStats = Omit<RandomIncompleteUser, "stats">;
@@ -27,11 +29,4 @@ type BaseUser = {
     email: string;
     createdAt: Date;
     avatar: string;
-};
-
-type RandomIncompleteStats = {
-    quizzesCompleted: number;
-    rank: string;
-    level: number;
-    achievements: string[];
 };
