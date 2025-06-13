@@ -94,14 +94,7 @@ class UserController {
     };
 
     quickStart = async (req: Request, res: Response): Promise<any> => {
-        // ESTO EN ECMASCRIPT MODULES NO FUNCIONA!!!! SOLO PARA COMMON JS
-        // console.log(__dirname);
-
-        // const __filename = fileURLToPath(import.meta.url);
-        // const __dirname = path.dirname(__filename);
-        // console.log(__dirname);
-
-        const path = "./dist/src/dev/seed/json/users-mocked.json";
+        const path = "./dev/mocks/users/mock.json";
         const jsonStr = readFileSync(path, { encoding: "utf-8" });
         const users = JSON.parse(jsonStr);
         const n = users.length;

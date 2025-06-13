@@ -16,9 +16,10 @@ const seedUsers = async (numUsers: number) => {
         await User.insertMany(users);
         console.log(`\n✅ ${numUsers} usuarios falsos insertados con éxito.\n`);
         writeFileSync(
-            "./src/dev/seed/users-mocked.json",
+            "./dev/mocks/users/mock.json",
             JSON.stringify(usersDataForJson, null, 4)
         );
+        
         console.log(`✅ Archivo users-mocked.json creado.\n`);
     } catch (error) {
         console.error("Error insertando usuarios falsos:", error);
