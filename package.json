@@ -6,8 +6,8 @@
     "type": "module",
     "scripts": {
         "dev": "nodemon ./dist/src/server.js",
-        "mock-users": "node ./dist/dev/seed/users/index.mock.js",
-        "mock-quizzes": "node .dist/dev/seed/quizzes.seed.js",
+        "mock-users": "node ./dist/src/dev/seed/users/index.mock.js",
+        "mock-quizzes": "node .dist/src/dev/seed/quizzes.seed.js",
         "ran": "node ./dist/dev/getRandomUser.js",
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
         "test-cjs": "jest --verbose",
