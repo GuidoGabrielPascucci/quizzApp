@@ -23,7 +23,7 @@ class UserRoutes {
         this.setLoginRoute();
         this.setSignupRoute();
         this.setUpdateStatsRoute();
-        this.setQuickStart();
+        this.setQuickStart(); // SOLO PARA DESARROLLO
     };
 
     setLoginRoute = () => {
@@ -64,6 +64,7 @@ class UserRoutes {
         );
     };
 
+    // SOLO PARA DESARROLLO
     setQuickStart = () => {
         const endpoint = "/quick-start";
         this.router.get(endpoint, this.userController.quickStart);
