@@ -2,10 +2,6 @@ import UserService from "../services/user.service.js";
 import { Request, Response } from "express";
 import { UserSignupData, UserStatsNewData } from "../types/user.types.js";
 
-import { readFileSync } from "node:fs";
-import path from "path";
-import { fileURLToPath } from "url";
-
 class UserController {
     userService: UserService;
 
@@ -91,15 +87,6 @@ class UserController {
                 message: "Error interno. No se pudo completar la operación",
             });
         }
-    };
-
-    quickStart = async (req: Request, res: Response): Promise<any> => {
-        const path = "./dev/mocks/users/mock.json";
-        const jsonStr = readFileSync(path, { encoding: "utf-8" });
-        const users = JSON.parse(jsonStr);
-        const n = users.length;
-        const i = Math.floor(Math.random() * n);
-        res.json(users[i]);
     };
 }
 

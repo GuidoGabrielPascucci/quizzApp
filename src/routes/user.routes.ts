@@ -9,6 +9,8 @@ import {
     validateUpdateStatsInputs,
 } from "../middlewares/user.middleware.js";
 
+import { readFileSync } from "node:fs";
+
 class UserRoutes {
     userController: UserController;
     router: Router;
@@ -67,7 +69,14 @@ class UserRoutes {
     // SOLO PARA DESARROLLO
     setQuickStart = () => {
         const endpoint = "/quick-start";
-        this.router.get(endpoint, this.userController.quickStart);
+        this.router.get(endpoint, (_, res) => {
+            const path = "./dev/mocks/users/mock.json";
+            const jsonStr = readFileSync(path, { encoding: "utf-8" });
+            const users = JSON.parse(jsonStr);
+            const n = users.length;
+            const i = Math.floor(Math.random() * n);
+            res.json(users[i]);
+        });
     };
 
     initAppRouter = (app: Express) => {
