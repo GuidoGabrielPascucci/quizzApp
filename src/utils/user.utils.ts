@@ -28,3 +28,8 @@ export function signToken(user: any): string {
     };
     return jwt.sign(payload, JWT_SECRET_KEY, options);
 }
+
+export const invalidDataResponseObject = {
+    success: false,
+    message: "Datos inválidos.",
+};
