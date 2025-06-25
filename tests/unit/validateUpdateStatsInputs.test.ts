@@ -1,10 +1,8 @@
 import { jest } from "@jest/globals"; // Asumo que sigues usando módulos ES
 import { Response } from "express"; // ¿DEBERIA IMPORTAR TAMBIEN REQUEST?
-import {
-    validateUpdateStatsInputs,
-    invalidDataResponseObject,
-} from "../../src/middlewares/user.middleware.js";
+import { validateUpdateStatsInputs } from "../../src/middlewares/user.middleware.js";
 import { UserStatsNewData } from "../../src/types/user.types.js";
+import { invalidDataResponseObject } from "../../src/utils/user.utils.js";
 
 describe("validateUpdateStatsInputs", () => {
     function createRequestBody() {
