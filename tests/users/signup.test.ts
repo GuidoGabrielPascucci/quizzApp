@@ -1,5 +1,7 @@
 import mongoose from "mongoose";
-import { config } from "dotenv";
+import "dotenv/config";
+// import { config } from "dotenv";
+// config();
 import User from "../../src/models/user.model.js";
 import { doRequest } from "./user.test.helper.js";
 import {
@@ -9,7 +11,6 @@ import {
 
 import { emailRelatedData } from "../../src/schemas/users/email.schema.js";
 
-config();
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
 beforeAll(async () => {
@@ -24,7 +25,11 @@ afterAll(async () => {
     await mongoose.connection.close();
 });
 
-describe.skip("POST users/signup", () => {
+describe("POST users/signup", () => {
+    // test("NADA", () => {
+    //     expect(1).toBe(1);
+    // });
+
     const signupUrl = "/users/signup";
 
     describe("Caso de éxito, usuario registrado", () => {
@@ -63,6 +68,7 @@ describe.skip("POST users/signup", () => {
         });
     });
 
+    /*
     describe("Petición mal enviada", () => {
         test("Debería fallar si no se envía el body", async () => {
             // Arrange
@@ -231,4 +237,5 @@ describe.skip("POST users/signup", () => {
             expect(user?.username).toBe("databaseUser");
         });
     });
+    /*/
 });

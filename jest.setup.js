@@ -1,10 +1,12 @@
-import mongoose from "mongoose";
-import { User } from "./src/models/user.model.js";
+// console.log("SE ESTA EJECUTANDO POR ACA");
 
-beforeEach(async () => {
-  await User.deleteMany({});
-})
+// import mongoose from "mongoose";
+// import { User } from "./src/models/user.model.js";
 
-afterAll(async () => {
-  await mongoose.connection.close();
-});
+// beforeEach(async () => {
+//     await User.deleteMany({});
+// });
+
+// afterAll(async () => {
+//     await mongoose.connection.close();
+// });

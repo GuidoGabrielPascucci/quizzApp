@@ -3,7 +3,6 @@ import { config } from "dotenv";
 import User from "../../src/models/user.model.js";
 import { doRequest } from "./user.test.helper.js";
 
-
 config();
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
@@ -25,7 +24,6 @@ describe("PUT users/update-stats", () => {
     // CASOS NEGATIVOS
     describe("Algún texto", () => {
         test("Algún texto", async () => {
-
             const data = "some-data";
             const contentType = "example/example";
             const res = await doRequest(updateStatsUrl, data, contentType);
@@ -35,14 +33,12 @@ describe("PUT users/update-stats", () => {
                 success: false,
                 message: "Some message",
             });
-
         });
     });
 
     // CASOS POSITIVOS
     describe("Algún texto", () => {
         test("Algún texto", async () => {
-
             const data = "some-data";
             const contentType = "example/example";
             const res = await doRequest(updateStatsUrl, data, contentType);
@@ -52,8 +48,6 @@ describe("PUT users/update-stats", () => {
                 success: true,
                 message: "Some message",
             });
-
         });
     });
-
 });

@@ -34,7 +34,11 @@ describe("PUT /users/update-stats", () => {
                 completedAt: new Date().toISOString(),
             };
 
-            const res = await doRequest(updateStatsUrl, data, "application/json");
+            const res = await doRequest(
+                updateStatsUrl,
+                data,
+                "application/json"
+            );
 
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
@@ -76,7 +80,11 @@ describe("PUT /users/update-stats", () => {
                 completedAt: new Date().toISOString(),
             };
 
-            const res = await doRequest(updateStatsUrl, data, "application/json");
+            const res = await doRequest(
+                updateStatsUrl,
+                data,
+                "application/json"
+            );
 
             expect(res.status).toBe(200);
             expect(res.body).toMatchObject({
