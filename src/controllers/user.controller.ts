@@ -1,6 +1,8 @@
 import UserService from "../services/user.service.js";
 import { Request, Response } from "express";
 import { UserSignupData, UserStatsNewData } from "../types/user.types.js";
+import { ConflictError } from "../errors/ConflictError.js";
+import { UnauthorizedError } from "../errors/UnauthorizedError.js";
 
 class UserController {
     userService: UserService;
@@ -9,80 +11,74 @@ class UserController {
         this.userService = userService;
     }
 
-    login = async (req: Request, res: Response): Promise<any> => {
+    login = async (req: Request, res: Response): Promise<void> => {
         try {
             const { email, password } = req.body;
-            const accessToken = await this.userService.login(email, password);
-            if (!accessToken) {
-                return res.status(401).json({
-                    success: false,
-                    message: "Invalid credentials",
-                });
-            }
-            const user = await this.userService.findByEmail(email);
-            let userResponse = {};
-            if (user) {
-                userResponse = {
-                    id: user._id,
-                    firstname: user.firstname,
-                    lastname: user.lastname,
-                    username: user.username,
-                    email: user.email,
-                    createdAt: user.createdAt,
-                    avatar: user.avatar,
-                    stats: user.stats,
-                };
-            }
+
+            const { accessToken, user } = await this.userService.login(
+                email,
+                password
+            );
+
             res.status(200).json({
                 success: true,
                 message: "You are logged!",
                 accessToken,
-                user: userResponse,
+                user,
             });
         } catch (err) {
-            console.error(err);
-            res.status(500).json({ message: "An error may have occurred" });
+            if (err instanceof UnauthorizedError) {
+                res.status(err.statusCode).json({
+                    success: false,
+                    message: err.message,
+                });
+                return;
+            } else {
+                res.status(500).json({ message: "An error may have occurred" });
+            }
         }
     };
 
-    signup = async (req: Request, res: Response): Promise<any> => {
+    signup = async (req: Request, res: Response): Promise<void> => {
         try {
-            const user = req.body as UserSignupData;
-            const userExist = await this.userService.findByEmail(user.email);
-            if (userExist) {
-                return res.status(409).json({
-                    success: false,
-                    message: "You are already signed up! Go to login.",
-                });
-            }
-            const newUserDTO = await this.userService.signup(user);
-            return res.status(201).json({
+            console.log("Entro en el controlador de Signup");
+            const newUser = req.body as UserSignupData;
+            const { accessToken, user } = await this.userService.signup(
+                newUser
+            );
+
+            res.status(201).json({
                 success: true,
                 message: "User registered successfully",
-                user: newUserDTO,
+                accessToken,
+                user,
             });
         } catch (err) {
-            console.error("server error: ", err);
-            return res.status(500).json({
-                message: "An error may have occured",
-            });
+            if (err instanceof ConflictError) {
+                res.status(err.statusCode).json({
+                    success: false,
+                    message: err.message,
+                });
+            } else {
+                res.status(500).json({
+                    message: "An error may have occured",
+                });
+            }
         }
     };
 
-    updateStats = async (req: Request, res: Response): Promise<any> => {
+    updateStats = async (req: Request, res: Response): Promise<void> => {
         try {
             const stats: UserStatsNewData = req.body;
 
             await this.userService.updateStats(stats);
 
-            return res.status(200).json({
+            res.status(200).json({
                 success: true,
                 message: "Stats actualizados",
             });
-        } catch (e) {
-            console.log(e);
-
-            return res.status(500).json({
+        } catch (err) {
+            res.status(500).json({
                 success: false,
                 message: "Error interno. No se pudo completar la operación",
             });
