@@ -1,4 +1,10 @@
-import { Schema, model, Types, SchemaDefinitionProperty } from "mongoose";
+import {
+    Schema,
+    model,
+    Types,
+    SchemaDefinitionProperty,
+    Document,
+} from "mongoose";
 import { IUser, IQuizResult, IUserStats } from "../interfaces/index.js";
 
 const quizHistorySchema = new Schema<IQuizResult>({
@@ -68,4 +74,14 @@ const userSchema = new Schema<IUser>({
 });
 
 const User = model("User", userSchema);
+
+export type UserDocument = Document<unknown, {}, IUser> &
+    IUser & {
+        _id: Types.ObjectId;
+        __v: number;
+    };
+
+// export type UserDocument = typeof User;
+// const foo: UserDocument = {schema: {}}
+
 export default User;
