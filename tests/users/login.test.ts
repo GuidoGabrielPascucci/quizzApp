@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import "dotenv/config";
+import { config } from "dotenv";
 import User from "../../src/models/user.model.js";
 import { userService } from "./user.test.setup.js";
 import { doRequest } from "./user.test.helper.js";
@@ -10,6 +10,7 @@ import {
 import { unexpectedFieldsMessage } from "../../src/schemas/login.schema.js";
 import { emailRelatedData } from "../../src/schemas/users/email.schema.js";
 
+config();
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
 beforeAll(async () => {
@@ -29,14 +30,13 @@ describe("POST users/login", () => {
     const validEmail = "a_valid_email@example.com";
     const validPassword = "a-valid-password";
 
-    /*
     describe("Petición mal enviada", () => {
         test("Debe devolver 400 si el 'Content-Type' no es 'application/json'", async () => {
             const data = "email=elyssa50@hotmail.com&password=rory_09";
             const contentType = "text/plain";
             const res = await doRequest(loginUrl, data, contentType);
             expect(res.status).toBe(400);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: invalidRequestFormatMessage,
             });
@@ -45,7 +45,7 @@ describe("POST users/login", () => {
             const data = {};
             const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: msg_mustEnterAllFieldsToLogin,
             });
@@ -58,7 +58,7 @@ describe("POST users/login", () => {
             };
             const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: unexpectedFieldsMessage,
             });
@@ -70,7 +70,7 @@ describe("POST users/login", () => {
             };
             const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: msg_mustEnterAllFieldsToLogin,
             });
@@ -82,7 +82,7 @@ describe("POST users/login", () => {
             };
             const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: msg_mustEnterAllFieldsToLogin,
             });
@@ -94,7 +94,7 @@ describe("POST users/login", () => {
             };
             const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(400);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: msg_mustEnterAllFieldsToLogin,
             });
@@ -124,7 +124,7 @@ describe("POST users/login", () => {
 
                 // Assert
                 expect(res.status).toBe(expectedStatus);
-                expect(res.body).toMatchObject(expectedMatchObject);
+                expect(res.body).toStrictEqual(expectedMatchObject);
             });
 
             test("Debe devolver 400 si el email tiene un formato inválido o caracteres no permitidos", async () => {
@@ -148,7 +148,7 @@ describe("POST users/login", () => {
                     };
                     const res = await doRequest(loginUrl, data);
                     expect(res.status).toBe(400);
-                    expect(res.body).toMatchObject({
+                    expect(res.body).toStrictEqual({
                         success: false,
                         message: emailRelatedData.badFormatMessage,
                     });
@@ -162,7 +162,7 @@ describe("POST users/login", () => {
                 };
                 const res = await doRequest(loginUrl, data);
                 expect(res.status).toBe(400);
-                expect(res.body).toMatchObject({
+                expect(res.body).toStrictEqual({
                     success: false,
                     message: emailRelatedData.badFormatMessage,
                 });
@@ -176,7 +176,7 @@ describe("POST users/login", () => {
                 };
                 const res = await doRequest(loginUrl, data);
                 expect(res.status).toBe(400);
-                expect(res.body).toMatchObject({
+                expect(res.body).toStrictEqual({
                     success: false,
                     message: "Password must have 6 characters at least.",
                 });
@@ -190,7 +190,7 @@ describe("POST users/login", () => {
                 };
                 const res = await doRequest(loginUrl, data);
                 expect(res.status).toBe(400);
-                expect(res.body).toMatchObject({
+                expect(res.body).toStrictEqual({
                     success: false,
                     message: "Password is too long.",
                 });
@@ -206,7 +206,7 @@ describe("POST users/login", () => {
             };
             const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(401);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: "Invalid credentials",
             });
@@ -218,7 +218,7 @@ describe("POST users/login", () => {
             };
             const res = await doRequest(loginUrl, data);
             expect(res.status).toBe(401);
-            expect(res.body).toMatchObject({
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: "Invalid credentials",
             });
@@ -239,32 +239,17 @@ describe("POST users/login", () => {
                 };
                 const res = await doRequest(loginUrl, data);
                 expect(res.status).toBe(400);
-                expect(res.body).toMatchObject({
+                expect(res.body).toStrictEqual({
                     success: false,
                     message: "The email is badly formatted.",
                 });
             }
         });
     });
-    */
 
-    describe.only("Caso de éxito - usuario logueado", () => {
+    describe("Caso de éxito - usuario logueado", () => {
         test("Debe devolver 200 si las credenciales son correctas", async () => {
-            const newUser = {
-                firstname: "Elyssa",
-                lastname: "Jones",
-                username: "rory09",
-                email: "elyssa50@hotmail.com",
-                password: "rory_09123",
-            };
-
-            await userService.signup(newUser);
-
-            const data = {
-                email: newUser.email,
-                password: newUser.password,
-            };
-
+            // Arrange
             const expectedStatus = 200;
 
             const expectedMatchObject = {
@@ -277,6 +262,7 @@ describe("POST users/login", () => {
                     lastname: expect.any(String),
                     username: expect.any(String),
                     email: expect.any(String),
+                    score: expect.any(Number),
                     createdAt: expect.any(String),
                     avatar: expect.any(String),
                     stats: {
@@ -287,16 +273,33 @@ describe("POST users/login", () => {
                         highestScore: expect.any(Number),
                         bestCategory: expect.any(String),
                         categoryScores: expect.any(Object),
-                        _id: expect.any(String),
                     },
+                    quizHistory: expect.any(Array),
                 },
             };
 
+            const user = {
+                firstname: "Elyssa",
+                lastname: "Jones",
+                username: "rory09",
+                email: "elyssa50@hotmail.com",
+                password: "rory_09123",
+            };
+
+            await userService.signup(user);
+
+            const data = {
+                email: user.email,
+                password: user.password,
+            };
+
+            // Act
             const res = await doRequest(loginUrl, data);
 
+            // Assert
             expect(res.status).toBe(expectedStatus);
-            expect(res.body).toMatchObject(expectedMatchObject);
-            expect(res.body.accessToken.split(".")).toHaveLength(3); // Verifica que el token tenga formato JWT
+            expect(res.body).toStrictEqual(expectedMatchObject);
+            expect(res.body.accessToken.split(".")).toHaveLength(3);
         });
     });
 });
