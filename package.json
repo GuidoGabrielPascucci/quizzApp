@@ -10,7 +10,7 @@
         "mock-quizzes": "node .dist/src/dev/seed/quizzes.seed.js",
         "ran": "node ./dist/dev/getRandomUser.js",
         "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-        "test-file": "node --experimental-vm-modules node_modules/jest/bin/jest.js -- login.test.js",
+        "test-file": "node --experimental-vm-modules node_modules/jest/bin/jest.js -- signup.test.js",
         "test-cjs": "jest --verbose",
         "build": "npx tsc --watch"
     },
