@@ -1,7 +1,5 @@
 import mongoose from "mongoose";
-import "dotenv/config";
-// import { config } from "dotenv";
-// config();
+import { config } from "dotenv";
 import User from "../../src/models/user.model.js";
 import { doRequest } from "./user.test.helper.js";
 import {
@@ -11,6 +9,7 @@ import {
 
 import { emailRelatedData } from "../../src/schemas/users/email.schema.js";
 
+config();
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
 beforeAll(async () => {
@@ -26,28 +25,34 @@ afterAll(async () => {
 });
 
 describe("POST users/signup", () => {
-    // test("NADA", () => {
-    //     expect(1).toBe(1);
-    // });
-
     const signupUrl = "/users/signup";
 
-    describe("Caso de éxito, usuario registrado", () => {
+    describe.only("Caso de éxito, usuario registrado", () => {
         test("Debería registrar un usuario correctamente", async () => {
-            // Arrange
             const expectedStatus = 201;
 
-            const expectedMatchObject = {
+            const expectedObject = {
                 success: true,
                 message: "User registered successfully",
+                accessToken: expect.any(String),
                 user: {
-                    _id: expect.any(String),
+                    id: expect.any(String),
                     firstname: expect.any(String),
                     lastname: expect.any(String),
                     username: expect.any(String),
                     email: expect.any(String),
-                    score: expect.any(Number),
                     createdAt: expect.any(String),
+                    avatar: expect.any(String),
+                    stats: {
+                        totalScore: expect.any(Number),
+                        totalCorrectAnswers: expect.any(Number),
+                        totalAnswersGiven: expect.any(Number),
+                        quizzesCompleted: expect.any(Number),
+                        highestScore: expect.any(Number),
+                        bestCategory: expect.any(String),
+                        categoryScores: expect.any(Object),
+                    },
+                    quizHistory: expect.any(Array),
                 },
             };
 
@@ -59,16 +64,27 @@ describe("POST users/signup", () => {
                 password: "p4sk1234",
             };
 
-            // Act
             const res = await doRequest(signupUrl, data);
 
-            // Assert
             expect(res.status).toBe(expectedStatus);
-            expect(res.body).toMatchObject(expectedMatchObject);
+            expect(res.body).toStrictEqual(expectedObject);
+        });
+        test("Debería guardar el usuario en la base de datos", async () => {
+            const expectedStatus = 201;
+            const expectedObject = {};
+            const data = {
+                username: "databaseUser",
+                email: "dbuser@example.com",
+                password: "SecurePass123!",
+            };
+            await doRequest(signupUrl, data);
+
+            const user = await User.findOne({ email: "dbuser@example.com" });
+            expect(user).not.toBeNull();
+            expect(user?.username).toBe("databaseUser");
         });
     });
 
-    /*
     describe("Petición mal enviada", () => {
         test("Debería fallar si no se envía el body", async () => {
             // Arrange
@@ -160,11 +176,11 @@ describe("POST users/signup", () => {
 
     describe("Usuario ya registrado", () => {
         test("Debería fallar si el usuario ya está registrado", async () => {
-            // ARRANGE
             const expectedStatus = 409;
-            const expectedMatchObject = {
+            const expectedObject = {
                 success: false,
-                message: "You are already signed up! Go to login.",
+                message: "User already exists. Please log in.",
+                // message: "You are already signed up! Go to login.",
             };
 
             const data = {
@@ -174,22 +190,21 @@ describe("POST users/signup", () => {
                 email: "liomessi10@ejemplo.ar",
                 password: "antoteamo12",
             };
+
             // Primero registrar el usuario
             await doRequest(signupUrl, data);
 
-            // ACT
             // Intentar registrarlo de nuevo
             const res = await doRequest(signupUrl, data);
 
-            // ASSERT
             expect(res.status).toBe(expectedStatus);
-            expect(res.body).toEqual(expectedMatchObject);
+            expect(res.body).toStrictEqual(expectedObject);
             //expect(res.body.error).toMatch(/usuario ya registrado/i);
         });
     });
 
     describe("Inyección SQL y ataques XSS", () => {
-        test.only("Debería rechazar intentos de inyección SQL", async () => {
+        test("Debería rechazar intentos de inyección SQL", async () => {
             // ARRANGE
             const expectedStatus = 400;
             const expectedMatchObject = {
@@ -222,20 +237,19 @@ describe("POST users/signup", () => {
 
             expect(res.status).toBe(400);
         });
-    });
 
-    describe("Datos persistidos correctamente", () => {
-        test("Debería guardar el usuario en la base de datos", async () => {
-            await doRequest("/signup", {
-                username: "databaseUser",
-                email: "dbuser@example.com",
-                password: "SecurePass123!",
+        test("Rechaza inyección NoSQL en el campo email", async () => {
+            const res = await doRequest(signupUrl, {
+                username: "testuser",
+                email: { $ne: "" }, // <- intento de inyección
+                password: "pass123",
+                firstname: "Alan",
+                lastname: "Paul",
             });
 
-            const user = await User.findOne({ email: "dbuser@example.com" });
-            expect(user).not.toBeNull();
-            expect(user?.username).toBe("databaseUser");
+            console.log(res.body);
+
+            expect(res.status).toBe(400); // o 422 según cómo manejes errores
         });
     });
-    /*/
 });
