@@ -1,36 +1,62 @@
 import { compare, hash } from "bcrypt";
-import User from "../models/user.model.js";
-import { sanitizeUserForResponse, signToken } from "../utils/user.utils.js";
-import { UserSignupData, UserStatsNewData } from "../types/user.types.js";
+import User, { UserDocument } from "../models/user.model.js";
+import {
+    mapUserToResponse,
+    sanitizeUserForResponse,
+    signToken,
+} from "../utils/user.utils.js";
+import {
+    AuthResponse,
+    // LoginResult,
+    UserDTO,
+    UserSignupData,
+    UserStatsNewData,
+} from "../types/user.types.js";
 import { IUserDocument } from "../interfaces/mongoose.interface.js";
+import { ConflictError } from "../errors/ConflictError.js";
+import { UnauthorizedError } from "../errors/UnauthorizedError.js";
 
 class UserService {
-    login = async (email: string, password: string) => {
-        const user = await User.findOne({ email }).select("+password");
+    login = async (email: string, password: string): Promise<AuthResponse> => {
+        const user: UserDocument | null = await User.findOne({ email }).select(
+            "+password"
+        );
+
         if (!user || !(await compare(password, user.password))) {
-            return false;
+            throw new UnauthorizedError("Invalid credentials");
         }
+
         const accessToken = signToken(user);
-        return accessToken;
+        const userDTO = mapUserToResponse(user);
+
+        return { accessToken, user: userDTO };
     };
 
-    signup = async (user: UserSignupData) => {
+    signup = async (user: UserSignupData): Promise<AuthResponse> => {
+        const userExist = await this.findByEmail(user.email);
+
+        if (userExist) {
+            throw new ConflictError("User already exists. Please log in.");
+        }
+
         const hashedPassword = await hash(user.password, 10);
+
         const userWithHashedPassword = {
             ...user,
             password: hashedPassword,
         };
-        const createdUser = await User.create(userWithHashedPassword);
-        const newUserDTO = sanitizeUserForResponse(createdUser);
-        return newUserDTO;
+
+        await User.create(userWithHashedPassword);
+
+        return this.login(user.email, user.password);
     };
 
-    findByEmail = async (email: string) => {
+    findByEmail = async (email: string): Promise<UserDocument | null> => {
         const user = await User.findOne({ email });
         return user;
     };
 
-    findById = async (id: string) => {
+    findById = async (id: string): Promise<UserDocument | null> => {
         const user = await User.findById(id);
         return user;
     };
