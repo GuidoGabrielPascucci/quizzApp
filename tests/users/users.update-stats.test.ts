@@ -36,6 +36,7 @@ describe("PUT /users/update-stats", () => {
 
             const res = await doRequest(
                 updateStatsUrl,
+                "PUT",
                 data,
                 "application/json"
             );
@@ -82,6 +83,7 @@ describe("PUT /users/update-stats", () => {
 
             const res = await doRequest(
                 updateStatsUrl,
+                "PUT",
                 data,
                 "application/json"
             );

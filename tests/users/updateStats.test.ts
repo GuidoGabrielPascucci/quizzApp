@@ -26,7 +26,12 @@ describe("PUT users/update-stats", () => {
         test("Algún texto", async () => {
             const data = "some-data";
             const contentType = "example/example";
-            const res = await doRequest(updateStatsUrl, data, contentType);
+            const res = await doRequest(
+                updateStatsUrl,
+                "PUT",
+                data,
+                contentType
+            );
 
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
@@ -41,7 +46,12 @@ describe("PUT users/update-stats", () => {
         test("Algún texto", async () => {
             const data = "some-data";
             const contentType = "example/example";
-            const res = await doRequest(updateStatsUrl, data, contentType);
+            const res = await doRequest(
+                updateStatsUrl,
+                "PUT",
+                data,
+                contentType
+            );
 
             expect(res.status).toBe(200);
             expect(res.body).toMatchObject({

@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { config } from "dotenv";
+import "dotenv/config";
 import User from "../../src/models/user.model.js";
 import { userService } from "./user.test.setup.js";
 import { doRequest } from "./user.test.helper.js";
@@ -10,7 +10,6 @@ import {
 import { unexpectedFieldsMessage } from "../../src/schemas/login.schema.js";
 import { emailRelatedData } from "../../src/schemas/users/email.schema.js";
 
-config();
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
 beforeAll(async () => {
@@ -34,7 +33,7 @@ describe("POST users/login", () => {
         test("Debe devolver 400 si el 'Content-Type' no es 'application/json'", async () => {
             const data = "email=elyssa50@hotmail.com&password=rory_09";
             const contentType = "text/plain";
-            const res = await doRequest(loginUrl, data, contentType);
+            const res = await doRequest(loginUrl, "POST", data, contentType);
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -43,7 +42,7 @@ describe("POST users/login", () => {
         });
         test("Debe devolver 400 si se envía un objeto vacío en el cuerpo de la petición", async () => {
             const data = {};
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -56,7 +55,7 @@ describe("POST users/login", () => {
                 password: validPassword,
                 foo: "some-random-data",
             };
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -68,7 +67,7 @@ describe("POST users/login", () => {
                 email: "",
                 password: "",
             };
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -80,7 +79,7 @@ describe("POST users/login", () => {
                 email: "",
                 password: validPassword,
             };
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -92,7 +91,7 @@ describe("POST users/login", () => {
                 email: validEmail,
                 password: "",
             };
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -120,7 +119,7 @@ describe("POST users/login", () => {
                 };
 
                 // Act
-                const res = await doRequest(loginUrl, data);
+                const res = await doRequest(loginUrl, "POST", data);
 
                 // Assert
                 expect(res.status).toBe(expectedStatus);
@@ -146,7 +145,7 @@ describe("POST users/login", () => {
                         email,
                         password: validPassword,
                     };
-                    const res = await doRequest(loginUrl, data);
+                    const res = await doRequest(loginUrl, "POST", data);
                     expect(res.status).toBe(400);
                     expect(res.body).toStrictEqual({
                         success: false,
@@ -160,7 +159,7 @@ describe("POST users/login", () => {
                     email: "   user@example.com   ",
                     password: validPassword,
                 };
-                const res = await doRequest(loginUrl, data);
+                const res = await doRequest(loginUrl, "POST", data);
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
@@ -174,7 +173,7 @@ describe("POST users/login", () => {
                     email: "user@example.com",
                     password: "123",
                 };
-                const res = await doRequest(loginUrl, data);
+                const res = await doRequest(loginUrl, "POST", data);
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
@@ -188,7 +187,7 @@ describe("POST users/login", () => {
                     email: "user@example.com",
                     password: longPassword,
                 };
-                const res = await doRequest(loginUrl, data);
+                const res = await doRequest(loginUrl, "POST", data);
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
@@ -204,7 +203,7 @@ describe("POST users/login", () => {
                 email: "wrong@example.com",
                 password: "does-not-matter",
             };
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
             expect(res.status).toBe(401);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -216,7 +215,7 @@ describe("POST users/login", () => {
                 email: "my_email12@gmail.com",
                 password: "wrong-password",
             };
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
             expect(res.status).toBe(401);
             expect(res.body).toStrictEqual({
                 success: false,
@@ -237,7 +236,7 @@ describe("POST users/login", () => {
                     email: input,
                     password: "validPass123",
                 };
-                const res = await doRequest(loginUrl, data);
+                const res = await doRequest(loginUrl, "POST", data);
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
@@ -262,7 +261,6 @@ describe("POST users/login", () => {
                     lastname: expect.any(String),
                     username: expect.any(String),
                     email: expect.any(String),
-                    score: expect.any(Number),
                     createdAt: expect.any(String),
                     avatar: expect.any(String),
                     stats: {
@@ -294,7 +292,7 @@ describe("POST users/login", () => {
             };
 
             // Act
-            const res = await doRequest(loginUrl, data);
+            const res = await doRequest(loginUrl, "POST", data);
 
             // Assert
             expect(res.status).toBe(expectedStatus);

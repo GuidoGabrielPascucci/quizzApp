@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { config } from "dotenv";
+import "dotenv/config";
 import User from "../../src/models/user.model.js";
 import { doRequest } from "./user.test.helper.js";
 import {
@@ -9,7 +9,6 @@ import {
 
 import { emailRelatedData } from "../../src/schemas/users/email.schema.js";
 
-config();
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
 beforeAll(async () => {
@@ -27,7 +26,7 @@ afterAll(async () => {
 describe("POST users/signup", () => {
     const signupUrl = "/users/signup";
 
-    describe.only("Caso de éxito, usuario registrado", () => {
+    describe("Caso de éxito, usuario registrado", () => {
         test("Debería registrar un usuario correctamente", async () => {
             const expectedStatus = 201;
 
@@ -64,7 +63,7 @@ describe("POST users/signup", () => {
                 password: "p4sk1234",
             };
 
-            const res = await doRequest(signupUrl, data);
+            const res = await doRequest(signupUrl, "POST", data);
 
             expect(res.status).toBe(expectedStatus);
             expect(res.body).toStrictEqual(expectedObject);
@@ -72,16 +71,20 @@ describe("POST users/signup", () => {
         test("Debería guardar el usuario en la base de datos", async () => {
             const expectedStatus = 201;
             const expectedObject = {};
+            const email = "john@lennon.com";
+            const username = "johnlennon77";
             const data = {
-                username: "databaseUser",
-                email: "dbuser@example.com",
-                password: "SecurePass123!",
+                firstname: "John",
+                lastname: "Lennon",
+                username,
+                email,
+                password: "yokolovesu_!$",
             };
-            await doRequest(signupUrl, data);
-
-            const user = await User.findOne({ email: "dbuser@example.com" });
+            const res = await doRequest(signupUrl, "POST", data);
+            const user = await User.findOne({ email });
+            expect(res.status).toBe(expectedStatus);
             expect(user).not.toBeNull();
-            expect(user?.username).toBe("databaseUser");
+            expect(user?.username).toBe(username);
         });
     });
 
@@ -96,7 +99,7 @@ describe("POST users/signup", () => {
             const data = {};
 
             // Act
-            const res = await doRequest(signupUrl, data);
+            const res = await doRequest(signupUrl, "POST", data);
 
             // Assert
             expect(res.status).toBe(expectedStatus);
@@ -106,7 +109,7 @@ describe("POST users/signup", () => {
         test("Deberia fallar si se envía como algo distinto de application/json", async () => {
             const data = "email=g.g.pascucci@gmail.com&password=p4sk1234";
             const contentType = "text/plain";
-            const res = await doRequest(signupUrl, data, contentType);
+            const res = await doRequest(signupUrl, "POST", data, contentType);
             expect(res.status).toBe(400);
             expect(res.body).toMatchObject({
                 success: false,
@@ -132,10 +135,9 @@ describe("POST users/signup", () => {
             };
 
             // act
-            const res = await doRequest(signupUrl, data);
+            const res = await doRequest(signupUrl, "POST", data);
 
             // assert
-            //console.log(res.body);
             expect(res.status).toBe(expectedStatus);
             expect(res.body).toMatchObject(expectedMatchObject);
 
@@ -144,7 +146,7 @@ describe("POST users/signup", () => {
     });
 
     describe("Formato de datos inválidos", () => {
-        test("Debería fallar si el email es inválido", async () => {
+        test.only("Debería fallar si el email es inválido", async () => {
             // arrange
             const expectedStatus = 400;
 
@@ -162,7 +164,7 @@ describe("POST users/signup", () => {
             };
 
             // act
-            const res = await doRequest(signupUrl, data);
+            const res = await doRequest(signupUrl, "POST", data);
 
             // assert
             console.log(res.body);
@@ -192,10 +194,10 @@ describe("POST users/signup", () => {
             };
 
             // Primero registrar el usuario
-            await doRequest(signupUrl, data);
+            await doRequest(signupUrl, "POST", data);
 
             // Intentar registrarlo de nuevo
-            const res = await doRequest(signupUrl, data);
+            const res = await doRequest(signupUrl, "POST", data);
 
             expect(res.status).toBe(expectedStatus);
             expect(res.body).toStrictEqual(expectedObject);
@@ -221,7 +223,7 @@ describe("POST users/signup", () => {
             };
 
             // ACT
-            const res = await doRequest(signupUrl, data);
+            const res = await doRequest(signupUrl, "POST", data);
 
             // ASSERT
             expect(res.status).toBe(expectedStatus);
@@ -229,7 +231,7 @@ describe("POST users/signup", () => {
         });
 
         test("Debería rechazar intentos de XSS", async () => {
-            const res = await doRequest("/signup", {
+            const res = await doRequest("/signup", "POST", {
                 username: "<script>alert('xss')</script>",
                 email: "xss@example.com",
                 password: "SecurePass123!",
@@ -239,7 +241,7 @@ describe("POST users/signup", () => {
         });
 
         test("Rechaza inyección NoSQL en el campo email", async () => {
-            const res = await doRequest(signupUrl, {
+            const res = await doRequest(signupUrl, "POST", {
                 username: "testuser",
                 email: { $ne: "" }, // <- intento de inyección
                 password: "pass123",
