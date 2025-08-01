@@ -41,7 +41,6 @@ class UserController {
 
     signup = async (req: Request, res: Response): Promise<void> => {
         try {
-            console.log("Entro en el controlador de Signup");
             const newUser = req.body as UserSignupData;
             const { accessToken, user } = await this.userService.signup(
                 newUser

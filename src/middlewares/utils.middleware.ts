@@ -11,11 +11,7 @@ export function validateRequestFormatMw(
     res: Response,
     next: NextFunction
 ): void {
-    console.log("1. validate request format MW");
-
     if (req.headers["content-type"] !== "application/json") {
-        console.log("Content-Type erróneo");
-
         res.status(400).json({
             success: false,
             message: invalidRequestFormatMessage,

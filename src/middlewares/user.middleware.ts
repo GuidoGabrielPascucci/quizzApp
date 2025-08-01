@@ -50,11 +50,8 @@ export function validateSignupFieldsMw(
     res: Response,
     next: NextFunction
 ): void {
-    console.log("2. validate signup fields MW");
     const signupData = getSignupData(req);
     if (Object.values(signupData).some((value) => value === undefined)) {
-        console.log("Hay un valor undefined en el cuerpo de la petición");
-
         res.status(400).json({
             success: false,
             message: msg_mustEnterAllFieldsToSignup,
@@ -69,12 +66,14 @@ export function sanitizeSignupMw(
     res: Response,
     next: NextFunction
 ): void {
-    console.log("3. sanitize signup MW");
+    console.log("Sanitizing signup data...");
     const signupData = getSignupData(req);
-    const result = safeParse(signupSchema, signupData);
-    if (!result.success) {
-        console.log("No pasa la validación safeParse de Valibot");
 
+    const result = safeParse(signupSchema, signupData);
+
+    if (!result.success) {
+        console.log("Validation failed:", result.issues);
+        // If validation fails, send a 400 response with the error message
         res.status(400).json({
             success: false,
             message: result.issues[0].message,
