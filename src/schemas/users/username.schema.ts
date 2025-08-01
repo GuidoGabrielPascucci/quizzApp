@@ -1,34 +1,12 @@
-import {
-    getLengthSchemaObj,
-    USERNAME_MIN_LENGTH,
-    USERNAME_MAX_LENGTH,
-} from "../user.schema.helper.js";
-import { getSchemaObject } from "./signup/signup.schema.helper.js";
+import { pipe, string, nonEmpty, minLength, maxLength, custom } from "valibot";
 
-const fieldStringName = "Username";
-const usernameMinLengthSchemaObj = getLengthSchemaObj(
-    fieldStringName,
-    USERNAME_MIN_LENGTH,
-    true
-);
-const usernameMaxLengthSchemaObj = getLengthSchemaObj(
-    fieldStringName,
-    USERNAME_MAX_LENGTH,
-    false
-);
-
-const minLengthObj_username = {
-    length: usernameMinLengthSchemaObj.length,
-    message: usernameMinLengthSchemaObj.message,
-};
-
-const maxLengthObj_username = {
-    length: usernameMaxLengthSchemaObj.length,
-    message: usernameMaxLengthSchemaObj.message,
-};
-
-export const unObjetoUsername = getSchemaObject(
-    fieldStringName,
-    minLengthObj_username,
-    maxLengthObj_username
+export const usernameSchema = pipe(
+    string(),
+    nonEmpty("Username is required, can not be empty."),
+    minLength(3, "Username must be at least 3 characters long."),
+    maxLength(20, "Username must be at most 20 characters long."),
+    custom<string>(
+        (val) => /^[a-zA-Z0-9_.]+$/.test(val as string),
+        "Username can only contain letters, numbers, underscores and dots."
+    )
 );
