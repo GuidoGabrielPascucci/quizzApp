@@ -31,7 +31,7 @@ describe("POST users/login", () => {
     const validEmail = "a_valid_email@example.com";
     const validPassword = "a-valid-password";
 
-    describe("Petición mal enviada", () => {
+    describe.only("Petición mal enviada", () => {
         test("Debe devolver 400 si el 'Content-Type' no es 'application/json'", async () => {
             const data = "email=elyssa50@hotmail.com&password=rory_09";
             const contentType = "text/plain";
@@ -57,12 +57,13 @@ describe("POST users/login", () => {
                 password: validPassword,
                 foo: "some-random-data",
             };
-            const res = await doRequest(loginUrl, "POST", data);
-            expect(res.status).toBe(400);
-            expect(res.body).toStrictEqual({
+            const expectedObj = {
                 success: false,
                 message: unexpectedFieldsMessage,
-            });
+            };
+            const res = await doRequest(loginUrl, "POST", data);
+            expect(res.status).toBe(400);
+            expect(res.body).toStrictEqual(expectedObj);
         });
         test("Debe devolver 400 si email y password son cadenas vacías", async () => {
             const data = {
@@ -110,7 +111,7 @@ describe("POST users/login", () => {
 
                 const expectedMatchObject = {
                     success: false,
-                    message: emailRelatedData.tooLongMessage,
+                    message: emailMessages.tooLong,
                 };
 
                 const longEmail = "a".repeat(255) + "@example.com";
@@ -151,7 +152,7 @@ describe("POST users/login", () => {
                     expect(res.status).toBe(400);
                     expect(res.body).toStrictEqual({
                         success: false,
-                        message: emailRelatedData.badFormatMessage,
+                        message: emailMessages.badFormat,
                     });
                 }
             });
@@ -165,7 +166,7 @@ describe("POST users/login", () => {
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
-                    message: emailRelatedData.badFormatMessage,
+                    message: emailMessages.badFormat,
                 });
             });
         });
