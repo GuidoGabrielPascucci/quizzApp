@@ -1,5 +1,5 @@
 import Quizz from "../models/quizz.model.js";
-import { QuizzData, QuizzFilters } from "../types/quizz.types.js";
+import { QuizzData, QuizzFilters } from "@_types/quizz.types.js";
 
 class QuizzService {
     async obtenerTodos(filtros: QuizzFilters) {

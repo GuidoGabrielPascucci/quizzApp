@@ -1,6 +1,7 @@
-import { UserDocument } from "../models/user.model.js";
 import jwt from "jsonwebtoken";
-import { UserDTO } from "../types/user.types.js";
+import { UserDocument } from "@models/user.model.js";
+import { UserDTO } from "@_types/user.types.js";
+
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY as string;
 
 export function sanitizeUserForResponse(createdUser: UserDocument) {

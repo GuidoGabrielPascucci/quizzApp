@@ -1,20 +1,20 @@
 import { compare, hash } from "bcrypt";
-import User, { UserDocument } from "../models/user.model.js";
+import User, { UserDocument } from "@models/user.model.js";
 import {
     mapUserToResponse,
     sanitizeUserForResponse,
     signToken,
-} from "../utils/user.utils.js";
+} from "@utils/user.utils.js";
 import {
     AuthResponse,
     // LoginResult,
     UserDTO,
     UserSignupData,
     UserStatsNewData,
-} from "../types/user.types.js";
-import { IUserDocument } from "../interfaces/mongoose.interface.js";
-import { ConflictError } from "../errors/ConflictError.js";
-import { UnauthorizedError } from "../errors/UnauthorizedError.js";
+} from "@_types/user.types.js";
+import { IUserDocument } from "@interfaces/mongoose.interface.js";
+import { ConflictError } from "@errors/ConflictError.js";
+import { UnauthorizedError } from "@errors/UnauthorizedError.js";
 
 class UserService {
     login = async (email: string, password: string): Promise<AuthResponse> => {

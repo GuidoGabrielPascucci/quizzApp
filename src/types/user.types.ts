@@ -1,4 +1,4 @@
-import { IUser } from "../interfaces/user.interface.js";
+import { IUser } from "@interfaces/user.interface.js";
 // import { UserDocument } from "../models/user.model.js";
 
 export type UserSignupData = {

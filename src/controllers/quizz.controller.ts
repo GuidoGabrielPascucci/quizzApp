@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import QuizzService from "../services/quizz.service.js";
-import { QuizzFilters } from "../types/quizz.types.js";
+import QuizzService from "@services/quizz.service.js";
+import { QuizzFilters } from "@_types/quizz.types.js";
 
 class QuizzController {
     quizzService: QuizzService;

@@ -1,16 +1,13 @@
 // LOGIN imports
 import { Request, Response, NextFunction } from "express";
-import { loginSchema } from "../schemas/login.schema.js";
+import { loginSchema } from "@schemas/users/login.schema.js";
 import { safeParse } from "valibot";
 import { msg_mustEnterAllFieldsToLogin } from "./utils.middleware.js";
 // SIGNUP imports
-import { signupSchema } from "../schemas/signup.schema.js";
-import {
-    getSignupData,
-    invalidDataResponseObject,
-} from "../utils/user.utils.js";
+import { signupSchema } from "@schemas/users/signup.schema.js";
+import { getSignupData, invalidDataResponseObject } from "@utils/user.utils.js";
 import { msg_mustEnterAllFieldsToSignup } from "./utils.middleware.js";
-import { UserStatsSchema } from "../schemas/users/validation.schema.js";
+import { UserStatsSchema } from "@schemas/users/validation.schema.js";
 
 export function validateLoginFieldsMw(
     req: Request,

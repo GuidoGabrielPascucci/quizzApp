@@ -1,5 +1,5 @@
 import { Router, Express } from "express";
-import QuizzController from "../controllers/quizz.controller.js";
+import QuizzController from "@controllers/quizz.controller.js";
 
 class QuizzRoutes {
     quizzController: QuizzController;

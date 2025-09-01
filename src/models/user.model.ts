@@ -5,7 +5,7 @@ import {
     SchemaDefinitionProperty,
     Document,
 } from "mongoose";
-import { IUser, IQuizResult, IUserStats } from "../interfaces/index.js";
+import { IUser, IQuizResult, IUserStats } from "@interfaces/index.js";
 
 const quizHistorySchema = new Schema<IQuizResult>({
     quizId: {

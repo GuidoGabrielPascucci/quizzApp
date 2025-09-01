@@ -1,8 +1,8 @@
-import UserService from "../services/user.service.js";
 import { Request, Response } from "express";
-import { UserSignupData, UserStatsNewData } from "../types/user.types.js";
-import { ConflictError } from "../errors/ConflictError.js";
-import { UnauthorizedError } from "../errors/UnauthorizedError.js";
+import UserService from "@services/user.service.js";
+import { UserSignupData, UserStatsNewData } from "@_types/user.types.js";
+import { ConflictError } from "@errors/ConflictError.js";
+import { UnauthorizedError } from "@errors/UnauthorizedError.js";
 
 class UserController {
     userService: UserService;
