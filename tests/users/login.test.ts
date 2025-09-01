@@ -1,14 +1,16 @@
 import mongoose from "mongoose";
 import "dotenv/config";
-import User from "../../src/models/user.model.js";
-import { userService } from "./user.test.setup.js";
-import { doRequest } from "./user.test.helper.js";
+
+import User from "@models/user.model";
 import {
     invalidRequestFormatMessage,
     msg_mustEnterAllFieldsToLogin,
-} from "../../src/middlewares/utils.middleware.js";
-import { unexpectedFieldsMessage } from "../../src/schemas/login.schema.js";
-import { emailRelatedData } from "../../src/schemas/users/email.schema.js";
+} from "@middlewares/utils.middleware";
+import { unexpectedFieldsMessage } from "@schemas/users/login.schema";
+import { emailMessages } from "@schemas/users/constants";
+
+import { userService } from "./user.test.setup";
+import { doRequest } from "./user.test.helper";
 
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
