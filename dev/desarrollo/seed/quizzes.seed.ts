@@ -1,10 +1,10 @@
+import { readdirSync, readFileSync } from "node:fs";
+import { join, dirname } from "node:path";
+import { fileURLToPath } from "node:url";
 import mongoose from "mongoose";
 import { config } from "dotenv";
-import { readdirSync, readFileSync } from "fs";
-import { join, dirname } from "path";
-import Quizz from "../../models/quizz.model.js";
-import { fileURLToPath } from "url";
-import { QuizzData } from "../../types/quizz.types.js";
+import Quizz from "@models/quizz.model.js";
+import { QuizzData } from "@_types/quizz.types.js";
 
 // Obtener el __dirname en ESM
 const __filename = fileURLToPath(import.meta.url);

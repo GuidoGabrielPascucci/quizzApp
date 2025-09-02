@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
-import { IQuizResult, IUser } from "../../../interfaces/index.js";
+import { hashSync } from "bcrypt";
+import { IQuizResult, IUser } from "@interfaces/index.js";
 import { mockQuizResults } from "./quiz-results.mock.js";
 import { completarStats } from "./user-stats.mock.js";
-import { hashSync } from "bcrypt";
 import {
     IncompleteStats,
     RandomIncompleteUser,
@@ -25,7 +25,7 @@ export const generateFakeUser = (usersDataForJson: UserLoginData[]): IUser => {
 
     const incompleteStats: IncompleteStats = {
         ...incompleteUser.stats,
-        ...someStats
+        ...someStats,
     };
 
     const { stats, ...userWithoutStats } = incompleteUser;
@@ -49,7 +49,7 @@ function getFakerRandomData(): RandomIncompleteUser {
         createdAt: faker.date.past(),
         avatar: faker.image.avatarGitHub(),
         stats: {
-            quizzesCompleted: faker.number.int({ min: 1, max: 5 })
+            quizzesCompleted: faker.number.int({ min: 1, max: 5 }),
         },
     };
 }
@@ -73,7 +73,7 @@ function getFinalRandomUser(data: UserRelatedData): IUser {
             highestScore: data.stats.highestScore,
             totalCorrectAnswers: data.stats.totalCorrectAnswers,
             bestCategory: data.stats.bestCategory,
-            categoryScores: data.stats.categoryScores
+            categoryScores: data.stats.categoryScores,
         },
         quizHistory: data.quizzResults,
     };

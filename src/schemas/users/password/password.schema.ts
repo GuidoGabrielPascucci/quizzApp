@@ -1,10 +1,11 @@
 import { pipe, string, nonEmpty, minLength, maxLength, custom } from "valibot";
+import { passwordMessages, passwordLimits } from "./password.constants.js";
 
 export const passwordSchema = pipe(
     string(),
-    nonEmpty("Password is required, can not be empty."),
-    minLength(8, "Password must be at least 8 characters long."),
-    maxLength(24, "Password must be at most 24 characters long."),
+    nonEmpty(passwordMessages.emptyField),
+    minLength(passwordLimits.min, passwordMessages.tooShort),
+    maxLength(passwordLimits.max, passwordMessages.tooLong),
     custom<string>((val) => {
         if (typeof val !== "string") return false;
 
@@ -14,5 +15,5 @@ export const passwordSchema = pipe(
             /\d/.test(val) && // at least one number
             /[^A-Za-z0-9]/.test(val) // at least one symbol
         );
-    }, "Password must include uppercase, lowercase, number and symbol.")
+    }, passwordMessages.invalidFormat)
 );

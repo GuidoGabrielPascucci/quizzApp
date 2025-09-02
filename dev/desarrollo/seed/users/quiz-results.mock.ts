@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { IQuizResult } from "../../../interfaces/index.js";
+import { IQuizResult } from "@interfaces/index.js";
 
 // Generar un array de Resultados de Quizzes (con N elementos)
 export const mockQuizResults = (count: number): IQuizResult[] => {

@@ -1,4 +1,4 @@
-import { IQuizResult } from "../../../interfaces/index.js";
+import { IQuizResult } from "@interfaces/index.js";
 
 export function completarStats(quizHistory: IQuizResult[]) {
     const categoryScores: Record<string, number> = {};

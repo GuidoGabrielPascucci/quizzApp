@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import "dotenv/config";
 import { writeFileSync } from "node:fs";
-import User from "../../../models/user.model.js";
+import User from "@models/user.model.js";
 import { generateFakeUser } from "./generate-fake-user.mock.js";
 import { UserLoginData } from "./utils.mock.js";
 
@@ -19,7 +19,7 @@ const seedUsers = async (numUsers: number) => {
             "./dev/mocks/users/mock.json",
             JSON.stringify(usersDataForJson, null, 4)
         );
-        
+
         console.log(`✅ Archivo users-mocked.json creado.\n`);
     } catch (error) {
         console.error("Error insertando usuarios falsos:", error);
