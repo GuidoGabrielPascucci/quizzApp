@@ -1,13 +1,11 @@
 import mongoose from "mongoose";
 import "dotenv/config";
-import User from "../../src/models/user.model.js";
+import User from "@models/user.model.js";
 import { doRequest } from "./user.test.helper.js";
 import {
     invalidRequestFormatMessage,
     msg_mustEnterAllFieldsToSignup,
-} from "../../src/middlewares/utils.middleware.js";
-
-import { emailRelatedData } from "../../src/schemas/users/email.schema.js";
+} from "@middlewares/utils.middleware.js";
 
 const MONGO_URI = process.env.MONGO_URI ?? "";
 
@@ -105,7 +103,6 @@ describe("POST users/signup", () => {
             expect(res.status).toBe(expectedStatus);
             expect(res.body).toMatchObject(expectedMatchObject);
         });
-
         test("Deberia fallar si se envía como algo distinto de application/json", async () => {
             const data = "email=g.g.pascucci@gmail.com&password=p4sk1234";
             const contentType = "text/plain";
@@ -145,14 +142,14 @@ describe("POST users/signup", () => {
         });
     });
 
-    describe("Formato de datos inválidos", () => {
-        test.only("Debería fallar si el email es inválido", async () => {
+    describe.only("Formato de datos inválidos", () => {
+        test("Debería fallar si el email es inválido", async () => {
             // arrange
             const expectedStatus = 400;
 
             const expectedMatchObject = {
                 success: false,
-                message: emailRelatedData.badFormatMessage,
+                message: "Foooooooo",
             };
 
             const data = {
@@ -229,7 +226,6 @@ describe("POST users/signup", () => {
             expect(res.status).toBe(expectedStatus);
             expect(res.body).toEqual(expectedMatchObject);
         });
-
         test("Debería rechazar intentos de XSS", async () => {
             const res = await doRequest("/signup", "POST", {
                 username: "<script>alert('xss')</script>",
@@ -239,7 +235,6 @@ describe("POST users/signup", () => {
 
             expect(res.status).toBe(400);
         });
-
         test("Rechaza inyección NoSQL en el campo email", async () => {
             const res = await doRequest(signupUrl, "POST", {
                 username: "testuser",
