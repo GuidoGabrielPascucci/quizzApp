@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from "express";
 
-const msg_mustEnterAllFieldsTo = "You must enter all fields to";
-export const msg_mustEnterAllFieldsToLogin = `${msg_mustEnterAllFieldsTo} login.`;
-export const msg_mustEnterAllFieldsToSignup = `${msg_mustEnterAllFieldsTo} signup.`;
+const mustEnterAllFieldsTo = "You must enter all fields to";
+export const mustEnterAllFieldsToLoginMessage = `${mustEnterAllFieldsTo} login.`;
+export const mustEnterAllFieldsToSignupMessage = `${mustEnterAllFieldsTo} signup.`;
 export const invalidRequestFormatMessage =
     "Invalid request format. Expected application/json.";
 
