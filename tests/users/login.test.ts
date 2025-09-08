@@ -4,10 +4,17 @@ import "dotenv/config";
 import User from "@models/user.model";
 import {
     invalidRequestFormatMessage,
-    msg_mustEnterAllFieldsToLogin,
+    mustEnterAllFieldsToLoginMessage,
 } from "@middlewares/utils.middleware";
-import { unexpectedFieldsMessage } from "@schemas/users/login.schema";
+import {
+    unexpectedFieldsMessage,
+    invalidCredentialsMessage,
+} from "@schemas/users/login.schema";
 import { emailMessages } from "@schemas/users/constants";
+import {
+    passwordMessages,
+    passwordLimits,
+} from "@schemas/users/password/password.constants";
 
 import { userService } from "./user.test.setup";
 import { doRequest } from "./user.test.helper";
@@ -28,77 +35,100 @@ afterAll(async () => {
 
 describe("POST users/login", () => {
     const loginUrl = "/users/login";
-    const validEmail = "a_valid_email@example.com";
-    const validPassword = "a-valid-password";
+    const validEmail = "valid_email10@example.com";
+    const validPassword = "P4sk_1234";
+    const newUser = {
+        firstname: "Lionel",
+        lastname: "Messi",
+        username: "lionel10",
+        email: validEmail,
+        password: validPassword,
+    };
 
-    describe.only("Petición mal enviada", () => {
+    describe("Petición mal enviada", () => {
         test("Debe devolver 400 si el 'Content-Type' no es 'application/json'", async () => {
             const data = "email=elyssa50@hotmail.com&password=rory_09";
             const contentType = "text/plain";
+
             const res = await doRequest(loginUrl, "POST", data, contentType);
+
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
                 message: invalidRequestFormatMessage,
             });
         });
+
         test("Debe devolver 400 si se envía un objeto vacío en el cuerpo de la petición", async () => {
             const data = {};
+
             const res = await doRequest(loginUrl, "POST", data);
+
             expect(res.status).toBe(400);
             expect(res.body).toStrictEqual({
                 success: false,
-                message: msg_mustEnterAllFieldsToLogin,
+                message: mustEnterAllFieldsToLoginMessage,
             });
         });
+
+        test("Debe devolver 400 si email y password son cadenas vacías", async () => {
+            const data = {
+                email: "",
+                password: "",
+            };
+
+            const res = await doRequest(loginUrl, "POST", data);
+
+            expect(res.status).toBe(400);
+            expect(res.body).toStrictEqual({
+                success: false,
+                message: mustEnterAllFieldsToLoginMessage,
+            });
+        });
+
+        test("Debe devolver 400 si email es una cadena vacía y password tiene valor", async () => {
+            const data = {
+                email: "",
+                password: validPassword,
+            };
+
+            const res = await doRequest(loginUrl, "POST", data);
+
+            expect(res.status).toBe(400);
+            expect(res.body).toStrictEqual({
+                success: false,
+                message: mustEnterAllFieldsToLoginMessage,
+            });
+        });
+
+        test("Debe devolver 400 si password es una cadena vacía y email tiene valor", async () => {
+            const data = {
+                email: validEmail,
+                password: "",
+            };
+
+            const res = await doRequest(loginUrl, "POST", data);
+
+            expect(res.status).toBe(400);
+            expect(res.body).toStrictEqual({
+                success: false,
+                message: mustEnterAllFieldsToLoginMessage,
+            });
+        });
+
         test("Debe devolver 400 si se insertan propiedades no permitidas", async () => {
             const data = {
                 email: validEmail,
                 password: validPassword,
                 foo: "some-random-data",
             };
-            const expectedObj = {
+
+            const res = await doRequest(loginUrl, "POST", data);
+
+            expect(res.status).toBe(400);
+            expect(res.body).toStrictEqual({
                 success: false,
                 message: unexpectedFieldsMessage,
-            };
-            const res = await doRequest(loginUrl, "POST", data);
-            expect(res.status).toBe(400);
-            expect(res.body).toStrictEqual(expectedObj);
-        });
-        test("Debe devolver 400 si email y password son cadenas vacías", async () => {
-            const data = {
-                email: "",
-                password: "",
-            };
-            const res = await doRequest(loginUrl, "POST", data);
-            expect(res.status).toBe(400);
-            expect(res.body).toStrictEqual({
-                success: false,
-                message: msg_mustEnterAllFieldsToLogin,
-            });
-        });
-        test("Debe devolver 400 si email es una cadena vacía y password tiene valor", async () => {
-            const data = {
-                email: "",
-                password: validPassword,
-            };
-            const res = await doRequest(loginUrl, "POST", data);
-            expect(res.status).toBe(400);
-            expect(res.body).toStrictEqual({
-                success: false,
-                message: msg_mustEnterAllFieldsToLogin,
-            });
-        });
-        test("Debe devolver 400 si password es una cadena vacía y email tiene valor", async () => {
-            const data = {
-                email: validEmail,
-                password: "",
-            };
-            const res = await doRequest(loginUrl, "POST", data);
-            expect(res.status).toBe(400);
-            expect(res.body).toStrictEqual({
-                success: false,
-                message: msg_mustEnterAllFieldsToLogin,
             });
         });
     });
@@ -106,27 +136,19 @@ describe("POST users/login", () => {
     describe("Validaciones de formato", () => {
         describe("Email", () => {
             test("Debe devolver 400 si el email es demasiado largo", async () => {
-                // Arrange
-                const expectedStatus = 400;
-
-                const expectedMatchObject = {
-                    success: false,
-                    message: emailMessages.tooLong,
-                };
-
                 const longEmail = "a".repeat(255) + "@example.com";
-
                 const data = {
                     email: longEmail,
                     password: validPassword,
                 };
 
-                // Act
                 const res = await doRequest(loginUrl, "POST", data);
 
-                // Assert
-                expect(res.status).toBe(expectedStatus);
-                expect(res.body).toStrictEqual(expectedMatchObject);
+                expect(res.status).toBe(400);
+                expect(res.body).toStrictEqual({
+                    success: false,
+                    message: emailMessages.tooLong,
+                });
             });
 
             test("Debe devolver 400 si el email tiene un formato inválido o caracteres no permitidos", async () => {
@@ -143,12 +165,15 @@ describe("POST users/login", () => {
                     "user@domain,com",
                     "user@domain..com",
                 ];
-                for (const email of invalidEmails) {
+
+                for (const invalidEmail of invalidEmails) {
                     const data = {
-                        email,
+                        email: invalidEmail,
                         password: validPassword,
                     };
+
                     const res = await doRequest(loginUrl, "POST", data);
+
                     expect(res.status).toBe(400);
                     expect(res.body).toStrictEqual({
                         success: false,
@@ -162,7 +187,9 @@ describe("POST users/login", () => {
                     email: "   user@example.com   ",
                     password: validPassword,
                 };
+
                 const res = await doRequest(loginUrl, "POST", data);
+
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
@@ -170,31 +197,39 @@ describe("POST users/login", () => {
                 });
             });
         });
+
         describe("Password", () => {
-            test("Debe devolver 400 si el password tiene menos de 6 caracteres", async () => {
+            test("Debe devolver 400 si el password es demasiado corto", async () => {
+                const n = passwordLimits.min - 1;
+                const shortPassword = "a".repeat(n);
                 const data = {
-                    email: "user@example.com",
-                    password: "123",
+                    email: validEmail,
+                    password: shortPassword,
                 };
+
                 const res = await doRequest(loginUrl, "POST", data);
+
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
-                    message: "Password must have 6 characters at least.",
+                    message: passwordMessages.tooShort,
                 });
             });
+
             test("Debe devolver 400 si el password es demasiado largo", async () => {
-                // CUAL ES EL LIMITE MAXIMO DE LONGITUD PARA UN PASSWORD Y UTILIZAR UNA CONSTANTE EN LUGAR DE UN NUMERO LITERAL.
-                const longPassword = "a".repeat(19);
+                const n = passwordLimits.max + 1;
+                const longPassword = "a".repeat(n);
                 const data = {
-                    email: "user@example.com",
+                    email: validEmail,
                     password: longPassword,
                 };
+
                 const res = await doRequest(loginUrl, "POST", data);
+
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
-                    message: "Password is too long.",
+                    message: passwordMessages.tooLong,
                 });
             });
         });
@@ -204,25 +239,34 @@ describe("POST users/login", () => {
         test("Debe devolver 401 si el email es incorrecto", async () => {
             const data = {
                 email: "wrong@example.com",
-                password: "does-not-matter",
+                password: validPassword,
             };
+
             const res = await doRequest(loginUrl, "POST", data);
+
             expect(res.status).toBe(401);
             expect(res.body).toStrictEqual({
                 success: false,
-                message: "Invalid credentials",
+                message: invalidCredentialsMessage,
             });
         });
+
         test("Debe devolver 401 si el email es correcto pero password no coincide", async () => {
+            const signupUrl = "/users/signup";
+
+            await doRequest(signupUrl, "POST", newUser);
+
             const data = {
-                email: "my_email12@gmail.com",
-                password: "wrong-password",
+                email: validEmail,
+                password: "WrongPassword_123",
             };
+
             const res = await doRequest(loginUrl, "POST", data);
+
             expect(res.status).toBe(401);
             expect(res.body).toStrictEqual({
                 success: false,
-                message: "Invalid credentials",
+                message: invalidCredentialsMessage,
             });
         });
     });
@@ -234,12 +278,15 @@ describe("POST users/login", () => {
                 "<script>alert('XSS')</script>",
                 "'; DROP TABLE users; --",
             ];
+
             for (const input of suspiciousInputs) {
                 const data = {
                     email: input,
-                    password: "validPass123",
+                    password: validPassword,
                 };
+
                 const res = await doRequest(loginUrl, "POST", data);
+
                 expect(res.status).toBe(400);
                 expect(res.body).toStrictEqual({
                     success: false,
@@ -251,10 +298,19 @@ describe("POST users/login", () => {
 
     describe("Caso de éxito - usuario logueado", () => {
         test("Debe devolver 200 si las credenciales son correctas", async () => {
-            // Arrange
-            const expectedStatus = 200;
+            const signupUrl = "/users/signup";
 
-            const expectedMatchObject = {
+            await doRequest(signupUrl, "POST", newUser);
+
+            const data = {
+                email: newUser.email,
+                password: newUser.password,
+            };
+
+            const res = await doRequest(loginUrl, "POST", data);
+
+            expect(res.status).toBe(200);
+            expect(res.body).toStrictEqual({
                 success: true,
                 message: "You are logged!",
                 accessToken: expect.any(String),
@@ -277,29 +333,7 @@ describe("POST users/login", () => {
                     },
                     quizHistory: expect.any(Array),
                 },
-            };
-
-            const user = {
-                firstname: "Elyssa",
-                lastname: "Jones",
-                username: "rory09",
-                email: "elyssa50@hotmail.com",
-                password: "rory_09123",
-            };
-
-            await userService.signup(user);
-
-            const data = {
-                email: user.email,
-                password: user.password,
-            };
-
-            // Act
-            const res = await doRequest(loginUrl, "POST", data);
-
-            // Assert
-            expect(res.status).toBe(expectedStatus);
-            expect(res.body).toStrictEqual(expectedMatchObject);
+            });
             expect(res.body.accessToken.split(".")).toHaveLength(3);
         });
     });
