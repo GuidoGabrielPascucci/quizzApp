@@ -8,7 +8,8 @@
         "start": "nodemon ./dist/server.js",
         "build": "tsc -p ./tsconfig.build.json -w",
         "build-alias": "tsc-alias -w",
-        "test": "jest login.test.ts --config jest.config.cjs",
+        "test:signup": "jest signup.test.ts --config jest.config.cjs",
+        "test:login": "jest login.test.ts",
         "ran": "node ./dist/dev/getRandomUser.js",
         "mock-users": "node ./dist/src/dev/seed/users/index.mock.js",
         "mock-quizzes": "node .dist/src/dev/seed/quizzes.seed.js"
