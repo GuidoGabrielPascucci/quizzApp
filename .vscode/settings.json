@@ -1,0 +1,7 @@
+{
+    "material-icon-theme.files.associations": {
+        "*.routes.ts": "typescript",
+        "*.controller.ts": "typescript",
+        "*.service.ts": "typescript"
+    }
+}
