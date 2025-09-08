@@ -19,7 +19,7 @@
             "@controllers/*": ["controllers/*"],
             "@routes/*": ["routes/*"],
             "@middlewares/*": ["middlewares/*"],
-            "@errors/*": ["errors/*"],
+            "@errors": ["errors/index.ts"],
             "@utils/*": ["utils/*"],
             "@tests/*": ["tests/*"]
         }
