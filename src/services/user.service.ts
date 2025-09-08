@@ -13,8 +13,9 @@ import {
     UserStatsNewData,
 } from "@_types/user.types.js";
 import { IUserDocument } from "@interfaces/mongoose.interface.js";
-import { ConflictError } from "@errors/ConflictError.js";
-import { UnauthorizedError } from "@errors/UnauthorizedError.js";
+import { ConflictError, UnauthorizedError } from "@errors";
+import { invalidCredentialsMessage } from "@schemas/users/login.schema.js";
+import { userAlreadyExistsMessage } from "@schemas/users/signup.schema.js";
 
 class UserService {
     login = async (email: string, password: string): Promise<AuthResponse> => {
@@ -23,7 +24,7 @@ class UserService {
         );
 
         if (!user || !(await compare(password, user.password))) {
-            throw new UnauthorizedError("Invalid credentials");
+            throw new UnauthorizedError(invalidCredentialsMessage);
         }
 
         const accessToken = signToken(user);
@@ -36,7 +37,7 @@ class UserService {
         const userExist = await this.findByEmail(user.email);
 
         if (userExist) {
-            throw new ConflictError("User already exists. Please log in.");
+            throw new ConflictError(userAlreadyExistsMessage);
         }
 
         const hashedPassword = await hash(user.password, 10);
