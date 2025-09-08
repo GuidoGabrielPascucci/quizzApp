@@ -7,13 +7,13 @@ const loginSchemaObject = {
     password: passwordSchema,
 };
 
-// export const unexpectedFieldsMessage =
-//     "Invalid request: unexpected fields provided.";
-
-export const unexpectedFieldsMessage =
-    "Password must include uppercase, lowercase, number and symbol.";
+export const unexpectedFieldsMessage = "Unexpected fields in login payload";
+export const invalidCredentialsMessage = "Invalid credentials";
 
 export const loginSchema = strictObject(
     loginSchemaObject,
     unexpectedFieldsMessage
 );
+
+// export const unexpectedFieldsMessage2 =
+//     "Password must include uppercase, lowercase, number and symbol.";

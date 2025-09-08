@@ -1,5 +1,5 @@
 export const passwordLimits = {
-    min: 8,
+    min: 6,
     max: 24,
 };
 

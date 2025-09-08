@@ -14,3 +14,5 @@ export const signupSchema = object({
     email: emailSchema,
     password: passwordSchema,
 });
+
+export const userAlreadyExistsMessage = "User already exists. Please log in";
