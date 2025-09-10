@@ -1,4 +1,3 @@
-import mongoose from "mongoose";
 import "dotenv/config";
 import User from "@models/user.model";
 import { doRequest } from "./user.test.helper";
@@ -11,12 +10,7 @@ import {
     emailMessages,
 } from "@schemas/users/email/email.constants";
 import { userAlreadyExistsMessage } from "@schemas/users/signup.schema";
-
-const MONGO_URI = process.env.MONGO_URI ?? "";
-
-async function deleteAllUsers() {
-    await User.deleteMany({});
-}
+import { setHooks } from "./utils";
 
 describe("POST users/signup", () => {
     //#region GLOBALS
@@ -32,12 +26,7 @@ describe("POST users/signup", () => {
     //#endregion
 
     //#region HOOKS
-    beforeAll(async () => {
-        await mongoose.connect(MONGO_URI);
-    });
-
-    beforeEach(async () => {
-        await deleteAllUsers();
+    setHooks(() => {
         userData = {
             firstname: "Guido",
             lastname: "Pascucci",
@@ -45,11 +34,6 @@ describe("POST users/signup", () => {
             email: "valid_email10@example.com",
             password: "P4sk_1234",
         };
-    });
-
-    afterAll(async () => {
-        await deleteAllUsers();
-        await mongoose.connection.close();
     });
     //#endregion
 
@@ -86,10 +70,9 @@ describe("POST users/signup", () => {
         });
 
         test("Debería guardar el usuario en la base de datos", async () => {
-            const { username, email } = userData;
-
             await doRequest(signupUrl, "POST", userData);
-
+            
+            const { email, username } = userData;
             const user = await User.findOne({ email });
 
             expect(user).not.toBeNull();
@@ -139,14 +122,9 @@ describe("POST users/signup", () => {
         );
     });
 
-    describe("Formato de datos inválido", () => {
-        /*
-        La idea es cubrir todos los escenarios donde los datos enviados son:
-        - Tipo incorrecto
-        - Tipo correcto, pero no cumple las reglas de negocio o formato
-        */
+    describe.only("Formato de datos inválido", () => {
 
-        describe.only("Tipo incorrecto", () => {
+        describe("Tipo incorrecto", () => {
             const invalidTypes = [
                 { field: "email", value: 123 },
                 { field: "email", value: { $ne: "" } },
@@ -173,24 +151,6 @@ describe("POST users/signup", () => {
         describe("Valor inválido - No cumple reglas de negocio", () => {
             // tests
         });
-
-        // describe.each(requiredFields)(
-        //     "Validación del campo %s",
-        //     (field: string) => {
-        //         test(`Debería fallar si el ${field} no es una cadena`, async () => {
-        //             userData[field] = 12345;
-
-        // test("Debería fallar si el email es inválido", async () => {
-        //     userData.email = "invalid-email";
-
-        //     const res = await doRequest(signupUrl, "POST", userData);
-        //     console.log(res.body);
-        //     expect(res.status).toBe(400);
-        //     expect(res.body).toStrictEqual({
-        //         success: false,
-        //         message: emailMessages.badFormat,
-        //     });
-        // });
 
         const invalidFormats = [
             // --------- Firstname ----------
@@ -235,6 +195,7 @@ describe("POST users/signup", () => {
     describe("Usuario ya registrado", () => {
         test("Debería fallar si el usuario ya está registrado", async () => {
             await doRequest(signupUrl, "POST", userData);
+
             const res = await doRequest(signupUrl, "POST", userData);
 
             expect(res.status).toBe(409);

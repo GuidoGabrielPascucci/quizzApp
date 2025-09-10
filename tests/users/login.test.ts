@@ -1,7 +1,4 @@
-import mongoose from "mongoose";
 import "dotenv/config";
-
-import User from "@models/user.model";
 import {
     invalidRequestFormatMessage,
     mustEnterAllFieldsToLoginMessage,
@@ -15,25 +12,11 @@ import {
     passwordMessages,
     passwordLimits,
 } from "@schemas/users/password/password.constants";
-
-import { userService } from "./user.test.setup";
 import { doRequest } from "./user.test.helper";
-
-const MONGO_URI = process.env.MONGO_URI ?? "";
-
-beforeAll(async () => {
-    await mongoose.connect(MONGO_URI);
-});
-
-beforeEach(async () => {
-    await User.deleteMany({});
-});
-
-afterAll(async () => {
-    await mongoose.connection.close();
-});
+import { setHooks } from "./utils";
 
 describe("POST users/login", () => {
+    //#region GLOBALS
     const loginUrl = "/users/login";
     const validEmail = "valid_email10@example.com";
     const validPassword = "P4sk_1234";
@@ -44,7 +27,13 @@ describe("POST users/login", () => {
         email: validEmail,
         password: validPassword,
     };
+    //#endregion
 
+    //#region HOOKS
+    setHooks();
+    //#endregion
+
+    //#region TESTS
     describe("Petición mal enviada", () => {
         test("Debe devolver 400 si el 'Content-Type' no es 'application/json'", async () => {
             const data = "email=elyssa50@hotmail.com&password=rory_09";
@@ -337,4 +326,5 @@ describe("POST users/login", () => {
             expect(res.body.accessToken.split(".")).toHaveLength(3);
         });
     });
+    //#endregion
 });
