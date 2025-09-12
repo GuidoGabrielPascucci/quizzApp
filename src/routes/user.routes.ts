@@ -1,5 +1,7 @@
 import { Router, Express } from "express";
+import { readFileSync } from "node:fs";
 import UserController from "@controllers/user.controller.js";
+
 //#region MIDDLEWARES
 import {
     sanitizeLoginMw,
@@ -7,13 +9,11 @@ import {
 } from "@middlewares/users/login.middleware.js";
 import {
     sanitizeSignupMw,
-    validateSignupFieldsMw,
-    validateUpdateStatsInputs,
+    validateSignupFieldsMw
 } from "@middlewares/users/signup.middleware.js";
 import { validateRequestFormatMw } from "@middlewares/utils.middleware.js";
+import { validateUpdateStatsInputs } from "@middlewares/users/updateStats.middleware.js";
 //#endregion
-
-import { readFileSync } from "node:fs";
 
 class UserRoutes {
     userController: UserController;

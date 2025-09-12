@@ -53,19 +53,3 @@ export function sanitizeSignupMw(
 
     next();
 }
-
-export function validateUpdateStatsInputs(
-    req: Request,
-    res: Response,
-    next: NextFunction
-): void {
-    const result = safeParse(UserStatsSchema, req.body);
-
-    if (!result.success) {
-        res.status(400).json(invalidDataResponseObject);
-        return;
-    }
-
-    req.body = result.output;
-    next();
-}
