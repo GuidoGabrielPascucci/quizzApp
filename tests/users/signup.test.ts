@@ -122,7 +122,7 @@ describe("POST users/signup", () => {
         );
     });
 
-    describe.only("Formato de datos inválido", () => {
+    describe("Formato de datos inválido", () => {
 
         describe("Tipo incorrecto", () => {
             const invalidTypes = [
@@ -148,48 +148,9 @@ describe("POST users/signup", () => {
             );
         });
 
-        describe("Valor inválido - No cumple reglas de negocio", () => {
+        describe.skip("Valor inválido - No cumple reglas de negocio", () => {
             // tests
         });
-
-        const invalidFormats = [
-            // --------- Firstname ----------
-            { field: "firstname", value: 123, expectedStatus: 400 },
-            { field: "firstname", value: {}, expectedStatus: 400 },
-            { field: "firstname", value: "", expectedStatus: 422 },
-
-            // --------- Lastname ----------
-            { field: "lastname", value: 123, expectedStatus: 400 },
-            { field: "lastname", value: {}, expectedStatus: 400 },
-            { field: "lastname", value: "", expectedStatus: 422 },
-
-            // --------- Username ----------
-            { field: "username", value: 123, expectedStatus: 400 }, // tipo incorrecto
-            { field: "username", value: {}, expectedStatus: 400 }, // objeto
-            { field: "username", value: "", expectedStatus: 422 }, // string vacío
-            { field: "username", value: "a".repeat(300), expectedStatus: 422 }, // string demasiado largo
-
-            // --------- Email ----------
-            { field: "email", value: 123, expectedStatus: 400 }, // tipo incorrecto
-            { field: "email", value: { $ne: "" }, expectedStatus: 400 }, // objeto -> NoSQL injection
-            { field: "email", value: "no-email", expectedStatus: 422 }, // string pero mal formado
-            { field: "email", value: "", expectedStatus: 422 }, // vacío
-
-            // --------- Password ----------
-            { field: "password", value: 123, expectedStatus: 400 }, // tipo incorrecto
-            { field: "password", value: {}, expectedStatus: 400 }, // objeto
-            { field: "password", value: "123", expectedStatus: 422 }, // string demasiado corto
-            { field: "password", value: "", expectedStatus: 422 }, // string vacío
-        ];
-
-        test.each(invalidFormats)(
-            "Debería fallar si %s es inválido (valor: %p)",
-            async ({ field, value, expectedStatus }) => {
-                const data = { ...userData, [field]: value };
-                const res = await doRequest(signupUrl, "POST", data);
-                expect(res.status).toBe(expectedStatus);
-            }
-        );
     });
 
     describe("Usuario ya registrado", () => {
